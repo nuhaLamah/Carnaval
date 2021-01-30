@@ -9,6 +9,7 @@ import {
 import './App.css'
 import StoreRegisterForm from './component/storeForm/StoreRegisterForm';
 import StoreList from './component/storesList/StoreList';
+import Login from './component/login/Login';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path='/stores'>
             <StoreList className="App-intro" />
+          </Route>
+          <Route path='/login'>
+            <Login />
           </Route>
         </Switch>
       </BrowserRouter>
