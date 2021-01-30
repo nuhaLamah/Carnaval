@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { applyMiddleware, createStore } from 'redux'
+import { applyMiddleware, createStore ,compose } from 'redux'
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk'
 import reducer from './redux/reducers/storeRegReducer'
 
-const store = createStore(reducer, applyMiddleware(thunk) );
+const store = createStore(reducer, compose(applyMiddleware(thunk) ));
 // ,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__({
 //   serialize: { 
 //     options: {

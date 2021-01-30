@@ -1,5 +1,6 @@
 import React from 'react';
 import InputField from './components/InputField';
+import {Link} from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
@@ -12,7 +13,9 @@ const Login = () => {
                     <InputField title=""  placeholder="Username" icon="user icon" />
                     <InputField title=""  placeholder="Passwor icon"/>
                     <div className="field button-container">
+                    <Link to = "/StoreList">
                         <button className="fluid ui blue button" type="submit">Login</button>
+                    </Link>
                     </div>
             </form>
             </div>

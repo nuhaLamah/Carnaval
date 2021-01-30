@@ -1,12 +1,12 @@
 
-const regStore = (state=[] , action)=>{
+const regStore = (store= [], action)=>{
     switch (action.type){
         case 'REG_STORE':
-            return [...state, action.payload];
+            return [...store, action.payload];
         case 'FETCH_ALL':
-            return state = action.payload;
+            return action.payload;
         default:
-            return "No Data to Add! "+state
+            return  store 
     }
 }
 
