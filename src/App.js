@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React , {useEffect} from 'react';
 import './App.css'
 import StoreRegisterForm from './component/storeForm/StoreRegisterForm';
@@ -6,6 +7,8 @@ import StoreList from './component/StoreData/StoreList';
 import {getStores }from './redux/Actions/stores';
 import {useDispatch} from 'react-redux'
 import Store from './component/StoreData/Store';
+import React from 'react';
+
 function App() {
 
   const dispatch = useDispatch();
@@ -22,7 +25,6 @@ function App() {
     <header className="App-header">
       {/* <img src={logo} className="App-logo" alt="logo" /> */}
       <h1 className="App-title">مهرجان مصراتة للتسوق</h1>
-      
       {/* <StoreRegisterForm className="App-intro" /> */}
       {/* <StoreList className="App-intro" /> */}
       </header>
