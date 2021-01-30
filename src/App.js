@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React , {useEffect} from 'react';
 import './App.css'
 import StoreRegisterForm from './component/storeForm/StoreRegisterForm';
@@ -7,7 +6,7 @@ import StoreList from './component/StoreData/StoreList';
 import {getStores }from './redux/Actions/stores';
 import {useDispatch} from 'react-redux'
 import Store from './component/StoreData/Store';
-import React from 'react';
+import Login from './component/login/Login'
 
 function App() {
 
@@ -19,19 +18,19 @@ function App() {
 
   return (
     <Router>
-
      
     <div className="App">
     <header className="App-header">
       {/* <img src={logo} className="App-logo" alt="logo" /> */}
-      <h1 className="App-title">مهرجان مصراتة للتسوق</h1>
+      {/* <h1 className="App-title">مهرجان مصراتة للتسوق</h1> */}
       {/* <StoreRegisterForm className="App-intro" /> */}
       {/* <StoreList className="App-intro" /> */}
       </header>
     </div>
 
     <Switch>
-         <Route path="/" exact component={StoreList}/>
+         <Route path="/" exact component={Login}/>
+         <Route path="/StoreList"  component={StoreList}/>
          <Route path="/StoreRegisterForm"  component={StoreRegisterForm}/>
          <Route path="/Store/:title"  component={Store}/>
     </Switch>
