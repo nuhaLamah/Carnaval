@@ -14,9 +14,7 @@ import Login from './component/login/Login';
 function App() {
   return (
     <div className="App">
-    <header className="App-header">
-      {/* <img src={logo} className="App-logo" alt="logo" /> */}
-      <h1 className="App-title">مهرجان مصراتة للتسوق</h1>
+
       <BrowserRouter>
         <Switch>
           <Route exact path='/'>
@@ -30,7 +28,7 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
-      </header>
+    
     </div>
   );
 }
