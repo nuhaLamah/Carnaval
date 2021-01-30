@@ -13,6 +13,7 @@ export const addStore = (newStore) => {
     } 
     axios.post(url, form_data)
 }
+<<<<<<< HEAD
 
 
 //----------------------- Customer API -----------//
@@ -24,3 +25,5 @@ export const addCustomer = (newCustomer) => {
     } 
     axios.post(urlCustomer, form_data)
 }
+=======
+>>>>>>> 642009ef510f38b5b9f6dbaab66bb1e80898986a

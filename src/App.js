@@ -7,8 +7,6 @@ import {useDispatch} from 'react-redux'
 import Store from './component/StoreData/Store';
 import RegStoreForm from './component/storeForm/StoreRegisterForm'
 import Login from './component/login/Login'
-import CustomerRegForm from './component/customer/CustomerRegForm'
-
 
 function App() {
 
@@ -20,7 +18,6 @@ function App() {
 
   return (
     <Router>
-    
     <Switch>
          <Route path="/" exact component={Login}/>
          <Route path="/StoreList"  component={StoreList}/>

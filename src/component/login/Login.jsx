@@ -11,7 +11,7 @@ const Login = () => {
           <form className="ui form segment log-form">
             <h4 class="ui header">Login</h4>
                     <InputField title=""  placeholder="Username" icon="user icon" />
-                    <InputField title=""  placeholder="Password" icon="lock icon"/>
+                    <InputField title=""  placeholder="Passwor icon"/>
                     <div className="field button-container">
                     <Link to = "/StoreList">
                         <button className="fluid ui blue button" type="submit">Login</button>
