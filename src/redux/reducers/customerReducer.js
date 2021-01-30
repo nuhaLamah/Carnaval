@@ -1,15 +1,13 @@
-
-const regStore = (store= [], action)=>{
+const regCustomer = (store= [], action)=>{
     switch (action.type){
-        case 'REG_STORE':
+        case 'REG_CUSTOMER':
             return [...store, action.payload];
         case 'FETCH_ALL':
             return action.payload;
-        case 'FILTER_STORES':
-            return action.payload;
+
         default:
             return  store 
     }
 }
 
-export default regStore
+export default regCustomer

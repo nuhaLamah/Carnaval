@@ -1,13 +1,12 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React , {useState} from 'react';
+import {useDispatch} from 'react-redux'
+import {filterStores} from '../../redux/Actions/stores'
 import Store from './Store'
-import {  useSelector } from 'react-redux';
-import Table from '@material-ui/core/Table';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import Input from '../login/components/InputField'
+import { useSelector } from 'react-redux';
+import { TableBody,Paper,Table, TableCell ,TableContainer , TableHead , TableRow }from '@material-ui/core/';
+import { makeStyles } from '@material-ui/core/styles';
+
 const StoreList = ()=> {
     const useStyles = makeStyles({
         table: {
@@ -15,13 +14,19 @@ const StoreList = ()=> {
         },
       });
       const classes = useStyles();
+      const dispatch = useDispatch();
+      // const [search,setSearchInput] = useState("");
       const markets = useSelector((markets) => markets)
-      //console.log(markets);   
-      
-   
-    return (
 
+      const handleInput =(e)=> {   
+        // setSearchInput(e.target.value)
+        dispatch(filterStores(e.target.value));
+      }
+      
+    return (
     <TableContainer component={Paper}>
+      <Input handleInput={handleInput}/>
+      
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
@@ -32,7 +37,14 @@ const StoreList = ()=> {
             <TableCell align="center">عمليات</TableCell>
           </TableRow>
         </TableHead>
-        <Store markets = {markets} />
+        <TableBody>
+        {
+          markets.map((store,index)=>
+          <Store store = {store} key={index} />         
+          )
+        }
+
+        </TableBody>
         </Table>
     </TableContainer>
     )
