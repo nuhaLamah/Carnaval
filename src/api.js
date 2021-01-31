@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL = 'http://10.40.0.49:5000/api';
+const urlLog = 'http://10.40.0.49:5000/api/login';
 const url = 'http://10.40.0.49:5000/api/markets';
 const urlMakani = "http://10.40.0.49:5000/api/location_info/"
 
@@ -19,15 +19,14 @@ export const addStore = (newStore) => {
 
 //----------------------- User API -----------//
 export const log = (logData) =>{
+    console.log(urlLog)
     const log_form_data = new FormData();
     for ( var key in logData ) {
     log_form_data.append(key, logData[key]);
     } 
-    axios.post(`${URL}/login`, log_form_data);
+    return axios.post(urlLog, log_form_data);
 }
 
-
-//----------------------- Customer API -----------//
 const urlCustomer = 'http://10.40.0.49:5000/api/customers';
 export const addCustomer = (newCustomer) => {
     const form_data = new FormData();
