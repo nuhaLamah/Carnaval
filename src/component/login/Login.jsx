@@ -26,7 +26,6 @@ const Login = (props) => {
     const ErrorMessage = ()=>{
         return(
             <div className="ui negative message">
-            
             <div className="header">
                 Login Error
             </div>
@@ -45,12 +44,10 @@ const Login = (props) => {
               {props.logError? ErrorMessage():null}
               </div>
             <h4 className="ui header">Login</h4>
-                    <InputField title=""  placeholder="Username" onChange={onChangeUsername} icon="user icon" />
-                    <InputField title=""  placeholder="Password" onChange={onChangePassword} icon=""/>
+                    <InputField title="" type="text" placeholder="Username" onChange={onChangeUsername} icon="user icon" />
+                    <InputField title="" type="password" placeholder="Password" onChange={onChangePassword} icon="lock icon"/>
                     <div className="field button-container">
-                    
                         <button className="fluid ui blue button" type="submit">Login</button>
-                   
                     </div>
             </form>
             </div>
