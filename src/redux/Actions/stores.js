@@ -3,7 +3,7 @@ import * as api from '../../api';
 export const getStores = () => async (dispatch) => {
   try {
     const {data} = await api.getStores();
-    dispatch({ type: 'FETCH_ALL', payload: data.markets });
+    dispatch({ type: 'FETCH_ALL', payload: data.market_data.markets });
   } catch (error) {
     console.log(error.message);
   }
@@ -27,6 +27,17 @@ export const filterStores = (keySearch) => async (dispatch) => {
     const {data} = await api.filterStores(keySearch);
     console.log(data);
     dispatch({ type: 'FILTER_STORES', payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+export const checkAddress = (address) => async (dispatch) => {
+  try {
+    const {data} = await api.checkAddress(address);
+    console.log(data);
+    dispatch({ type: 'ADDRESS', payload: data });
   } catch (error) {
     console.log(error.message);
   }

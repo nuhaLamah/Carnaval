@@ -17,7 +17,6 @@ const StoreList = ()=> {
       const dispatch = useDispatch();
       // const [search,setSearchInput] = useState("");
       const markets = useSelector((markets) => markets)
-
       const handleInput =(e)=> {   
         // setSearchInput(e.target.value)
         dispatch(filterStores(e.target.value));

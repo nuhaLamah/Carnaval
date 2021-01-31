@@ -7,6 +7,8 @@ const regStore = (store= [], action)=>{
             return action.payload;
         case 'FILTER_STORES':
             return action.payload;
+        case 'ADDRESS':
+            return action.payload;
         default:
             return  store 
     }

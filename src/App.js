@@ -5,8 +5,10 @@ import StoreList from './component/StoreData/StoreList';
 import {getStores }from './redux/Actions/stores';
 import {useDispatch} from 'react-redux'
 import Store from './component/StoreData/Store';
+import CustomerRegForm from './component/customer/CustomerRegForm'
 import RegStoreForm from './component/storeForm/StoreRegisterForm'
 import Login from './component/login/Login'
+import AddressForm from './component/makaniAddress/AddressForm';
 
 function App() {
 
@@ -18,9 +20,11 @@ function App() {
 
   return (
     <Router>
+    
     <Switch>
          <Route path="/" exact component={Login}/>
          <Route path="/StoreList"  component={StoreList}/>
+         <Route path="/AddressForm"  component={AddressForm}/>
          <Route path="/RegsterStore"  component={RegStoreForm}/>
          <Route path="/RegisterCustomer"  component={CustomerRegForm}/>
          <Route path="/StoreRegisterForm"  component={StoreRegisterForm}/>

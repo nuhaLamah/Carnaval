@@ -1,10 +1,13 @@
 import axios from 'axios';
 
 const url = 'http://10.40.0.49:5000/api/markets';
+const urlMakani = "http://10.40.0.49:5000/api/location_info/"
 
 export const getStores = () => axios.get(url);
 
 export const filterStores = (keySearch) => axios.get(url,keySearch);
+
+export const checkAddress = (address) => axios.get(urlMakani,address);
 
 export const addStore = (newStore) => {
     const form_data = new FormData();
@@ -13,7 +16,6 @@ export const addStore = (newStore) => {
     } 
     axios.post(url, form_data)
 }
-<<<<<<< HEAD
 
 
 //----------------------- Customer API -----------//
@@ -25,5 +27,3 @@ export const addCustomer = (newCustomer) => {
     } 
     axios.post(urlCustomer, form_data)
 }
-=======
->>>>>>> 642009ef510f38b5b9f6dbaab66bb1e80898986a
