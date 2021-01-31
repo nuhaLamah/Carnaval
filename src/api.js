@@ -7,7 +7,7 @@ export const getStores = () => axios.get(url);
 
 export const filterStores = (keySearch) => axios.get(url,keySearch);
 
-export const checkAddress = (address) => axios.get(urlMakani,address);
+export const checkAddress = (address) => axios.get(`${urlMakani}${address}`);
 
 export const addStore = (newStore) => {
     const form_data = new FormData();
@@ -17,6 +17,7 @@ export const addStore = (newStore) => {
     axios.post(url, form_data)
 }
 
+//----------------------- User API -----------//
 export const log = (logData) =>{
     const log_form_data = new FormData();
     for ( var key in logData ) {
@@ -24,8 +25,6 @@ export const log = (logData) =>{
     } 
     axios.post(`${URL}/login`, log_form_data);
 }
-=======
-<<<<<<< HEAD
 
 
 //----------------------- Customer API -----------//
@@ -37,9 +36,4 @@ export const addCustomer = (newCustomer) => {
     } 
     axios.post(urlCustomer, form_data)
 }
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 642009ef510f38b5b9f6dbaab66bb1e80898986a
->>>>>>> 044858e54ed07a34384ffe9a6979be87d9395e51
->>>>>>> 4768423aef7e2ac62f3d041767e3e6386f2b2389
+

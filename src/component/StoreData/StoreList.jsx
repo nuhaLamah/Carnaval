@@ -1,6 +1,6 @@
-import React , {useState} from 'react';
+import React , {useEffect} from 'react';
 import {useDispatch} from 'react-redux'
-import {filterStores} from '../../redux/Actions/stores'
+import {filterStores , getStores} from '../../redux/Actions/stores'
 import Store from './Store'
 import Input from '../login/components/InputField'
 import { useSelector } from 'react-redux';
@@ -13,8 +13,15 @@ const StoreList = ()=> {
          maxWidth: "80%",
         },
       });
+      
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+    dispatch(getStores());
+    }, [dispatch]);
+
       const classes = useStyles();
-      const dispatch = useDispatch();
+     
       // const [search,setSearchInput] = useState("");
       const markets = useSelector((markets) => markets)
       const handleInput =(e)=> {   

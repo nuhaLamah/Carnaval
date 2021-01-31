@@ -16,11 +16,11 @@ const AddressForm = () => {
     const handleSubmit = (e)=>{
     e.preventDefault();
     const {code , number} = address
-    console.log(address);
+    console.log(`${address.code}+${address.number}`);
     if(code && number)
     {
-      dispatch(checkAddress('F7P1J+1003'));
-      setAddress({code , number})
+      console.log(dispatch(checkAddress(`${address.code}+${address.number}`)));
+      setAddress({code:'' , number:''})
    
     }
     else
@@ -36,7 +36,7 @@ const AddressForm = () => {
         <h1 style={{textAlign:'center'}}>عنوان مكاني </h1>
         <input type="text" name="code" placeholder="ABCD" onChange ={handleChange} />
         <input type="text" name="number" placeholder="1234" onChange ={handleChange} />
-         <Link to ={`/StoreRegisterForm/${address}`}><button className="fluid ui blue button" type="submit" onClick = {handleSubmit}>تحقق</button></Link>
+         <Link to ={`/AddressForm/${address}`}><button className="fluid ui blue button" type="submit" onSubmit = {handleSubmit}>تحقق</button></Link>
         </form>
         </center>
     )
