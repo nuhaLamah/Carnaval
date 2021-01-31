@@ -1,5 +1,5 @@
 import {log} from '../../api';
-import { Redirect } from "react-router-dom";
+
 
 
 export const login = (username, password) => async (dispatch) => {
@@ -13,6 +13,7 @@ export const login = (username, password) => async (dispatch) => {
 
   } catch (error) {
     console.log(error.message);
+    dispatch({ type: 'LOGIN_INFO', payload: {}});
     dispatch({ type: 'CHANGE_LOG_STATE', payload: false});
   }
 };

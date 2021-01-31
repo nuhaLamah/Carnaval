@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
-
+import { Redirect } from "react-router-dom";
 
 import {login} from '../../redux/Actions/login';
 import InputField from './components/InputField';
@@ -23,6 +23,7 @@ const Login = (props) => {
         console.log(password, username)
         props.login(username, password)
     }
+   if(props.logState) return <Redirect to="/StoreList" />
     return(
        
         <div className="ui container centered grid log-container">
@@ -43,9 +44,9 @@ const Login = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    console.log(state)
-return {state: ""}
+const mapStateToProps = ({loginInfo}) => {
+    console.log(loginInfo.logState)
+return {logState: loginInfo.logState}
 }
 
 export default connect(mapStateToProps, {login})(Login);
