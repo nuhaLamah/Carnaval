@@ -3,7 +3,13 @@ import axios from 'axios';
 
 const URL = 'http://10.40.0.49:5000/api';
 
-export const getStores = () => axios.get(`${URL}/markets`);
+export const getStores = (token) =>{ 
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+      }
+    return axios.get(`${URL}/markets`, config);}
 
 export const filterStores = (keySearch) => axios.get(`${URL}/makani`,keySearch);
 
