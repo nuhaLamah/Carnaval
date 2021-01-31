@@ -1,5 +1,5 @@
 
-const login = (state=[] , action)=>{
+const login = (state={} , action)=>{
     switch (action.type){
         case 'LOGIN_INFO':
             return [action.payload];
@@ -7,4 +7,4 @@ const login = (state=[] , action)=>{
     }
 }
 
-export default regStore
+export default login;
