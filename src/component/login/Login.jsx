@@ -23,12 +23,27 @@ const Login = (props) => {
         console.log(password, username)
         props.login(username, password)
     }
-   if(props.logState) return <Redirect to="/StoreList" />
-    return(
+    const ErrorMessage = ()=>{
+        return(
+            <div className="ui negative message">
+            
+            <div className="header">
+                Login Error
+            </div>
+            <p>Wrong username or password
+            </p></div>
+        );
+    }
+
+ return  props.logState? <Redirect to="/StoreList" />
+    :(
        
         <div className="ui container centered grid log-container">
           
           <form className="ui form segment log-form" onSubmit={onSubmitForm}>
+              <div className="field">
+              {props.logError? ErrorMessage():null}
+              </div>
             <h4 className="ui header">Login</h4>
                     <InputField title=""  placeholder="Username" onChange={onChangeUsername} icon="user icon" />
                     <InputField title=""  placeholder="Password" onChange={onChangePassword} icon=""/>
@@ -46,7 +61,7 @@ const Login = (props) => {
 
 const mapStateToProps = ({loginInfo}) => {
     console.log(loginInfo.logState)
-return {logState: loginInfo.logState}
+return {logState: loginInfo.logState, logError: loginInfo.logError}
 }
 
 export default connect(mapStateToProps, {login})(Login);
