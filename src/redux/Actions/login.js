@@ -1,9 +1,10 @@
 import * as api from '../../api';
 
-export const login = () => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
   try {
-    const {data} = await api.getStores();
-    dispatch({ type: 'FETCH_ALL', payload: data.markets });
+    //const response = await api.log({username: username, password: password});
+    console.log(username, password)
+   // dispatch({ type: 'FETCH_ALL', payload: data.markets });
   } catch (error) {
     console.log(error.message);
   }
