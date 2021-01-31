@@ -1,6 +1,6 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
+
 
 import {login} from '../../redux/Actions/login';
 import InputField from './components/InputField';
@@ -8,18 +8,30 @@ import InputField from './components/InputField';
 import './Login.css';
 
 const Login = (props) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const onChangeUsername = (e) => {
+    setUsername(e.target.value);
+    }
+    const onChangePassword = (e) => {
+    setPassword(e.target.value);
+    }
+    const onSubmitForm= (e) =>{
+        props.login(username, password)
+    }
     return(
        
         <div className="ui container centered grid log-container">
           
-          <form className="ui form segment log-form" onSubmit={()=>props.login('dww', 'dd')}>
+          <form className="ui form segment log-form" onSubmit={onSubmitForm}>
             <h4 className="ui header">Login</h4>
-                    <InputField title=""  placeholder="Username" icon="user icon" />
-                    <InputField title=""  placeholder="Passwor icon"/>
+                    <InputField title=""  placeholder="Username" onChange={setUsername} icon="user icon" />
+                    <InputField title=""  placeholder="Password" onChange={setPassword} icon=""/>
                     <div className="field button-container">
-                    <Link to = "/StoreList">
+                    
                         <button className="fluid ui blue button" type="submit">Login</button>
-                    </Link>
+                   
                     </div>
             </form>
             </div>
@@ -29,7 +41,7 @@ const Login = (props) => {
 }
 
 const mapStateToProps = () => {
-
+return {state: ""}
 }
 
 export default connect(mapStateToProps, {login})(Login);
