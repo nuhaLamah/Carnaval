@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL = 'http://10.40.0.49:5000/api';
+const urlLog = 'http://10.40.0.49:5000/api/login';
 const url = 'http://10.40.0.49:5000/api/markets';
 const urlMakani = "http://10.40.0.49:5000/api/location_info/"
 
@@ -18,17 +18,14 @@ export const addStore = (newStore) => {
 }
 
 export const log = (logData) =>{
+    console.log(urlLog)
     const log_form_data = new FormData();
     for ( var key in logData ) {
     log_form_data.append(key, logData[key]);
     } 
-    axios.post(`${URL}/login`, log_form_data);
+    return axios.post(urlLog, log_form_data);
 }
-=======
-<<<<<<< HEAD
 
-
-//----------------------- Customer API -----------//
 const urlCustomer = 'http://10.40.0.49:5000/api/customers';
 export const addCustomer = (newCustomer) => {
     const form_data = new FormData();
@@ -37,9 +34,4 @@ export const addCustomer = (newCustomer) => {
     } 
     axios.post(urlCustomer, form_data)
 }
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 642009ef510f38b5b9f6dbaab66bb1e80898986a
->>>>>>> 044858e54ed07a34384ffe9a6979be87d9395e51
->>>>>>> 4768423aef7e2ac62f3d041767e3e6386f2b2389
+

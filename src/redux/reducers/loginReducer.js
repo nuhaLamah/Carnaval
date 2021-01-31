@@ -1,10 +1,14 @@
 
-const login = (state={} , action)=>{
+const loginReducer = (state={} , action)=>{
     switch (action.type){
         case 'LOGIN_INFO':
-            return [action.payload];
+            return {...state, loginData: action.payload};
+        case 'CHANGE_LOG_STATE':
+            return {...state, state: action.payload};  
+        default:
+             return state;     
        
     }
 }
 
-export default login;
+export default loginReducer;

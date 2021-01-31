@@ -10,6 +10,7 @@ import './Login.css';
 const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+   
 
     const onChangeUsername = (e) => {
     setUsername(e.target.value);
@@ -18,6 +19,8 @@ const Login = (props) => {
     setPassword(e.target.value);
     }
     const onSubmitForm= (e) =>{
+        e.preventDefault();
+        console.log(password, username)
         props.login(username, password)
     }
     return(
@@ -26,8 +29,8 @@ const Login = (props) => {
           
           <form className="ui form segment log-form" onSubmit={onSubmitForm}>
             <h4 className="ui header">Login</h4>
-                    <InputField title=""  placeholder="Username" onChange={setUsername} icon="user icon" />
-                    <InputField title=""  placeholder="Password" onChange={setPassword} icon=""/>
+                    <InputField title=""  placeholder="Username" onChange={onChangeUsername} icon="user icon" />
+                    <InputField title=""  placeholder="Password" onChange={onChangePassword} icon=""/>
                     <div className="field button-container">
                     
                         <button className="fluid ui blue button" type="submit">Login</button>
@@ -40,7 +43,8 @@ const Login = (props) => {
     )
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
+    console.log(state)
 return {state: ""}
 }
 
