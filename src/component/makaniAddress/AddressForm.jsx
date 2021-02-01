@@ -1,33 +1,45 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useState , useEffect } from 'react';
+import { useDispatch,useSelector } from 'react-redux';
+
+import StoreRegisterForm from '../storeForm/StoreRegisterForm'
 import { checkAddress } from '../../redux/Actions/stores';
 
 
 const AddressForm = () => {
     const dispatch = useDispatch();
     const [address , setAddress] = useState({code:'', number:''});
-
+    const [showForm, setShowForm] = useState(false);
+    const storeData = useSelector((addressData) => addressData.stores);
+    
     const handleChange = (e)=>{
         setAddress({...address,[e.target.name]:e.target.value})
     }
+    
    
-
+   
     const handleSubmit = (e)=>{
     e.preventDefault();
+   
     const {code , number} = address
-    console.log(address);
     if(code && number)
     {
-      dispatch(checkAddress('F7P1J+1003'));
-      setAddress({code , number})
-   
+        dispatch(checkAddress(`${address.code}+${address.number}`));
+        setAddress({code:'' , number:''})
     }
     else
     {
-    alert("please check again");
+        alert("please check again");
     }
   };
+
+  console.log(storeData);
+   
+  const showFormClick = () =>{
+    if(storeData.status == "valid" )
+        setShowForm(!showForm);
+    }
+
+  
   
     
     return (
@@ -36,8 +48,17 @@ const AddressForm = () => {
         <h1 style={{textAlign:'center'}}>عنوان مكاني </h1>
         <input type="text" name="code" placeholder="ABCD" onChange ={handleChange} />
         <input type="text" name="number" placeholder="1234" onChange ={handleChange} />
-         <Link to ={`/StoreRegisterForm/${address}`}><button className="fluid ui blue button" type="submit" onClick = {handleSubmit}>تحقق</button></Link>
+        {/* <Link to ={`/AddressForm/${address}`}> */}
+             <button className="fluid ui blue button" type="submit"  onClick = {handleSubmit}>تحقق</button>
+        {/* </Link> */}
         </form>
+        <br/><br/>
+
+        
+           {
+               showForm?<StoreRegisterForm/>:<h2>You have input an invalid address ({`${address.code}+${address.number}`}) </h2>
+           }
+        
         </center>
     )
 }

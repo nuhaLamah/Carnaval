@@ -37,9 +37,9 @@ export const filterStores = (keySearch) => async (dispatch) => {
 export const checkAddress = (address) => async (dispatch) => {
   try {
     const {data} = await api.checkAddress(address);
-    console.log(data);
-    dispatch({ type: 'ADDRESS', payload: data });
+    //console.log(data.place_info);
+    dispatch({ type: 'ADDRESS', payload: data.place_info });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };

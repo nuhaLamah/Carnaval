@@ -23,6 +23,7 @@ export const addStore = (newStore) => {
     axios.post(`${URL}/markets`, form_data)
 }
 
+//----------------------- User API -----------//
 export const log = (logData) =>{
     
     const log_form_data = new FormData();
