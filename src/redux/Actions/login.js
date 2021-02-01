@@ -2,14 +2,15 @@ import {log} from '../../api';
 
 
 
-export const login = (username, password) => async (dispatch) => {
+export const login = (username, password, isRemember) => async (dispatch) => {
   try {
     console.log(username)
     const {data} = await log({username: username, password: password});
     console.log(data)
    dispatch({ type: 'LOGIN_INFO', payload: data});
    dispatch({ type: 'CHANGE_LOG_STATE', payload: true});
-   
+   //dispatch({ type: 'SET_IS_REMEMBER_ME', payload: true});
+   if(isRemember) localStorage.setItem("refresh_token", data.refresh_token);
 
   } catch (error) {
     console.log(error.message);
