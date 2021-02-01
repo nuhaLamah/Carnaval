@@ -3,15 +3,15 @@ import axios from 'axios';
 
 const URL = 'http://10.40.0.49:5000/api';
 
-export const getStores = (token) =>{ 
+export const getStores = () =>{ 
     const config = {
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
         }
-      }
+      };
     return axios.get(`${URL}/markets`, config);}
 
-export const filterStores = (keySearch) => axios.get(`${URL}/makani`,keySearch);
+export const filterStores = (keySearch) => axios.get(`${URL}/makani`, keySearch);
 
 export const checkAddress = (address) => axios.get(`${URL}/customers/location_info/`,address);
 
@@ -31,6 +31,15 @@ export const log = (logData) =>{
     log_form_data.append(key, logData[key]);
     } 
     return axios.post(`${URL}/login`, log_form_data);
+}
+
+export const refreshAccessToken = () => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('refresh_token')}`,
+        }
+      };
+    return axios.get(`${URL}/refresh`, config);
 }
 
 export const addCustomer = (newCustomer) => {

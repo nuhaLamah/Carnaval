@@ -3,9 +3,16 @@ import * as api from '../../api';
 export const getStores = () => async (dispatch, useState) => {
   try {
     console.log(useState())
-    const {data} = await api.getStores(useState().loginInfo.logData.access_token);
-    dispatch({ type: 'FETCH_ALL', payload: data.market_data.markets });
+    const response = await api.getStores();
+    console.log(response);
+    if(response.status ===200 || response.status ===201)
+    dispatch({ type: 'FETCH_ALL', payload: response.data.market_data.markets });
+
   } catch (error) {
+    if(response.status === 401){
+      const response = await api.refreshAccessToken();
+      console.log(response)
+    }
     console.log(error.message);
   }
 };
