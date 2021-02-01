@@ -1,8 +1,9 @@
 import * as api from '../../api';
 
-export const getStores = () => async (dispatch) => {
+export const getStores = () => async (dispatch, useState) => {
   try {
-    const {data} = await api.getStores();
+    console.log(useState())
+    const {data} = await api.getStores(useState().loginInfo.logData.access_token);
     dispatch({ type: 'FETCH_ALL', payload: data.market_data.markets });
   } catch (error) {
     console.log(error.message);
