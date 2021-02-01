@@ -23,7 +23,7 @@ const StoreList = ()=> {
       const classes = useStyles();
      
       // const [search,setSearchInput] = useState("");
-      const markets = useSelector((markets) => markets)
+      const markets = useSelector((markets) => markets.stores)
       const handleInput =(e)=> {   
         // setSearchInput(e.target.value)
         dispatch(filterStores(e.target.value));

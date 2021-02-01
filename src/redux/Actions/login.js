@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-//import * as api from '../../api';
-=======
-import {log} from '../../api';
-import { Redirect } from "react-router-dom";
 
->>>>>>> b7e8921f57740c4040effb9e8e684e1de4831d6a
+import {log} from '../../api';
 
 export const login = (username, password) => async (dispatch) => {
   try {

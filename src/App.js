@@ -1,4 +1,4 @@
-import React , {useEffect} from 'react';
+import React  from 'react';
 import StoreRegisterForm from './component/storeForm/StoreRegisterForm';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import StoreList from './component/StoreData/StoreList';
