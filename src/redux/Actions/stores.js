@@ -9,11 +9,13 @@ export const getStores = () => async (dispatch, useState) => {
     dispatch({ type: 'FETCH_ALL', payload: response.data.market_data.markets });
 
   } catch (error) {
-    if(response.status === 401){
-      const response = await api.refreshAccessToken();
-      console.log(response)
+    if(error.response.data.status===401 && error.response.data.sub_status===42){
+      const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
+      localStorage.setItem("access_token", newAccessToken);
+      getStores();
+      
     }
-    console.log(error.message);
+    
   }
 };
 
