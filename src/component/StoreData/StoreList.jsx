@@ -1,7 +1,7 @@
 import React , {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {getStores} from '../../redux/Actions/stores';
+import {filterStores} from '../../redux/Actions/stores';
 import Store from './Store';
 import SearchBox from './SearchBox';
 import PageButtons from './PageButtons';
@@ -13,7 +13,7 @@ const StoreList = ()=> {
     const dispatch = useDispatch();
 
     useEffect(() => {
-    dispatch(getStores());
+    dispatch(filterStores("", 1, 5));
     }, [dispatch]);
 
      

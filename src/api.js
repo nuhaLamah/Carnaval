@@ -14,12 +14,24 @@ export const getStores = () =>{
             Authorization: `Bearer ${localStorage.getItem('access_token')}`,
         }
       };
+<<<<<<< HEAD
     return axios.get(`${URL}/markets`, config);
 }
 
 export const filterStores = (term) => axios.get(`${URL}/markets/search`, {params: {
 term: term
 
+=======
+    return axios.get(`${URL}/markets`, config, {params: {
+        page: 1,
+        per_page:5
+        }});}
+
+export const filterStores = (term, page, perPage) => axios.get(`${URL}/markets/search`, {params: {
+term: term,
+page: page,
+per_page: perPage
+>>>>>>> 983fb5232a6ea5b61a0effed8ebd6b61a99cc7ec
 }});
 
 
