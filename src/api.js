@@ -3,13 +3,10 @@ import axios from 'axios';
 
 const URL = 'http://10.40.0.49:5000/api';
 
-<<<<<<< HEAD
 
 export const checkAddress = (address) => axios.get(`${URL}/location_info/${address}`);
 
 export const filterStores = (keySearch) => axios.get(`${URL}/markets`,keySearch);
-export const getStores = (token) =>{ 
-=======
 export const getStores = () =>{ 
 >>>>>>> 43ef4b4226a0d428fe6b9cd865a825bbe9eadd6e
     const config = {
