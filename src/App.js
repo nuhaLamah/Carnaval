@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import StoreRegisterForm from './component/storeForm/StoreRegisterForm';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import StoreList from './component/StoreData/StoreList';
-
+import Print from './component/StoreData/Print';
 import Store from './component/StoreData/Store';
 import CustomerRegForm from './component/customer/CustomerRegForm'
 import RegStoreForm from './component/storeForm/StoreRegisterForm'
@@ -25,6 +25,7 @@ const App = (props)=> {
          <Route path="/RegisterCustomer"  component={!isLog? DirectToLogin :CustomerRegForm}/>
          <Route path="/StoreRegisterForm"  component={!isLog? DirectToLogin :StoreRegisterForm}/>
          <Route path="/Store/:title"  component={!isLog? DirectToLogin :Store}/>
+         <Route path="/QRCode/:name"  component={!isLog? DirectToLogin: Print}/>
     </Switch>
    
     </Router>
