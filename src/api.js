@@ -9,11 +9,15 @@ export const getStores = () =>{
             Authorization: `Bearer ${localStorage.getItem('access_token')}`,
         }
       };
-    return axios.get(`${URL}/markets`, config);}
+    return axios.get(`${URL}/markets`, config, {params: {
+        page: 1,
+        per_page:5
+        }});}
 
-export const filterStores = (term) => axios.get(`${URL}/markets/search`, {params: {
-term: term
-
+export const filterStores = (term, page, perPage) => axios.get(`${URL}/markets/search`, {params: {
+term: term,
+page: page,
+per_page: perPage
 }});
 
 export const checkAddress = (address) => axios.get(`${URL}/customers/location_info/`,address);

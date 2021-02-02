@@ -1,5 +1,5 @@
 
-const regStore = (state = {storeList: [], address:{}, storeId: 0, pageNumber:1, totalPages:1}, action)=>{
+const regStore = (state = {storeList: [], address:{}, storeId: 0, pageNumber:1, totalPages:1, filterTerm: ''}, action)=>{
     switch (action.type){
         case 'REG_STORE':
             return {...state, storeList: action.payload};
@@ -8,9 +8,11 @@ const regStore = (state = {storeList: [], address:{}, storeId: 0, pageNumber:1, 
         case 'ADDRESS':
             return {...state, address: action.payload};
         case 'CHANGE_PAGE': 
-            return {...state, page_number: action.payload};
+            return {...state, pageNumber: action.payload};
         case 'CHANGE_TOTAL_PAGES':
-            return {...state, total_pages: action.payload};      
+            return {...state, totalPages: action.payload}; 
+        case 'CHANGE_FILTER_TERM':
+            return {...state, filterTerm: action.payload};          
         default:
             return  state 
     }
