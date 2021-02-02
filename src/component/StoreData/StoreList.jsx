@@ -1,10 +1,10 @@
 import React , {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {filterStores , getStores} from '../../redux/Actions/stores';
+import {getStores} from '../../redux/Actions/stores';
 import Store from './Store';
-import Input from '../login/components/InputField';
-
+import SearchBox from './SearchBox';
+import PageButtons from './PageButtons';
 
 
 const StoreList = ()=> {
@@ -18,19 +18,12 @@ const StoreList = ()=> {
 
      
       // const [search,setSearchInput] = useState("");
-      const markets = useSelector((markets) => markets.stores)
-      const handleInput =(e)=> {   
-        // setSearchInput(e.target.value)
-        dispatch(filterStores(e.target.value));
-      }
+      const markets = useSelector((markets) => markets.stores.storeList)
+
       
     return (
       <div>
-        <div className="ui segment">
-        <div class="ui input focus">
-        <Input handleInput={handleInput} placeholder="بحث" />
-        </div>
-        </div>
+       <SearchBox />
         <table className="ui blue table">
           <thead>
             <tr>
@@ -52,7 +45,7 @@ const StoreList = ()=> {
       
       
       
-   
+          <PageButtons />
       </div>
     
     )

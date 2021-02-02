@@ -18,6 +18,13 @@ export const getStores = () =>{
     return axios.get(`${URL}/markets`, config);
 }
 
+<<<<<<< HEAD
+=======
+export const filterStores = (term) => axios.get(`${URL}/markets/search`, {params: {
+term: term
+
+}});
+>>>>>>> fcd136517db2e07d4e01c900c0a5c7cec22c758a
 
 
 // export const checkAddress = (address) => axios.get(`${URL}/customers/location_info/`,address);

@@ -1,16 +1,20 @@
 
-const regStore = (store= [], action)=>{
+const regStore = (state = {storeList: [], address:{}, storeId: 0, page_number:1, total_pages:1}, action)=>{
     switch (action.type){
         case 'REG_STORE':
-            return [...store, action.payload];
+            return {...state, storeList: action.payload};
         case 'FETCH_ALL':
-            return action.payload;
+            return {...state, storeList: action.payload};
         case 'FILTER_STORES':
-            return action.payload;
+            return {...state, storeList: action.payload};
         case 'ADDRESS':
-            return action.payload;
+            return {...state, address: action.payload};
+        case 'CHANGE_PAGE': 
+            return {...state, page_number: action.payload};
+        case 'CHANGE_TOTAL_PAGES':
+            return {...state, total_pages: action.payload};      
         default:
-            return  store 
+            return  state 
     }
 }
 
