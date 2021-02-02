@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-=======
 import {log} from '../../api';
-
->>>>>>> 43ef4b4226a0d428fe6b9cd865a825bbe9eadd6e
-
-
 
 export const login = (username, password, isRemember) => async (dispatch) => {
   try {

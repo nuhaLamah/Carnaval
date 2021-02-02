@@ -1,30 +1,23 @@
 import React, { useState , useEffect } from 'react';
  import { useDispatch} from 'react-redux';
-import {addStore} from '../../redux/Actions/stores';
+import {addStore} from '../../../redux/Actions/stores';
 //import { createMuiTheme  } from '@material-ui/core/styles';
 import { Button,CssBaseline,TextField,FormControlLabel,Checkbox,NativeSelect,Grid,Box,Container,InputLabel,Typography} from '@material-ui/core';
 import './style.js'
-import Footer from '../footer/Footer'
+import Footer from '../../footer/Footer'
 
     
-function StoreRegisterForm ({storeDefaultData}){
+function StoreRegisterForm (){
  
 // Handle Change Submit Button  - Add Store
 const dispatch = useDispatch();
 const [storeData, setStoreData] = useState({name:'', owner_name:'',market_phone :0,owner_phone:0,email:'',activity_id:1})
-
+const data = useSelector((data)=>data.address);
+console.log(data);
 const handleChange =(e)=>{
-setStoreData({...storeData,[e.target.name]:e.target.value})
+setStoreData({...storeData,[e.target.name]:e.target.defaultValue})
 }
-useEffect(() => {
-  if (storeDefaultData) {
-    
-      storeData.name = storeDefaultData.name;
-      storeData.market_phone = storeDefaultData.phoneNumber;
-    
-    
-  }
-}, [storeDefaultData]);
+console.log(storeDefaultData);
 
 const handleSubmit = async (e) => {
 e.preventDefault();
@@ -64,8 +57,8 @@ alert("please check again");
                 id="name"
                 label="الاسم"
                 autoFocus 
-                
-                onChange={(e) => setStoreData({ ...storeData, name: e.target.value })}
+                defaultValue={storeDefaultData.name}
+                onChange={(e) => setStoreData({ ...storeData, name: e.target.defaultValue })}
                
               />
             </Grid>
@@ -77,7 +70,7 @@ alert("please check again");
                 fullWidth
                 id="owner_name"
                 label="اسم المحل"
-                value={storeDefaultData.name || ""}
+                defaultValue={storeDefaultData.name }
                 onChange ={handleChange}
               /> 
               
@@ -90,7 +83,7 @@ alert("please check again");
                 fullWidth
                 id="address"
                 label="المدينة"
-                value={storeDefaultData.location || ""}
+                defaultValue={storeDefaultData.location}
                 onChange ={handleChange}
               />
             </Grid>
@@ -102,7 +95,7 @@ alert("please check again");
                 fullWidth
                 id="phone"
                 label="رقم الهاتف"
-                value={storeDefaultData.name || ""}
+                defaultValue={storeDefaultData.name}
                 onChange ={handleChange}
               />
             </Grid>
@@ -113,7 +106,7 @@ alert("please check again");
                 required
                 fullWidth
                 id="phone"
-                value={storeDefaultData.phoneNumber?storeDefaultData.phoneNumber : ""}
+                defaultValue={storeDefaultData.phoneNumber}
                 label="رقم هاتف المحل"
                 onChange ={handleChange}
               />
@@ -125,7 +118,7 @@ alert("please check again");
                 id="email"
                 label="البريد الالكتروني"
                 name="email"
-                value={storeDefaultData.website || ""}
+                defaultValue={storeDefaultData.website}
                 autoComplete="email"
                 onChange ={handleChange}
               />
@@ -141,8 +134,8 @@ alert("please check again");
                 onChange ={handleChange}
                 id="activityType"
               >
-            {/* <option aria-label="None" value="اختر نشاط" /> */}
-            <option defaultValue value={storeDefaultData.category}>{storeDefaultData.category || ""}</option>
+            {/* <option aria-label="None" defaultValue="اختر نشاط" /> */}
+            <option defaultValue={storeDefaultData.category}>{storeDefaultData.category}</option>
             <option value={1}>Ten</option>
             <option value={1}>Twenty</option>
             <option value={1}>Thirty</option>
@@ -151,7 +144,7 @@ alert("please check again");
            
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="Agree" color="primary" />}
+                control={<Checkbox defaultValue="Agree" color="primary" />}
                 label="   أوافق على شروط الاشتراك ."
                 name = "isChecked"
                 onClick={()=>{

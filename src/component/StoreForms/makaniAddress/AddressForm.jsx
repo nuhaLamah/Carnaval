@@ -2,7 +2,7 @@ import React, { useState  } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 
 import StoreRegisterForm from '../storeForm/StoreRegisterForm'
-import { checkAddress } from '../../redux/Actions/stores';
+import { checkAddress } from '../../../redux/Actions/stores';
 
 
 const AddressForm = () => {
@@ -52,12 +52,11 @@ const AddressForm = () => {
              <button className="fluid ui blue button" type="submit"  onClick = {handleSubmit}>تحقق</button>
         {/* </Link> */}
         </form>
-        <br/><br/>
+        
 
         
-           {
-               !showForm?<StoreRegisterForm storeDefaultData={storeDefaultData}/>:<h2>You have input an invalid address ({`${address.code}+${address.number}`}) </h2>
-           }
+          
+               <StoreRegisterForm storeDefaultData={storeDefaultData}/>
         
         </center>
     )
