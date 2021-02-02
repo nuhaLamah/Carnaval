@@ -1,5 +1,5 @@
 
-const regStore = (state = {storeList: [], address:{}, storeId: 0, page_number:1, total_pages:1}, action)=>{
+const regStore = (state = {storeList: [], address:{}, storeId: 0, pageNumber:1, totalPages:1}, action)=>{
     switch (action.type){
         case 'REG_STORE':
             return {...state, storeList: action.payload};
