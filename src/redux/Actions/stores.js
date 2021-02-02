@@ -36,7 +36,7 @@ export const filterStores = (keySearch) => async (dispatch) => {
   try {
     const {data} = await api.filterStores(keySearch);
     console.log(data);
-    dispatch({ type: 'FILTER_STORES', payload: data });
+    dispatch({ type: 'FILTER_STORES', payload: data.markets });
   } catch (error) {
     console.log(error.message);
   }

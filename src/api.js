@@ -11,7 +11,10 @@ export const getStores = () =>{
       };
     return axios.get(`${URL}/markets`, config);}
 
-export const filterStores = (keySearch) => axios.get(`${URL}/makani`, keySearch);
+export const filterStores = (term) => axios.get(`${URL}/markets/search`, {params: {
+term: term
+
+}});
 
 export const checkAddress = (address) => axios.get(`${URL}/customers/location_info/`,address);
 
