@@ -2,7 +2,7 @@ import * as api from '../../api';
 
 export const getStores = () => async (dispatch, useState) => {
   try {
-    console.log(useState())
+   
     const response = await api.getStores();
     console.log(response);
     if(response.status ===200 || response.status ===201)
@@ -34,12 +34,19 @@ export const addStore = (store) => async (dispatch) => {
 export const filterStores = (keySearch) => async (dispatch) => {
   console.log(keySearch);
   try {
-    const {data} = await api.filterStores(keySearch);
-    console.log(data);
-    dispatch({ type: 'FILTER_STORES', payload: data.markets });
+    
+    const response = await api.filterStores(keySearch);
+    console.log(response);
+    if(response.status ===200 || response.status ===201)
+    
+    dispatch({ type: 'FILTER_STORES', payload: response.data.markets });
   } catch (error) {
-    console.log(error.message);
+    if(error.response.data.status===401 && error.response.data.sub_status===42){
+      const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
+      localStorage.setItem("access_token", newAccessToken);
   }
+  filterStores();
+}
 };
 
 
