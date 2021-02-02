@@ -18,7 +18,7 @@ const StoreList = ()=> {
 
      
       // const [search,setSearchInput] = useState("");
-      const markets = useSelector((markets) => markets.stores)
+      const markets = useSelector((markets) => markets.stores.storeList)
 
       
     return (
