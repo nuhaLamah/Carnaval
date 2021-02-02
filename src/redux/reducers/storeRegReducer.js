@@ -3,9 +3,7 @@ const regStore = (state = {storeList: [], address:{}, storeId: 0, pageNumber:1, 
     switch (action.type){
         case 'REG_STORE':
             return {...state, storeList: action.payload};
-        case 'FETCH_ALL':
-            return {...state, storeList: action.payload};
-        case 'FILTER_STORES':
+        case 'FETCH_STORES':
             return {...state, storeList: action.payload};
         case 'ADDRESS':
             return {...state, address: action.payload};
