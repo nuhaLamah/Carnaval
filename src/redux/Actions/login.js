@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-import {log} from '../../api';
-
->>>>>>> 95072ed8021b4cbf85418640a300c79bd640d22b
 
 import {log} from '../../api';
 

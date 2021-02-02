@@ -1,45 +1,52 @@
-import React, { useState } from 'react';
-import { useDispatch} from 'react-redux';
+import React, { useState , useEffect } from 'react';
+ import { useDispatch} from 'react-redux';
 import {addStore} from '../../redux/Actions/stores';
-import { createMuiTheme  } from '@material-ui/core/styles';
+//import { createMuiTheme  } from '@material-ui/core/styles';
 import { Button,CssBaseline,TextField,FormControlLabel,Checkbox,NativeSelect,Grid,Box,Container,InputLabel,Typography} from '@material-ui/core';
-import './style.css'
+import './style.js'
 import Footer from '../footer/Footer'
 
     
-function StoreRegisterForm (){
-  //RTL Configuration
-    const theme = createMuiTheme({
-        direction: 'rtl',
-      });
-  // Handle Change Submit Button  - Add Store
-  const dispatch = useDispatch();
-  const [storeData, setStoreData] = useState({name:'', owner_name:'',market_phone :0,owner_phone:0,email:'',activity_id:1})
+function StoreRegisterForm ({storeDefaultData}){
+ 
+// Handle Change Submit Button  - Add Store
+const dispatch = useDispatch();
+const [storeData, setStoreData] = useState({name:'', owner_name:'',market_phone :0,owner_phone:0,email:'',activity_id:1})
 
-  const handleChange =(e)=>{
-    setStoreData({...storeData,[e.target.name]:e.target.value})
+const handleChange =(e)=>{
+setStoreData({...storeData,[e.target.name]:e.target.value})
 }
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const {name,owner_name,phone,activity_id} = storeData
-    if(name&& owner_name &&  phone &&  activity_id)
-    {
-      dispatch(addStore(storeData));
-      setStoreData({name:'', owner_name:'',market_phone :0,owner_phone:0,email:'',activity_id:1})
-      console.log(storeData);
-    }
-    else
-    {
-    alert("please check again");
-    }
-  };
-   
+useEffect(() => {
+  if (storeDefaultData) {
+    
+      storeData.name = storeDefaultData.name;
+      storeData.market_phone = storeDefaultData.phoneNumber;
+    
+    
+  }
+}, [storeDefaultData]);
 
+const handleSubmit = async (e) => {
+e.preventDefault();
+const {name,owner_name,phone,activity_id} = storeData
+if(name&& owner_name &&  phone &&  activity_id)
+{
+dispatch(addStore(storeData));
+setStoreData({name:'', owner_name:'',market_phone :0,owner_phone:0,email:'',activity_id:1})
+console.log(storeData);
+}
+else
+{
+alert("please check again");
+}
+};
+
+  
     //Handle checkbox
     const [checkbox,setCheckbox] = useState(true)
-
+  
     return (   
-    <Container component="main" maxWidth="xs" theme={theme} className="container">
+    <Container component="main" maxWidth="xs"  className="container">
       <CssBaseline />
       <div dir="rtl">
         
@@ -57,28 +64,33 @@ function StoreRegisterForm (){
                 id="name"
                 label="الاسم"
                 autoFocus 
-                onChange ={handleChange}
+                
+                onChange={(e) => setStoreData({ ...storeData, name: e.target.value })}
+               
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField 
+             <TextField 
                 name="owner_name"
                 variant="outlined"
                 required
                 fullWidth
                 id="owner_name"
                 label="اسم المحل"
+                value={storeDefaultData.name || ""}
                 onChange ={handleChange}
-              />
+              /> 
+              
             </Grid>
             <Grid item xs={12}>
               <TextField
-                name="address"
+                name="location"
                 variant="outlined"
                 required
                 fullWidth
                 id="address"
-                label="العنوان"
+                label="المدينة"
+                value={storeDefaultData.location || ""}
                 onChange ={handleChange}
               />
             </Grid>
@@ -90,17 +102,18 @@ function StoreRegisterForm (){
                 fullWidth
                 id="phone"
                 label="رقم الهاتف"
+                value={storeDefaultData.name || ""}
                 onChange ={handleChange}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                
                 name="market_phone"
                 variant="outlined"
                 required
                 fullWidth
                 id="phone"
+                value={storeDefaultData.phoneNumber?storeDefaultData.phoneNumber : ""}
                 label="رقم هاتف المحل"
                 onChange ={handleChange}
               />
@@ -112,6 +125,7 @@ function StoreRegisterForm (){
                 id="email"
                 label="البريد الالكتروني"
                 name="email"
+                value={storeDefaultData.website || ""}
                 autoComplete="email"
                 onChange ={handleChange}
               />
@@ -127,7 +141,8 @@ function StoreRegisterForm (){
                 onChange ={handleChange}
                 id="activityType"
               >
-            <option aria-label="None" value="اختر نشاط" />
+            {/* <option aria-label="None" value="اختر نشاط" /> */}
+            <option defaultValue value={storeDefaultData.category}>{storeDefaultData.category || ""}</option>
             <option value={1}>Ten</option>
             <option value={1}>Twenty</option>
             <option value={1}>Thirty</option>
@@ -156,8 +171,7 @@ function StoreRegisterForm (){
           >
             اشتراك
           </Button>
-          {/* <button type="submit"  disabled = {checkbox}  color="primary">اشتراك </button> */}
-          
+         
         </form>
       </div>
       <Box mt={5}>

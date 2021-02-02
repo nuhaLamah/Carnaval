@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState  } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 
 import StoreRegisterForm from '../storeForm/StoreRegisterForm'
@@ -9,14 +9,18 @@ const AddressForm = () => {
     const dispatch = useDispatch();
     const [address , setAddress] = useState({code:'', number:''});
     const [showForm, setShowForm] = useState(false);
-    const storeData = useSelector((addressData) => addressData.stores);
     
+    const storeDefaultData = useSelector((addressData) => addressData.stores);
+    
+
     const handleChange = (e)=>{
         setAddress({...address,[e.target.name]:e.target.value})
     }
+    const showFormClick = () =>{
+        if(storeDefaultData.status === "valid" )
+            setShowForm(!showForm);
+        }
     
-   
-   
     const handleSubmit = (e)=>{
     e.preventDefault();
    
@@ -24,7 +28,9 @@ const AddressForm = () => {
     if(code && number)
     {
         dispatch(checkAddress(`${address.code}+${address.number}`));
-        setAddress({code:'' , number:''})
+        showFormClick();
+        setAddress({code:'' , number:''});
+        
     }
     else
     {
@@ -32,15 +38,9 @@ const AddressForm = () => {
     }
   };
 
-  console.log(storeData);
+    //console.log(storeData);
    
-  const showFormClick = () =>{
-    if(storeData.status == "valid" )
-        setShowForm(!showForm);
-    }
-
-  
-  
+    
     
     return (
         <center>
@@ -56,7 +56,7 @@ const AddressForm = () => {
 
         
            {
-               showForm?<StoreRegisterForm/>:<h2>You have input an invalid address ({`${address.code}+${address.number}`}) </h2>
+               !showForm?<StoreRegisterForm storeDefaultData={storeDefaultData}/>:<h2>You have input an invalid address ({`${address.code}+${address.number}`}) </h2>
            }
         
         </center>

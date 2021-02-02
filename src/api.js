@@ -3,9 +3,10 @@ import axios from 'axios';
 
 const URL = 'http://10.40.0.49:5000/api';
 
-<<<<<<< HEAD
-export const checkAddress = (address) => axios.get(`${urlMakani}${address}`);
-=======
+
+export const checkAddress = (address) => axios.get(`${URL}/location_info/${address}`);
+
+export const filterStores = (keySearch) => axios.get(`${URL}/markets`,keySearch);
 export const getStores = (token) =>{ 
     const config = {
         headers: {
@@ -14,11 +15,9 @@ export const getStores = (token) =>{
       }
     return axios.get(`${URL}/markets`, config);}
 
-export const filterStores = (keySearch) => axios.get(`${URL}/makani`,keySearch);
 
-export const checkAddress = (address) => axios.get(`${URL}/customers/location_info/`,address);
->>>>>>> 95072ed8021b4cbf85418640a300c79bd640d22b
 
+// export const checkAddress = (address) => axios.get(`${URL}/customers/location_info/`,address);
 export const addStore = (newStore) => {
     const form_data = new FormData();
     for ( var key in newStore ) {
