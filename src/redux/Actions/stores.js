@@ -6,7 +6,8 @@ export const getStores = () => async (dispatch, useState) => {
     const response = await api.getStores();
     console.log(response);
     if(response.status ===200 || response.status ===201)
-    dispatch({ type: 'FETCH_ALL', payload: response.data.market_data.markets });
+    dispatch({ type: 'FETCH_STORES', payload: response.data.market_data.markets });
+    dispatch({ type: 'CHANGE_TOTAL_PAGES', payload: response.data.market_data.total_pages});
 
   } catch (error) {
     if(error.response.data.status===401 && error.response.data.sub_status===42){
@@ -39,7 +40,8 @@ export const filterStores = (keySearch) => async (dispatch) => {
     console.log(response);
     if(response.status ===200 || response.status ===201)
     
-    dispatch({ type: 'FILTER_STORES', payload: response.data.markets });
+    dispatch({ type: 'FETCH_STORES', payload: response.data.markets });
+    dispatch({ type: 'CHANGE_TOTAL_PAGES', payload: response.data.total_pages});
   } catch (error) {
     if(error.response.data.status===401 && error.response.data.sub_status===42){
       const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
