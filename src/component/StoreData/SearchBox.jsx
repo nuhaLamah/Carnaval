@@ -5,7 +5,7 @@ import {filterStores} from '../../redux/Actions/stores';
 import Input from '../login/components/InputField';
 
 const SearchBox = (props) => {
-    
+
     const dispatch = useDispatch();
     const [term, setTerm] = useState('');
 
@@ -13,7 +13,7 @@ const SearchBox = (props) => {
        const timer = setTimeout(() => {
           dispatch(filterStores(term));
           console.log(term)
-       }, 5000);
+       }, 1000);
 
         return () => clearTimeout(timer);
       }, [term, dispatch]);
