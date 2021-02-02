@@ -13,7 +13,7 @@ import Main from './component/StoreForms/Main';
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
   const isLog = props.logState || localStorage.getItem('is_log');
-  console.log(isLog);
+  //console.log(isLog);
   return (
     <Router>
     

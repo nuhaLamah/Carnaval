@@ -10,7 +10,7 @@ const AddressForm = () => {
     const [address , setAddress] = useState({code:'', number:''});
     const [showForm, setShowForm] = useState(false);
     
-    const storeDefaultData = useSelector((addressData) => addressData.stores);
+    const storeDefaultData = useSelector((addressData) => addressData.stores.address);
     
 
     const handleChange = (e)=>{
@@ -38,25 +38,20 @@ const AddressForm = () => {
     }
   };
 
-    //console.log(storeData);
-   
-    
-    
+
     return (
         <center>
         <form className="ui form segment log-form">
         <h1 style={{textAlign:'center'}}>عنوان مكاني </h1>
         <input type="text" name="code" placeholder="ABCD" onChange ={handleChange} />
         <input type="text" name="number" placeholder="1234" onChange ={handleChange} />
-        {/* <Link to ={`/AddressForm/${address}`}> */}
              <button className="fluid ui blue button" type="submit"  onClick = {handleSubmit}>تحقق</button>
-        {/* </Link> */}
         </form>
         
-
+        
         
           
-               <StoreRegisterForm storeDefaultData={storeDefaultData}/>
+               <StoreRegisterForm  storeDefaultData={storeDefaultData}/>
         
         </center>
     )
