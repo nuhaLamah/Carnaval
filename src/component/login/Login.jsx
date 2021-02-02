@@ -10,18 +10,27 @@ import './Login.css';
 const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isRemember, setIsRemember] = useState(true);
    
 
     const onChangeUsername = (e) => {
     setUsername(e.target.value);
     }
+
     const onChangePassword = (e) => {
     setPassword(e.target.value);
     }
+
+    const onCheckRememberMe = (e) => {
+        console.log(e);
+        setIsRemember(!isRemember);
+        console.log(isRemember)
+    }
+
     const onSubmitForm= (e) =>{
         e.preventDefault();
         console.log(password, username)
-        props.login(username, password)
+        props.login(username, password, isRemember)
     }
     const ErrorMessage = ()=>{
         return(
@@ -48,6 +57,10 @@ const Login = (props) => {
                     <InputField title="" type="password" placeholder="Password" onChange={onChangePassword} icon="lock icon"/>
                     <div className="field button-container">
                         <button className="fluid ui blue button" type="submit">Login</button>
+                    </div>
+                    <div className="ui checkbox">
+                        <input type="checkbox" name="rememberMe" checked={isRemember} onChange={onCheckRememberMe} />
+                        <label>Remember me</label>
                     </div>
             </form>
             </div>

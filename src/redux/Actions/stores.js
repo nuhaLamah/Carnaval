@@ -3,10 +3,19 @@ import * as api from '../../api';
 export const getStores = () => async (dispatch, useState) => {
   try {
     console.log(useState())
-    const {data} = await api.getStores(useState().loginInfo.logData.access_token);
-    dispatch({ type: 'FETCH_ALL', payload: data.market_data.markets });
+    const response = await api.getStores();
+    console.log(response);
+    if(response.status ===200 || response.status ===201)
+    dispatch({ type: 'FETCH_ALL', payload: response.data.market_data.markets });
+
   } catch (error) {
-    console.log(error.message);
+    if(error.response.data.status===401 && error.response.data.sub_status===42){
+      const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
+      localStorage.setItem("access_token", newAccessToken);
+      getStores();
+      
+    }
+    
   }
 };
 
