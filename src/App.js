@@ -33,10 +33,9 @@ const App = (props)=> {
 }
 
 const mapStateToProps = ({loginInfo})=>{
-  console.log('log state', loginInfo.logState);
-  const isLog =  loginInfo.logState || !!!localStorage.getItem('is_log');
-  console.log(isLog)
-return {isLog: isLog};
+
+  const isLog =  loginInfo.logState || (localStorage.getItem('is_log') =='true');
+  return {isLog: isLog};
 }
 
 export default connect(mapStateToProps)(App);
