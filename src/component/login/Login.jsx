@@ -10,7 +10,7 @@ import './Login.css';
 const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [isRemember, setIsRemember] = useState(true);
+    const [isRemember, setIsRemember] = useState(false);
    
 
     const onChangeUsername = (e) => {
@@ -22,14 +22,13 @@ const Login = (props) => {
     }
 
     const onCheckRememberMe = (e) => {
-        console.log(e);
+
         setIsRemember(!isRemember);
         console.log(isRemember)
     }
 
     const onSubmitForm= (e) =>{
         e.preventDefault();
-        console.log(password, username)
         props.login(username, password, isRemember)
     }
     const ErrorMessage = ()=>{
