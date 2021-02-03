@@ -5,7 +5,7 @@ import React from 'react';
 const NavBar = (props) => {
     return(
         <div class="ui large menu">
-            <a href="/" class="active item">
+            <a href="/StoreList" class="active item">
                 Home
             </a>
             <div class="item">
