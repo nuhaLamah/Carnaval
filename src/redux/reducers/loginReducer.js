@@ -1,6 +1,6 @@
 
 const loginReducer = (state={logData: {}, logState:false, logError: false} , action)=>{
-    console.log(action.payload)
+    //console.log(action.payload)
     switch (action.type){
         case 'LOGIN_INFO':
             return {...state, logData: action.payload};

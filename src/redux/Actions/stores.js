@@ -8,7 +8,7 @@ export const addStore = (store) => async (dispatch) => {
 
     dispatch({ type: 'REG_STORE', payload: msg });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 
