@@ -19,8 +19,7 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
   const { totalPages } = useState().stores;
   console.log( useState().stores)
   console.log('page', totalPages)
-  try {;
-    
+  try {
     const response = await api.filterStores(keySearch, pageNumber, perPage);
     console.log(response);
     if(response.status ===200 || response.status ===201) {
@@ -34,9 +33,11 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
   } catch (error) {
     if(error.response.data.status===401 && error.response.data.sub_status===42){
       const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
+      
       localStorage.setItem("access_token", newAccessToken);
+      filterStores();
   }
-  filterStores();
+  
 }
 };
 
