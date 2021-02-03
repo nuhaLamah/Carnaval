@@ -12,20 +12,20 @@ import AddressForm from './component/makaniAddress/AddressForm';
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
-  const isLog = props.logState || localStorage.getItem('is_log');
-  console.log(isLog);
+  
+
   return (
     <Router>
     
     <Switch>
          <Route path="/login" exact component={Login}/>
-         <Route path="/StoreList"  component={!isLog? DirectToLogin: StoreList}/>
-         <Route path="/AddressForm"  component={!isLog? DirectToLogin :AddressForm}/>
-         <Route path="/RegsterStore"  component={!isLog? DirectToLogin :RegStoreForm}/>
-         <Route path="/RegisterCustomer"  component={!isLog? DirectToLogin :CustomerRegForm}/>
-         <Route path="/StoreRegisterForm"  component={!isLog? DirectToLogin :StoreRegisterForm}/>
-         <Route path="/Store/:title"  component={!isLog? DirectToLogin :Store}/>
-         <Route path="/QRCode/:name"  component={!isLog? DirectToLogin: Print}/>
+         <Route path="/StoreList"  component={!props.isLog? DirectToLogin: StoreList}/>
+         <Route path="/AddressForm"  component={AddressForm}/>
+         <Route path="/RegsterStore"  component={RegStoreForm}/>
+         <Route path="/RegisterCustomer"  component={CustomerRegForm}/>
+         <Route path="/StoreRegisterForm"  component={StoreRegisterForm}/>
+         <Route path="/Store/:title"  component={!props.isLog? DirectToLogin :Store}/>
+         <Route path="/QRCode/:name"  component={!props.isLog? DirectToLogin: Print}/>
     </Switch>
    
     </Router>
@@ -33,7 +33,10 @@ const App = (props)=> {
 }
 
 const mapStateToProps = ({loginInfo})=>{
-return {logState: loginInfo.logState};
+  console.log('log state', loginInfo.logState);
+  const isLog =  loginInfo.logState || !!!localStorage.getItem('is_log');
+  console.log(isLog)
+return {isLog: isLog};
 }
 
 export default connect(mapStateToProps)(App);

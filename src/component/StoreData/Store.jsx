@@ -10,7 +10,9 @@ const Store = ({store})=> {
             <td className="center aligned">{store.activity_id} </td>
             <td className="center aligned">{store.market_phone} </td>
             <td className="center aligned"><Link to = {`/QRCode/${store.name}`}>
-            <button className="ui blue button">Code</button></Link> </td>
+            <button className="ui basic grey large icon button">
+                <i className="qrcode icon"></i> 
+                </button></Link> </td>
             </tr> 
     )
 }
