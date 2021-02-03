@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {filterStores} from '../../redux/Actions/stores';
 import Store from './Store';
+import NavBar from './NavBar';
 import SearchBox from './SearchBox';
 import PageButtons from './PageButtons';
 
@@ -23,7 +24,9 @@ const StoreList = ()=> {
       
     return (
       <div>
-       <SearchBox />
+        <NavBar>
+        <SearchBox />
+        </NavBar> 
         <table className="ui blue table">
           <thead>
             <tr>

@@ -11,12 +11,18 @@
     "@testing-library/user-event": "^12.6.2",
     "axios": "^0.21.1",
     "jss-rtl": "^0.3.0",
+    "qrcode.react": "^1.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+<<<<<<< HEAD
     "react-random-code-generator": "^1.0.2",
+=======
+    "react-qr-svg": "^2.3.0",
+>>>>>>> 3d3ed322b6860d1bec50712e8aaefddc73331596
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-to-print": "^2.12.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "unique-random-at-depth": "^1.0.0",

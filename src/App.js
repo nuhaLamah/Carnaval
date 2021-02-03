@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import StoreRegisterForm from './component/StoreForms/storeForm/StoreRegisterForm';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import StoreList from './component/StoreData/StoreList';
+<<<<<<< HEAD
 import StoreData from './component/StoreForms/storeData/StoreData'
+=======
+import Print from './component/StoreData/Print';
+>>>>>>> 3d3ed322b6860d1bec50712e8aaefddc73331596
 import Store from './component/StoreData/Store';
 import CustomerRegForm from './component/customer/CustomerRegForm'
 import Login from './component/login/Login'
@@ -25,7 +29,11 @@ const App = (props)=> {
          <Route path="/RigisterCustomer"  component={!isLog? DirectToLogin :CustomerRegForm}/>
          <Route path="/StoreRegisterForm"  component={!isLog? DirectToLogin :StoreRegisterForm}/>
          <Route path="/Store/:title"  component={!isLog? DirectToLogin :Store}/>
+<<<<<<< HEAD
        
+=======
+         <Route path="/QRCode/:name"  component={!isLog? DirectToLogin: Print}/>
+>>>>>>> 3d3ed322b6860d1bec50712e8aaefddc73331596
     </Switch>
    
     </Router>
