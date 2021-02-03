@@ -6,7 +6,8 @@ const URL = 'http://10.40.0.49:5000/api';
 export const filterStores  = (term, page, perPage) =>{ 
     const config = {
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            'Content-Type': "application/json" 
         },
         params: {
             term: term,
