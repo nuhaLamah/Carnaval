@@ -22,10 +22,9 @@ const SearchBox = (props) => {
         setTerm(e.target.value);
     } 
     
-    return(
-            <div className="ui segment">
-                <Input onChange={handleInput} placeholder="بحث" />
-            </div>);
+    return( 
+                <Input onChange={handleInput} placeholder="بحث"  icon="search icon"/>
+            );
 
 }
 
