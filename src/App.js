@@ -22,7 +22,7 @@ const App = (props)=> {
          <Route path="/login" exact component={Login}/>
          <Route path="/StoreList"  component={!props.isLog? DirectToLogin: StoreList}/>
          <Route path="/AddressForm"  component={AddressForm}/>
-         <Route path="/RegsterStore"  component={RegStoreForm}/>
+         {/* <Route path="/RegsterStore"  component={RegStoreForm}/> */}
          <Route path="/RegisterCustomer"  component={CustomerRegForm}/>
          <Route path="/StoreRegisterForm"  component={StoreRegisterForm}/>
          <Route path="/Store/:title"  component={!props.isLog? DirectToLogin :Store}/>
