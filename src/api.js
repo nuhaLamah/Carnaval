@@ -2,25 +2,23 @@ import axios from 'axios';
 
 const URL = 'http://10.40.0.49:5000/api';
 
-export const checkAddress = (address) => axios.get(`${URL}/location_info/${address}`);
-
-export const getStores = () =>{ 
+export const filterStores  = (term, page, perPage) =>{ 
     const config = {
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-            ContentType : "application/json",
-        }
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            'Content-Type': "application/json" 
+        },
+        params: {
+            term: term,
+            page: page,
+            per_page: perPage
+            }
       };
-    return axios.get(`${URL}/markets`, config, {params: {
-        page: 1,
-        per_page:5
-        }});}
+    return axios.get(`${URL}/markets/search`, config);}
 
-export const filterStores = (term, page, perPage) => axios.get(`${URL}/markets/search`, {params: {
-    term: term,
-    page: page,
-    per_page: perPage
-    }});
+
+
+export const checkAddress = (address) => axios.get(`${URL}/customers/location_info/`,address);
 
 export const addStore = (newStore) => {
     const form_data = new FormData();

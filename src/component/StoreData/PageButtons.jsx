@@ -15,13 +15,17 @@ const PageButtons = () => {
        
         dispatch(filterStores(filterTerm, pageNumber-1, 5));
     }
-    
+    const buttonStyle = {
+        backgroundColor: '#FF5733',
+        color: 'white',
+        fontFamily : 'inherit'
+    }
     return(
         <div className ="container">
             <div className="ui center aligned ten column grid">
                 <div className="row">
-                    <button disabled={pageNumber===totalPages} className="ui column right labeled icon button" onClick={increase}>
-                        Forward
+                    <button disabled={pageNumber===totalPages} className="ui column right labeled icon button" onClick={increase} style={buttonStyle}>
+                        التالي
                         <i className="right chevron icon"></i>
                     </button>
 
@@ -29,9 +33,9 @@ const PageButtons = () => {
                         {pageNumber}/{totalPages}
                     </div>
 
-                    <button disabled={pageNumber===1} className="ui column labeled icon button" onClick={decrease}>
+                    <button disabled={pageNumber===1} className="ui column labeled icon button" onClick={decrease} style={buttonStyle}>
                         <i className="left chevron icon"></i>
-                        Back
+                       رجوع
                     </button>
                 </div>
             </div>

@@ -13,21 +13,20 @@ import Terms from './component/StoreForms/storeForm/Terms'
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
-  const isLog = props.logState || localStorage.getItem('is_log');
-  //console.log(isLog);
+  
+
   return (
     <Router>
     
     <Switch>
          <Route path="/login" exact component={Login}/>
-         <Route path="/StoreList"  component={!isLog? DirectToLogin: StoreList}/>
-         <Route path="/AddressForm"  component={!isLog? DirectToLogin :AddressForm}/>
-         <Route path="/Store/:code"  component={StoreData}/>
-         <Route path="/RigisterCustomer"  component={CustomerRegForm}/>
+         <Route path="/StoreList"  component={!props.isLog? DirectToLogin: StoreList}/>
+         <Route path="/AddressForm"  component={AddressForm}/>
+         <Route path="/RegsterStore"  component={RegStoreForm}/>
+         <Route path="/RegisterCustomer"  component={CustomerRegForm}/>
          <Route path="/StoreRegisterForm"  component={StoreRegisterForm}/>
-         <Route path="/Store/:title"  component={Store}/>
-         <Route path="/QRCode/:name"  component={!isLog? DirectToLogin: Print}/>
-         <Route path="/Terms"  component={Terms}/>
+         <Route path="/Store/:title"  component={!props.isLog? DirectToLogin :Store}/>
+         <Route path="/QRCode/:name"  component={!props.isLog? DirectToLogin: Print}/>
     </Switch>
    
     </Router>
@@ -35,7 +34,9 @@ const App = (props)=> {
 }
 
 const mapStateToProps = ({loginInfo})=>{
-return {logState: loginInfo.logState};
+
+  const isLog =  loginInfo.logState || (localStorage.getItem('is_log') ==='true');
+  return {isLog: isLog};
 }
 
 export default connect(mapStateToProps)(App);

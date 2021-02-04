@@ -14,8 +14,8 @@ class Print extends React.PureComponent {
               // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
               // to the root node of the returned component as it will be overwritten.
               return  <a href="#print">
-                <button class="ui large icon button">
-                <i class="print icon"></i> 
+                <button className="ui large icon button">
+                <i className="print icon"></i> 
                 </button>
               </a>;
             }}
