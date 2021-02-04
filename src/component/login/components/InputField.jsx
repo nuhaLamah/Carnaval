@@ -8,6 +8,7 @@ const InputField = ({title, type, name, placeholder, onChange, icon, color, bord
                     <input  type={type} name={name} placeholder={placeholder} onChange={onChange}  style={{backgroundColor: color, border: `1px solid ${borderColor}` }} />
                     <i className={icon}></i>
                 </div>
+               
         </div>
     )
 }

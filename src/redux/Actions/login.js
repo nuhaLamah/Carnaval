@@ -1,8 +1,5 @@
 import {log} from '../../api';
 
-
-
-
 export const login = (username, password, isRemember) => async (dispatch) => {
   try {
     const {data} = await log({username: username, password: password});

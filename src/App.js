@@ -1,14 +1,15 @@
 import React  from 'react';
 import { connect } from 'react-redux';
-import StoreRegisterForm from './component/storeForm/StoreRegisterForm';
+import StoreRegisterForm from './component/StoreForms/storeForm/StoreRegisterForm';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import StoreList from './component/StoreData/StoreList';
+import StoreData from './component/StoreForms/storeData/StoreData'
 import Print from './component/StoreData/Print';
 import Store from './component/StoreData/Store';
 import CustomerRegForm from './component/customer/CustomerRegForm'
-import RegStoreForm from './component/storeForm/StoreRegisterForm'
 import Login from './component/login/Login'
-import AddressForm from './component/makaniAddress/AddressForm';
+import AddressForm from './component/StoreForms/makaniAddress/AddressForm';
+import Terms from './component/StoreForms/storeForm/Terms'
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
@@ -21,7 +22,7 @@ const App = (props)=> {
          <Route path="/login" exact component={Login}/>
          <Route path="/StoreList"  component={!props.isLog? DirectToLogin: StoreList}/>
          <Route path="/AddressForm"  component={AddressForm}/>
-         <Route path="/RegsterStore"  component={RegStoreForm}/>
+         {/* <Route path="/RegsterStore"  component={RegStoreForm}/> */}
          <Route path="/RegisterCustomer"  component={CustomerRegForm}/>
          <Route path="/StoreRegisterForm"  component={StoreRegisterForm}/>
          <Route path="/Store/:title"  component={!props.isLog? DirectToLogin :Store}/>

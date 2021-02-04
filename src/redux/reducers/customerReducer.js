@@ -1,12 +1,10 @@
-const regCustomer = (store= [], action)=>{
+const regCustomer = (customer = {}, action)=>{
     switch (action.type){
         case 'REG_CUSTOMER':
-            return [...store, action.payload];
-        case 'FETCH_ALL':
-            return action.payload;
+            return action.payload ;
 
         default:
-            return  store 
+            return  customer 
     }
 }
 
