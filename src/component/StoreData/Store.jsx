@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import ChangeStoreState from './ChangeStoreState';
 
 const Store = ({store})=> {
     return (
@@ -25,6 +26,7 @@ const Store = ({store})=> {
                 <button className="ui basic grey large icon button">
                     <i className="qrcode icon"></i> 
                 </button></Link> 
+                <ChangeStoreState storeState = {store.state} />
             
             </td>
             </tr> 
