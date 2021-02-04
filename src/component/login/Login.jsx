@@ -10,8 +10,12 @@ import './Login.css';
 const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState();
     const [isRemember, setIsRemember] = useState(false);
    
+    const handleShowPassword = ()=> {
+    setShowPassword(!showPassword);
+    } 
 
     const onChangeUsername = (e) => {
     setUsername(e.target.value);
@@ -53,14 +57,16 @@ const Login = (props) => {
               </div>
             <h4 className="ui header">Login</h4>
                     <InputField title="" type="text" placeholder="Username" onChange={onChangeUsername} icon="user icon" />
-                    <InputField title="" type={showPassword ? 'text' : 'password'} placeholder="Password" handleShowPassword={handleShowPassword} onChange={onChangePassword} icon="lock icon"/>
+                    <InputField title="" type={showPassword ? 'text' : 'password'} placeholder="Password" onChange={onChangePassword} icon="lock icon"/>
                     <div className="field button-container">
                         <button className="fluid ui blue button" type="submit">Login</button>
                     </div>
+                    <button onClick={handleShowPassword}>show password</button>
                     <div className="ui checkbox">
                         <input type="checkbox" name="rememberMe" checked={isRemember} onChange={onCheckRememberMe} />
                         <label>Remember me</label>
                     </div>
+
             </form>
             </div>
            
