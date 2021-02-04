@@ -34,7 +34,7 @@ const App = (props)=> {
 
 const mapStateToProps = ({loginInfo})=>{
 
-  const isLog =  loginInfo.logState || (localStorage.getItem('is_log') =='true');
+  const isLog =  loginInfo.logState || (localStorage.getItem('is_log') ==='true');
   return {isLog: isLog};
 }
 

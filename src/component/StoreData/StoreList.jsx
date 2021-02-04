@@ -31,9 +31,19 @@ const StoreList = ()=> {
           <thead>
             <tr>
               <th className="center aligned">اسم المحل</th>
-              <th className="center aligned">العنوان</th>
-              <th className="center aligned">نوع النشاط</th>
-              <th className="center aligned">رقم الهاتف</th>
+              <th className="center aligned"> العنوان البريدي</th>
+              <th className="center aligned"> رقم المبنى</th>
+
+              <th className="center aligned"> اسم المالك</th>
+              <th className="center aligned"> رقم هاتف المالك</th>
+              <th className="center aligned">رقم هاتف المحل</th>
+
+              <th className="center aligned">إيميل</th>
+              <th className="center aligned">نوع النشاط</th>  
+              <th className="center aligned">الكود</th>
+              
+              <th className="center aligned">الحالة</th>
+              <th className="center aligned">التاريخ</th>
               <th className="center aligned">عمليات</th>
             </tr>
           </thead>
