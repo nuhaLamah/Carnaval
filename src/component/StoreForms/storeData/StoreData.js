@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const StoreData = ({match})=>{
 
-    console.log(match.params.code);
     return (
         <center>
         

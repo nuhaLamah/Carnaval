@@ -5,19 +5,21 @@ import InputField from '../login/components/InputField'
 const  CustomerRegForm = () => {
     // Handle Change Submit Button  - Add Store
   const dispatch = useDispatch();
-  const [customerData, setCustomerData] = useState({name:'', phone:''});
+  const [customerData, setCustomerData] = useState({fullname:'', phone_number:'',building_number:'123',postcode:'FDE125',market_code:'111111', city:'test'});
 
-  const handleChange =(e)=>{
+  const onChange =(e)=>{
     setCustomerData({...customerData,[e.target.name]:e.target.value})
-}
+   
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {name,owner_name,phone,activity_id} = customerData
-    if(name&& owner_name &&  phone &&  activity_id)
+    const {fullname,phone_number} = customerData
+    console.log(customerData);
+    if(fullname && phone_number )
     {
-      dispatch(addCustomer(customerData));
-      setCustomerData({name:'',phone:''})
       console.log(customerData);
+      dispatch(addCustomer(customerData));
+      //setCustomerData({name:'',phone_number:'',building_number:'',postcode:''})
     }
     else
     {
@@ -27,11 +29,11 @@ const  CustomerRegForm = () => {
  
     return (
         <center>
-        <form className="ui form segment log-form">
+        <form className="ui form segment log-form" onSubmit = {handleSubmit}>
         <h1 style={{textAlign:'center'}}>نموذج  المشاركة </h1>
-        <InputField name="name" placeholder="الاسم بالكامل" onChange ={handleChange} />
-        <InputField name="phoneNumber" placeholder="رقم الهاتف " onChange ={handleChange} />
-         <button className="fluid ui blue button" type="submit" onClick = {handleSubmit}>حفظ</button>
+        <InputField name="fullname" placeholder="الاسم بالكامل" onChange ={onChange} />
+        <InputField name="phone_number" placeholder="رقم الهاتف " onChange ={onChange} />
+         <button className="fluid ui blue button" type="submit" >حفظ</button>
         </form>
         </center>
     )

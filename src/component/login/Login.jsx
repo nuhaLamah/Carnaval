@@ -11,7 +11,11 @@ const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isRemember, setIsRemember] = useState(true);
-   
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleShowPassword = () => { 
+    setShowPassword(!showPassword);
+    }
 
     const onChangeUsername = (e) => {
     setUsername(e.target.value);
@@ -54,7 +58,7 @@ const Login = (props) => {
               </div>
             <h4 className="ui header">Login</h4>
                     <InputField title="" type="text" placeholder="Username" onChange={onChangeUsername} icon="user icon" />
-                    <InputField title="" type="password" placeholder="Password" onChange={onChangePassword} icon="lock icon"/>
+                    <InputField title="" type={showPassword ? 'text' : 'password'} placeholder="Password" handleShowPassword={handleShowPassword} onChange={onChangePassword} icon="lock icon"/>
                     <div className="field button-container">
                         <button className="fluid ui blue button" type="submit">Login</button>
                     </div>

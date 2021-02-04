@@ -9,7 +9,7 @@ import Store from './component/StoreData/Store';
 import CustomerRegForm from './component/customer/CustomerRegForm'
 import Login from './component/login/Login'
 import AddressForm from './component/StoreForms/makaniAddress/AddressForm';
-
+import Terms from './component/StoreForms/storeForm/Terms'
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
@@ -23,11 +23,11 @@ const App = (props)=> {
          <Route path="/StoreList"  component={!isLog? DirectToLogin: StoreList}/>
          <Route path="/AddressForm"  component={!isLog? DirectToLogin :AddressForm}/>
          <Route path="/Store/:code"  component={StoreData}/>
-         <Route path="/RigisterCustomer"  component={!isLog? DirectToLogin :CustomerRegForm}/>
-         <Route path="/StoreRegisterForm"  component={!isLog? DirectToLogin :StoreRegisterForm}/>
-         <Route path="/Store/:title"  component={!isLog? DirectToLogin :Store}/>
-       
+         <Route path="/RigisterCustomer"  component={CustomerRegForm}/>
+         <Route path="/StoreRegisterForm"  component={StoreRegisterForm}/>
+         <Route path="/Store/:title"  component={Store}/>
          <Route path="/QRCode/:name"  component={!isLog? DirectToLogin: Print}/>
+         <Route path="/Terms"  component={Terms}/>
     </Switch>
    
     </Router>
