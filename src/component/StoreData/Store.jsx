@@ -18,16 +18,21 @@ const Store = ({store})=> {
             <td className="center aligned">{store.category} </td>
             <td className="center aligned">{store.code} </td> 
 
-            <td className="center aligned">{store.state} </td>
+            <td className="center aligned">{store.state ===0? 'معلق':
+                 'مقبول'} </td>
             <td className="center aligned">{store.datetime} </td>
             
 
-            <td className="center aligned"><Link to = {`/QRCode/${store.code}`}>
-                <button className="ui basic grey large icon button">
-                    <i className="qrcode icon"></i> 
-                </button></Link> 
-                <ChangeStoreState storeState = {store.state} />
-            
+            <td className="center aligned">
+                <div className="ui center aligned ten column grid">
+                    <div className="row">
+                    <Link to = {`/QRCode/${store.code}`}>
+                    <button className="ui basic grey  icon button">
+                        <i className="qrcode icon"></i> 
+                    </button></Link> 
+                    <ChangeStoreState storeCode = {store.code} storeState = {store.state} />
+                </div>
+             </div>
             </td>
             </tr> 
 

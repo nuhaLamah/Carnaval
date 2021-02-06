@@ -61,3 +61,17 @@ export const addCustomer = (newCustomer) => {
      return axios.post(`${URL}/clients`, form_data)
 }
 
+export const ChangeStoreState = (code, state) => {
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            'Content-Type': "application/json" 
+        },
+        params: {
+           code: code,
+          state: state
+            }
+      };
+      console.log(config)
+    return axios.patch(`${URL}/market/edit/state`, {},config)
+}
