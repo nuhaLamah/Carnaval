@@ -9,7 +9,9 @@ import Store from './component/StoreData/Store';
 import CustomerRegForm from './component/customer/CustomerRegForm'
 import Login from './component/login/Login'
 import AddressForm from './component/StoreForms/makaniAddress/AddressForm';
-import Terms from './component/StoreForms/storeForm/Terms'
+import Terms from './component/StoreForms/storeForm/Terms';
+import QrReader from './component/qrReader/QrReader';
+import SuccessPage from './component/SuccessMsgPage';
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
@@ -27,6 +29,8 @@ const App = (props)=> {
          <Route path="/StoreRegisterForm"  component={StoreRegisterForm}/>
          <Route path="/Store/:title"  component={!props.isLog? DirectToLogin :Store}/>
          <Route path="/QRCode/:name"  component={!props.isLog? DirectToLogin: Print}/>
+         <Route path="/QrReader"  component={QrReader} />
+         <Route path="/done"  component={SuccessPage} />
     </Switch>
    
     </Router>
