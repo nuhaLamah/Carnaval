@@ -12,7 +12,7 @@ const ChangeStoreState = ({storeCode, storeState}) => {
     return(
         <div>
             {
-                <button className={`ui blue ${btnTypeStyle.classType} button`} style={{fontFamily : 'inherit', width:'150px'}} 
+                <button className={`ui blue ${btnTypeStyle.classType} button`} style={{fontFamily : 'inherit', width:'140px'}} 
                 onClick={onChangeState}>{btnTypeStyle.text}</button>   
             }   
         </div>
