@@ -12,12 +12,12 @@ const SuccessReg = ({match}) => {
         <img className="ui centered medium image" alt="logo" src={logo}/>
         {/* --------- Makani validation ------------ */}
         <div className="ui form segment success" >
-        <h3>Congratulation!<br/> You have succefully registred</h3>
-        <h2 className="code">Your code is :{`${match.params.StoreCode}`}</h2>
+        <h3>لقد تم التسجيل بنجاح</h3>
+        <h2 className="code">رقم الكود الخاص بك هو :{`${match.params.StoreCode}`}</h2>
         </div>
         <div className="ui section divider"></div>
         <div className="field"> 
-        <Link to={'/'}><button className="ui button text"  type="submit">back to home </button></Link>
+        <Link to={'/'}><button className="ui button text"  type="submit">الرجوع إلى الرئيسية</button></Link>
         </div>
         </div>
         </div>

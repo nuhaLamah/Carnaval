@@ -12,6 +12,9 @@
     background-color: #F53838 !important;
     color: #fff !important;
     width: 200px;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    font-family: 'Tajwal sans-serif '!important;
 }
 .button:hover {
     background-color: #d16161 !important;
@@ -29,4 +32,30 @@
 }
 .code{
     font-weight: 900 !important;
+}
+.terms {
+    text-decoration: underline !important;
+    cursor: pointer;
+    text-align:right !important;
+}
+.term-list{
+    text-align:right;
+    font-size: 17px;
+}
+li {
+    padding: 5px 0px;
+}
+.term-header {
+    font-weight: bold;
+    font-size: 24px;
+    text-align : right;
+}
+.term-desc {
+    font-weight: bold;
+    font-size: 19px;
+    text-align : right;
+}
+.checkbox {
+    text-align : right;
+    direction: rtl;
 }
