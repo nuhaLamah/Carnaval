@@ -34,6 +34,7 @@ const StoreAddress = () =>{
         <div className="ui form segment log-form" >
         <form className="ui form" >
         <img className="ui centered medium image" alt="logo" src={logo}/>
+        <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  التسجيل </h2>
         {/* --------- Makani validation ------------ */}
         <div className="ui form">
         <div className="field">
