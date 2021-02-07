@@ -18,7 +18,7 @@ export const filterStores  = (term, page, perPage) =>{
 
 
 
-export const checkAddress = (address) => axios.get(`${URL}/customers/location_info/`,address);
+export const checkAddress = (address) => axios.get(`${URL}/location_info/${address}`);
 
 export const addStore = (newStore) => {
     const form_data = new FormData();

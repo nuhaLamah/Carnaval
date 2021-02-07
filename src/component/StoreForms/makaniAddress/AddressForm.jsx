@@ -31,8 +31,9 @@ const AddressForm = () => {
     const {code , number} = address
     if(code && number)
     {
+        //console.log(`${address.code}+${address.number}`);
         dispatch(checkAddress(`${address.code}+${address.number}`));
-        setAddress({code:'' , number:''});
+        //setAddress({code:'' , number:''});
     }
     else
     {
@@ -58,7 +59,7 @@ const AddressForm = () => {
         </form>
         </Grid>
         <Grid item xs={12} sm={6}>
-            <StoreRegisterForm storeDefaultData={storeDefaultData}/>
+            <StoreRegisterForm storeDefaultData={storeDefaultData} address={address}/>
         </Grid>
         </Grid>
         </Container>
