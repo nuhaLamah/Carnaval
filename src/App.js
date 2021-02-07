@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { useEffect }  from 'react';
 import { connect } from 'react-redux';
 import StoreRegisterForm from './component/StoreForms/storeForm/StoreRegisterForm';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
@@ -15,7 +15,9 @@ import SuccessPage from './component/SuccessMsgPage';
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
-  
+  useEffect(()=>{
+   
+  }, [])
 
   return (
     <Router>
@@ -28,7 +30,7 @@ const App = (props)=> {
          <Route path="/RegisterCustomer"  component={CustomerRegForm}/>
          <Route path="/StoreRegisterForm"  component={StoreRegisterForm}/>
          <Route path="/Store/:title"  component={!props.isLog? DirectToLogin :Store}/>
-         <Route path="/QRCode/:name"  component={!props.isLog? DirectToLogin: Print}/>
+         <Route path="/QRCode/:code"  component={!props.isLog? DirectToLogin: Print}/>
          <Route path="/QrReader"  component={QrReader} />
          <Route path="/done"  component={SuccessPage} />
     </Switch>

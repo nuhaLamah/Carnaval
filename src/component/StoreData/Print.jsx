@@ -22,7 +22,7 @@ class Print extends React.PureComponent {
             content={() => this.componentRef}
           />
         </NavBar> 
-        <QrCode name={this.props.match.params.name} ref={el => (this.componentRef = el)} />
+        <QrCode code={this.props.match.params.code} ref={el => (this.componentRef = el)} />
         
       </div>
     );

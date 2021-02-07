@@ -68,3 +68,15 @@ export const changeState= (storeCode, state) => async (dispatch, useState) => {
     console.log(error);
   }
 }; 
+
+
+export const getStoreInfo = (storeCode) => async (dispatch) => {
+  try{
+    const {data} = await api.getStore(storeCode);
+    console.log(data.market_info)
+    dispatch({type:'SET_STORE_INFO', payload: data.market_info});
+  }
+  catch(e){
+    console.log(e)
+  }
+}

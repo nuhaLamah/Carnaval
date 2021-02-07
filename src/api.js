@@ -75,3 +75,12 @@ export const ChangeStoreState = (code, state) => {
       console.log(config)
     return axios.patch(`${URL}/market/edit/state`, {},config)
 }
+
+export const getStore = (code) =>{
+    const config = {
+        params: {
+           market_code: code,}
+        };
+         
+    return axios.get(`${URL}/get_market`, config);
+} 
