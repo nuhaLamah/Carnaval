@@ -37,15 +37,15 @@ const StoreAddress = () =>{
         {/* --------- Makani validation ------------ */}
         <div className="ui form">
         <div className="field">
-            <label className="text">PostalCode</label>
-            <input type="text" name="code" onChange ={handleChange} placeholder="PostalCode"/>
+            <label className="text">الرمز البريدي</label>
+            <input type="text" name="code" onChange ={handleChange} placeholder="الرمز البريدي"/>
         </div>
         <div className="field">
-            <label className="text" >building number</label>
-            <input type="text" name="number" placeholder="building number" onChange ={handleChange}/>
+            <label className="text" >رقم المبنى</label>
+            <input type="text" name="number" placeholder="رقم المبنى" onChange ={handleChange}/>
         </div>
         <div className="field">
-        {!showButton ? (<button className="ui button text" type="submit" onClick={handleAdressSubmit}>Confirm</button>):<></>}
+        {!showButton ? (<button className="ui button text" type="submit" onClick={handleAdressSubmit}>تحقق</button>):<></>}
         </div>
         </div>
         </form>
