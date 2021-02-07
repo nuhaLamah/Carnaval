@@ -1,0 +1,21 @@
+
+.reader{ 
+    width: 100% !important;
+    height: 100% !important;
+    position:  absolute !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: blueviolet;
+    }
+
+section{
+   padding-top: 0 !important; 
+   height: 100% !important;
+}    
+
+section>div{
+    width: 400 !important; 
+    height: 400 !important; 
+}
