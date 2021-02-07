@@ -5,9 +5,10 @@ export const addCustomer = (customer) => async (dispatch) => {
     try {
       const data   = await api.addCustomer(customer);
       //console.log(data);
-      dispatch({ type: 'REG_CUSTOMER', payload:data });
+      dispatch({ type:'SET_IS_DONE', payload:true });
     } catch (error) {
       console.log(error);
+      dispatch({ type:'SET_IS_ERROR', payload:true });
     }
   };
 

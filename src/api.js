@@ -50,14 +50,28 @@ export const refreshAccessToken = () => {
 //----------------------------- Customer ----------------------//
 export const addCustomer = (newCustomer) => {
     //console.log(newCustomer);
-    const form_data = new FormData();
+    const formData = new FormData();
     for ( var key in newCustomer ) {
-    form_data.append(key, newCustomer[key]);
+        formData.append(key, newCustomer[key]);
     //console.log(newCustomer[key]);
     //console.log(form_data.append(key, newCustomer[key]));
     } 
     console.log(newCustomer);
-   console.log(form_data);
-     return axios.post(`${URL}/clients`, form_data)
+   console.log(formData);
+     return axios.post(`${URL}/clients`, formData)
 }
 
+export const ChangeStoreState = (code, state) => {
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            'Content-Type': "application/json" 
+        },
+        params: {
+           code: code,
+          state: state
+            }
+      };
+      console.log(config)
+    return axios.patch(`${URL}/market/edit/state`, {},config)
+}

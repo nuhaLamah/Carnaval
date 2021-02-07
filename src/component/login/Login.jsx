@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 
 import {login} from '../../redux/Actions/login';
 import InputField from './components/InputField';
+import ErrorMessage from '../ErrorMessage';
 
 import './Login.css';
 
@@ -35,16 +36,7 @@ const Login = (props) => {
         e.preventDefault();
         props.login(username, password, isRemember)
     }
-    const ErrorMessage = ()=>{
-        return(
-            <div className="ui negative message">
-            <div className="header">
-                Login Error
-            </div>
-            <p>Wrong username or password
-            </p></div>
-        );
-    }
+
 
  return  props.logState? <Redirect to="/StoreList" />
     :(
@@ -53,7 +45,7 @@ const Login = (props) => {
           
           <form className="ui form segment log-form" onSubmit={onSubmitForm}>
               <div className="field">
-              {props.logError? ErrorMessage():null}
+              {props.logError? <ErrorMessage head="Login Error" content="Wrong username or password" />:null}
               </div>
             <h4 className="ui header">Login</h4>
                     <InputField title="" type="text" placeholder="Username" onChange={onChangeUsername} icon="user icon" />

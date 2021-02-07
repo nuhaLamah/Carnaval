@@ -6,8 +6,15 @@ import Print from './component/StoreData/Print';
 import Store from './component/StoreData/Store';
 import CustomerRegForm from './component/customer/CustomerRegForm'
 import Login from './component/login/Login'
+<<<<<<< HEAD
 import Demo from './component/StoreForms/StoreAddress'
 import SuccessReg from './component/StoreForms/SuccessReg';
+=======
+import AddressForm from './component/StoreForms/makaniAddress/AddressForm';
+import Terms from './component/StoreForms/storeForm/Terms';
+import QrReader from './component/qrReader/QrReader';
+import SuccessPage from './component/SuccessMsgPage';
+>>>>>>> 1c2b454afc264759e68fc9cf5e4791545d3f1e3d
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
@@ -27,6 +34,8 @@ const App = (props)=> {
          <Route path="/Store/:title"  component={!props.isLog? DirectToLogin :Store}/>
          {/* <Route path="/StoreData/:code"  component={StoreData}/> */}
          <Route path="/QRCode/:name"  component={!props.isLog? DirectToLogin: Print}/>
+         <Route path="/QrReader"  component={QrReader} />
+         <Route path="/done"  component={SuccessPage} />
     </Switch>
    
     </Router>

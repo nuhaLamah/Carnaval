@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch} from 'react-redux';
-import { addCustomer } from '../../redux/Actions/customer'
-import InputField from '../login/components/InputField'
+import { useDispatch, useSelector} from 'react-redux';
+import { addCustomer } from '../../redux/Actions/customer';
+import InputField from '../login/components/InputField';
+import ErrorMessage from '../ErrorMessage';
+import {Redirect} from 'react-router-dom';
+
 const  CustomerRegForm = () => {
-    // Handle Change Submit Button  - Add Store
+  const isError = useSelector(state => state.customer.isError);
+  const isDone = useSelector(state => state.customer.isDone);
   const dispatch = useDispatch();
   const [customerData, setCustomerData] = useState({fullname:'', phone_number:'',building_number:'123',postcode:'FDE125',market_code:'111111', city:'test'});
 
@@ -26,16 +30,23 @@ const  CustomerRegForm = () => {
     alert("please check again");
     }
   };
- 
+
+ const form = () => (
+  <center>
+  
+  <form className="ui form segment log-form" onSubmit = {handleSubmit}>
+  <h1 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  المشاركة </h1>
+  {isError? <ErrorMessage head="Can't be added" content="sdhks dsdh asdh" />: null}
+  <InputField name="fullname" placeholder="الاسم بالكامل" onChange ={onChange} />
+  <InputField name="phone_number" placeholder="رقم الهاتف " onChange ={onChange} />
+  <InputField name="city" placeholder="المدينة" onChange ={onChange} />
+   <button className="fluid ui blue button" type="submit" >حفظ</button>
+  </form>
+  </center>
+ );
     return (
-        <center>
-        <form className="ui form segment log-form" onSubmit = {handleSubmit}>
-        <h1 style={{textAlign:'center'}}>نموذج  المشاركة </h1>
-        <InputField name="fullname" placeholder="الاسم بالكامل" onChange ={onChange} />
-        <InputField name="phone_number" placeholder="رقم الهاتف " onChange ={onChange} />
-         <button className="fluid ui blue button" type="submit" >حفظ</button>
-        </form>
-        </center>
+    isDone?  <Redirect to="/done" />:
+       form()
     )
 }
 

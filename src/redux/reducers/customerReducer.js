@@ -1,8 +1,10 @@
-const regCustomer = (customer = {}, action)=>{
+const regCustomer = (customer = {isError: false, isDone: false}, action)=>{
     switch (action.type){
-        case 'REG_CUSTOMER':
-            return action.payload ;
 
+        case 'SET_IS_ERROR':
+            return {...customer, isError: action.payload}
+            case 'SET_IS_DONE':
+                return {...customer, isDone: action.payload}
         default:
             return  customer 
     }

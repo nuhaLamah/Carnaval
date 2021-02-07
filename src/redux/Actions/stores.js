@@ -1,4 +1,5 @@
 import * as api from '../../api';
+import ChangeStoreState from '../../component/StoreData/ChangeStoreState';
 
 
 
@@ -52,3 +53,19 @@ export const checkAddress = (address) => async (dispatch) => {
     console.log(error);
   }
 };
+
+
+export const changeState= (storeCode, state) => async (dispatch, useState) => {
+  try {
+    console.log('state', storeCode, state)
+    const {data} = await api.ChangeStoreState(storeCode, state);
+    const storeList = [...useState().stores.storeList].map(store => store.code ===storeCode? {... store, state:state}: store);
+
+    dispatch({ type:'FETCH_STORES' , payload: storeList });
+    console.log(data)
+
+    
+  } catch (error) {
+    console.log(error);
+  }
+}; 
