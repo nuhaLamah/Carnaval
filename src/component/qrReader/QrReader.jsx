@@ -17,14 +17,14 @@ const QrScanner = () => {
   
 
     return (
-      <div>
+      <div className="ui container" style={{ width: '100%', height: '100%', position: 'center', backgroundColor: 'blue'}}>
         {info?
         <Redirect to= "/RegisterCustomer" />:
           <QrReader
           delay={300}
           onError={handleError}
           onScan={handleScan}
-          style={{ width: '100%' }}
+          style={{ width: '100%', height: '100%', position: 'absolute'}}
         />
         
     }
