@@ -1,0 +1,32 @@
+.reg-container{
+    max-width: 1000px !important;
+}
+.text{
+    font-size: 16px !important;
+    text-align: right;
+    /* font-family: 'Rubik'; */
+    line-height: 25px !important;
+    
+}
+.button {
+    background-color: #F53838 !important;
+    color: #fff !important;
+    width: 200px;
+}
+.button:hover {
+    background-color: #d16161 !important;
+    color: #fff !important;
+}
+.checkbox {
+   align-items: right !important;
+}
+.success {
+    background-color: rgba(169, 255, 173, 0.2) !important;
+    padding: 50px 50px !important;
+    color: #595959 !important;
+    border-radius: 15px !important;
+    border: 1px solid #27D42E !important;
+}
+.code{
+    font-weight: 900 !important;
+}

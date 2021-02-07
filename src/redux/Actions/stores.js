@@ -44,6 +44,7 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
 
 
 export const checkAddress = (address) => async (dispatch) => {
+  //console.log(address);
   try {
     const {data} = await api.checkAddress(address);
     //console.log(data.place_info);

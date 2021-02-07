@@ -8,24 +8,28 @@ import InputField from '../InputField';
 import { useHistory , Link } from "react-router-dom";
 import  uniqueRandom from 'unique-random-at-depth';
  // import Terms from './Terms'
-function StoreRegisterForm ({storeDefaultData}){
+function StoreRegisterForm ({storeDefaultData , address}){
 
 // Handle Change Submit Button  - Add Store
 const dispatch = useDispatch();
 const history = useHistory();
 const classes = useStyles();
 const data = useSelector((data)=>data.stores.address);
-const [storeData, setStoreData] = useState({name:'', owner_name:'',market_phone :0,owner_phone:0,email:'',activity_id:1})
+const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_Number:'',code:''})
 const [checkbox,setCheckbox] = useState(true);
 const [showForm, setShowForm] = useState(false);
 const [storeCode , setStoreCode] = useState(0);
-
+console.log(address);
 useEffect(() => {
   setStoreCode(uniqueRandom(100000, 1000000, 50));
   if (data.status === 'valid') 
   {
     storeData.name = storeDefaultData.name;
     storeData.market_phone = storeDefaultData.phoneNumber;
+    storeData.category = storeDefaultData.category;
+    storeData.postcode = address.code;
+    storeData.building_Number = address.number;
+    storeData.code = storeCode;
     
     setShowForm(!showForm);
   }
@@ -39,8 +43,8 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   dispatch(addStore(storeData));
   console.log(storeData);
-  history.push(`/Store/${storeCode}`);
-  setStoreData({name:'', owner_name:'',market_phone :0,owner_phone:0,email:'',activity_id:1})
+  history.push(`/StoreData/${storeCode}`);
+  setStoreData({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_Number:''})
 };
 
     return(
@@ -54,7 +58,7 @@ const handleSubmit = async (e) => {
         <InputField name="market_phone" variant="outlined" title="رقم هاتف المحل" fullWidth defaultValue ={data.phoneNumber} onChange={handleChange}  />
         <InputField name="owner_phone" variant="outlined" title="رقم هاتف صاحب المحل" fullWidth onChange={handleChange} />
         <InputField name="email" variant="outlined" title="البريد الالكتورني" fullWidth onChange={handleChange} />
-        <InputField name="activity_id" variant="outlined" title="نوع النشاط" fullWidth defaultValue ={data.category} onChange={handleChange} />
+        <InputField name="category" variant="outlined" title="نوع النشاط" fullWidth defaultValue ={data.category} onChange={handleChange} />
         <input type="checkbox" name = "isChecked" onClick={()=>setCheckbox(!checkbox)}/> أوافق على <Link to={'./Terms'}>شروط الاشتراك</Link>
         <div className="field button-container">
           <Button  disabled = {checkbox} className={`${classes.buttonSubmit} fluid ui blue button`} variant="contained" color="primary" size="large" type="submit" >حفظ</Button>
