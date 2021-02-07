@@ -4,7 +4,6 @@
 .text{
     font-size: 16px !important;
     text-align: right;
-    /* font-family: 'Rubik'; */
     line-height: 25px !important;
     
 }
@@ -12,9 +11,10 @@
     background-color: #F53838 !important;
     color: #fff !important;
     width: 200px;
+    padding: 8px 10px !important;
     font-size: 18px !important;
     font-weight: 500 !important;
-    font-family: 'Tajwal sans-serif '!important;
+    font-family: inherit !important;
 }
 .button:hover {
     background-color: #d16161 !important;

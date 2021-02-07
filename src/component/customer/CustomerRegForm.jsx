@@ -39,7 +39,7 @@ const  CustomerRegForm = () => {
     <h3 style={{fontFamily: 'inherit'}}>اسم المحل: {storeInfo.name}</h3>
     {isError? <ErrorMessage head="Can't be added" content="sdhks dsdh asdh" />: null}
     <InputField name="fullname" placeholder="الاسم بالكامل" type="text" onChange ={onChange} />
-    <InputField name="phone_number" placeholder="رقم الهاتف " type="tel" onChange ={onChange}  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
+    <InputField name="phone_number" placeholder="رقم الهاتف "  type="tel" onChange ={onChange}  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
     <InputField name="city" placeholder="المدينة" type="text" onChange ={onChange} />
     <button className="fluid ui blue button" type="submit" >حفظ</button>
     </form>

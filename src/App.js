@@ -9,6 +9,7 @@ import Store from './component/StoreForms/StoreAddress'
 import SuccessReg from './component/StoreForms/SuccessReg';
 import QrReader from './component/qrReader/QrReader';
 import SuccessPage from './component/SuccessMsgPage';
+import Demo from './component/customer/CustomerForm';
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
@@ -29,6 +30,7 @@ const App = (props)=> {
          <Route path="/QRCode/:code"  component={!props.isLog? DirectToLogin: Print}/>
          <Route path="/QrReader"  component={QrReader} />
          <Route path="/done"  component={SuccessPage} />
+         <Route path="/Demo"  component={Demo} />
     </Switch>
    
     </Router>
