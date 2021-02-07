@@ -31,12 +31,8 @@ const App = (props)=> {
          <Route path="/Success/:StoreCode"  component={SuccessReg}/>
          {/* <Route path="/StoreRegisterForm"  component={StoreRegisterForm}/> */}
          <Route path="/Store/:title"  component={!props.isLog? DirectToLogin :Store}/>
-<<<<<<< HEAD
-         <Route path="/QRCode/:code"  component={!props.isLog? DirectToLogin: Print}/>
-=======
          {/* <Route path="/StoreData/:code"  component={StoreData}/> */}
-         <Route path="/QRCode/:name"  component={!props.isLog? DirectToLogin: Print}/>
->>>>>>> 9c86165cd9375ba15ddc70f2acac883e9d66f475
+         <Route path="/QRCode/:code"  component={!props.isLog? DirectToLogin: Print}/>
          <Route path="/QrReader"  component={QrReader} />
          <Route path="/done"  component={SuccessPage} />
     </Switch>
