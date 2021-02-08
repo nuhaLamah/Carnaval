@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 
 import {logout} from '../../redux/Actions/login';
 
+import './NavBar.css';
+
 const NavBar = (props) => {
     const dispatch = useDispatch();
 
@@ -13,12 +15,12 @@ const NavBar = (props) => {
         dispatch(logout())
     }
     return(
-        <div className="ui large menu" style={{position: 'fixed',  top: 10, width: "90%", background: '#ffffff', zIndex: 100}}>
+        <div className="ui large menu nav">
             <a href="/StoreList" className="active item">
-                Home
+                الرئيسية
             </a>
             <div className="item" onClick={onClickSignOut} style={{cursor: 'pointer'}}>
-                   Sign-Out
+                تسجيل الخروج
             </div>
             <div className="left item">
                 {props.children}
