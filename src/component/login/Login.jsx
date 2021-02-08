@@ -9,32 +9,26 @@ import ErrorMessage from '../ErrorMessage';
 import './Login.css';
 
 const Login = (props) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [loginData, setLoginData] = useState({username: '', password: ''});
+   
     const [showPassword, setShowPassword] = useState();
-    const [isRemember, setIsRemember] = useState(false);
+ 
    
     const handleShowPassword = ()=> {
     setShowPassword(!showPassword);
     } 
 
-    const onChangeUsername = (e) => {
-    setUsername(e.target.value);
+    const onChangeInput = (e) => {
+    setLoginData({...loginData, [e.target.name]: e.target.value});
     }
 
-    const onChangePassword = (e) => {
-    setPassword(e.target.value);
-    }
+   
 
-    const onCheckRememberMe = (e) => {
-
-        setIsRemember(!isRemember);
-        console.log(isRemember)
-    }
+  
 
     const onSubmitForm= (e) =>{
         e.preventDefault();
-        props.login(username, password, isRemember)
+        props.login(loginData)
     }
 
 
@@ -48,17 +42,14 @@ const Login = (props) => {
               {props.logError? <ErrorMessage head="Login Error" content="Wrong username or password" />:null}
               </div>
             <h4 className="ui header">Login</h4>
-                    <InputField title="" type="text" placeholder="Username" onChange={onChangeUsername} icon="user icon" />
-                    <InputField title="" type={showPassword ? 'text' : 'password'} placeholder="Password" onChange={onChangePassword} icon="lock icon"/>
+                    <InputField name="username" type="text" placeholder="Username" onChange={onChangeInput} icon="user icon" />
+                    <InputField name="password" type={showPassword ? 'text' : 'password'} placeholder="Password" onChange={onChangeInput} icon="lock icon"/>
+
                     <div className="field button-container">
                         <button className="fluid ui blue button" type="submit">Login</button>
                     </div>
                     <button onClick={handleShowPassword}>show password</button>
-                    <div className="ui checkbox">
-                        <input type="checkbox" name="rememberMe" checked={isRemember} onChange={onCheckRememberMe} />
-                        <label>Remember me</label>
-                    </div>
-
+                    
             </form>
             </div>
            
