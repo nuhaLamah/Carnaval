@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import QrReader from 'react-qr-reader';
 import { getStoreInfo } from '../../redux/Actions/stores';
-import { Redirect } from 'react-router-dom';
 import './QrReader.css';
+import CustomerForm from '../customer/CustomerForm';
  
 const QrScanner = () => {
   const dispatch = useDispatch();
@@ -21,8 +21,7 @@ const QrScanner = () => {
       <div className="center aligned reader" >
         <div className="border"></div>
         {info?
-        <Redirect to= "/RegisterCustomer" />:
-           
+        <CustomerForm />:
           <QrReader
           delay={300}
           onError={handleError}

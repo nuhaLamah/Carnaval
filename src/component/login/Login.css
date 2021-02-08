@@ -5,12 +5,14 @@
     left: 50% !important;
     -ms-transform: translate(-50%, -50%) !important;
     transform: translate(-50%, -50%) !important;
+    justify-content:space-around !important;
+  
 }
 
 .log-form{
     position: absolute;
     width: 800px !important;
-    padding: 5% !important;
+    padding: 5% 15% !important;
 }
 
 input{
