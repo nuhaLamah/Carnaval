@@ -13,7 +13,7 @@ const ChangeStoreState = ({storeCode, storeState}) => {
     return(
         <div>
             {
-                <button className={`ui blue ${btnTypeStyle.classType} button accept-button`} 
+                <button className={`ui ${btnTypeStyle.classType} button accept-button`} 
                 onClick={onChangeState}>{btnTypeStyle.text}</button>   
             }   
         </div>
