@@ -1,5 +1,5 @@
 import * as api from '../../api';
-import ChangeStoreState from '../../component/StoreData/ChangeStoreState';
+import ChangeStoreState from '../../component/StoresDisplay/ChangeStoreState';
 
 
 

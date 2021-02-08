@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import ChangeStoreState from './ChangeStoreState';
+import './Store.css';
 
 const Store = ({store})=> {
     return (
@@ -27,7 +28,7 @@ const Store = ({store})=> {
                 <div className="ui center aligned ten column grid">
                     <div className="row">
                     <Link to = {`/QRCode/${store.code}`}>
-                    <button className="ui basic grey  icon button">
+                    <button className="ui basic grey  icon button qr-button" style={{}}>
                         <i className="qrcode icon"></i> 
                     </button></Link> 
                     <ChangeStoreState storeCode = {store.code} storeState = {store.state} />

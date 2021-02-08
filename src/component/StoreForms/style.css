@@ -12,7 +12,7 @@
     color: #fff !important;
     width: 200px;
     padding: 8px 10px !important;
-    font-size: 18px !important;
+    font-size: 18px;
     font-weight: 500 !important;
     font-family: inherit !important;
 }

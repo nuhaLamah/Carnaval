@@ -27,7 +27,7 @@ const StoreList = ()=> {
         <NavBar>
         <SearchBox />
         </NavBar> 
-        <table className="ui table" style={{'marginTop': '100px'}}>
+        <table className="ui table" style={{marginTop: '100px', marginBottom: '50px'}}>
           <thead>
             <tr>
               <th className="center aligned">اسم المحل</th>
@@ -55,9 +55,9 @@ const StoreList = ()=> {
         }
           </tbody>
           </table>
-      
-      
-      
+          <p></p>
+          <p></p>
+          <p></p>
           <PageButtons />
       </div>
     
