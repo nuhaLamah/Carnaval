@@ -7,8 +7,12 @@ import CustomerRegForm from './component/customer/CustomerRegForm'
 import Login from './component/login/Login'
 import Store from './component/StoreForms/StoreAddress'
 import SuccessReg from './component/StoreForms/SuccessReg';
+<<<<<<< HEAD
 import QrReader from './component/QrReader/QrReader';
 import SuccessPage from './component/SuccessMsgPage';
+=======
+import QrReader from './component/qrReader/QrReader';
+>>>>>>> 5b41ff9e598f0daccfc70aecd9a3c5f0d5c83ebc
 import Demo from './component/customer/CustomerForm';
 
 const App = (props)=> {
@@ -26,10 +30,10 @@ const App = (props)=> {
          <Route path="/Store"  component={Store}/>
          <Route path="/RegisterCustomer"  component={CustomerRegForm}/>
          <Route path="/Success/:StoreCode"  component={SuccessReg}/>
+         <Route path="/Success"  component={SuccessReg}/>
          <Route path="/QRCode/:name"  component={!props.isLog? DirectToLogin: Print}/>
          <Route path="/QRCode/:code"  component={!props.isLog? DirectToLogin: Print}/>
          <Route path="/QrReader"  component={QrReader} />
-         <Route path="/done"  component={SuccessPage} />
          <Route path="/Demo"  component={Demo} />
     </Switch>
    

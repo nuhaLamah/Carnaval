@@ -13,11 +13,11 @@ const SuccessReg = ({match}) => {
         {/* --------- Makani validation ------------ */}
         <div className="ui form segment success" >
         <h3>لقد تم التسجيل بنجاح</h3>
-        <h2 className="code">رقم الكود الخاص بك هو :{`${match.params.StoreCode}`}</h2>
+        {match.params.StoreCode?<h2 className="code">رقم الكود الخاص بك هو :{`${match.params.StoreCode}`}</h2>:<></>}
         </div>
         <div className="ui section divider"></div>
         <div className="field"> 
-        <Link to={'/'}><button className="ui button text"  type="submit">الرجوع إلى الرئيسية</button></Link>
+        {match.params.StoreCode?<Link to={'/'}><button className="ui button text"  type="submit">الرجوع إلى الرئيسية</button></Link>:<></>}
         </div>
         </div>
         </div>
