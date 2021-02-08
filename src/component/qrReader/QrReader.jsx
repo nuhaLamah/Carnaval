@@ -19,14 +19,18 @@ const QrScanner = () => {
 
     return (
       <div className="center aligned reader" >
+        <div className="border"></div>
         {info?
         <Redirect to= "/RegisterCustomer" />:
+           
           <QrReader
           delay={300}
           onError={handleError}
           onScan={handleScan}
-          style={{ width: '100%', height: '100%', postion: 'relative'}}
+          style={{ width: '100%', height: '100%', postion: 'relative',
+          borderRadius: '25px'}}
         />
+    
         
     }
       
