@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { changeState } from '../../redux/Actions/stores';
+import './ChangeStoreState.css';
 
 const ChangeStoreState = ({storeCode, storeState}) => {
     const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const ChangeStoreState = ({storeCode, storeState}) => {
     return(
         <div>
             {
-                <button className={`ui blue ${btnTypeStyle.classType} button`} style={{fontFamily : 'inherit', width:'140px'}} 
+                <button className={`ui blue ${btnTypeStyle.classType} button accept-button`} 
                 onClick={onChangeState}>{btnTypeStyle.text}</button>   
             }   
         </div>

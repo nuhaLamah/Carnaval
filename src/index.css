@@ -1,10 +1,8 @@
 body {
-  margin: 50px !important;
+  margin:0 auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Tajwal','Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 code {

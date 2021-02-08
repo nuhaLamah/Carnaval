@@ -1,5 +1,5 @@
 import * as api from '../../api';
-import ChangeStoreState from '../../component/StoreData/ChangeStoreState';
+import ChangeStoreState from '../../component/StoresDisplay/ChangeStoreState';
 
 
 
@@ -24,8 +24,9 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
     const response = await api.filterStores(keySearch, pageNumber, perPage);
     console.log(response);
     if(response.status ===200 || response.status ===201) {
+      const totalPages =  response.data.total_pages;
       dispatch({ type:'FETCH_STORES' , payload: response.data.markets });
-      dispatch({ type:'CHANGE_TOTAL_PAGES' , payload: response.data.total_pages});
+      dispatch({ type:'CHANGE_TOTAL_PAGES' , payload: totalPages===0?1:totalPages });
       dispatch({ type:'CHANGE_PAGE' , payload: pageNumber});
       dispatch({ type:'CHANGE_FILTER_TERM' , payload: keySearch});
     }

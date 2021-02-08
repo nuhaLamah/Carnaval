@@ -6,7 +6,7 @@ import Store from './Store';
 import NavBar from './NavBar';
 import SearchBox from './SearchBox';
 import PageButtons from './PageButtons';
-
+import './StoreList.css';
 
 const StoreList = ()=> {
   
@@ -23,11 +23,13 @@ const StoreList = ()=> {
 
       
     return (
-      <div>
+      <div className="ui container main-div ">
         <NavBar>
         <SearchBox />
         </NavBar> 
-        <table className="ui table" style={{'marginTop': '100px'}}>
+        <div className="ui container stores-table ">
+        {markets.length==0? <div className="ui container center aligned">لا يوجد نتائج</div>:
+        <table className="ui table ">
           <thead>
             <tr>
               <th className="center aligned">اسم المحل</th>
@@ -48,16 +50,18 @@ const StoreList = ()=> {
             </tr>
           </thead>
           <tbody>
-          {
-          markets.map((store,index)=>
-          <Store store = {store} key={index} />         
-          )
+            
+          { 
+            markets.map((store,index)=>
+            <Store store = {store} key={index} />         
+            )
         }
           </tbody>
-          </table>
-      
-      
-      
+          </table> }
+          </div>
+          <p></p>
+          <p></p>
+          <p></p>
           <PageButtons />
       </div>
     
