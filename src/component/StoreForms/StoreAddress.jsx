@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import logo from '../../image/logo.png';
 import StoreData from './StoreData';
 import { useDispatch , useSelector} from 'react-redux';
@@ -11,6 +11,11 @@ const StoreAddress = () =>{
     const [address , setAddress] = useState({code:'', number:''});
     const [showButton , setShowButton] = useState(false);
     const storeDefaultData = useSelector((addressData) => addressData.stores.address);
+    useEffect(() => {
+        if(storeDefaultData.status === 'valid' ) 
+        setShowButton(true) 
+    },[storeDefaultData.status]);
+
     const handleAdressSubmit = (e) =>{
         e.preventDefault();
         const {code , number} = address
@@ -18,8 +23,6 @@ const StoreAddress = () =>{
         {
             //console.log(`${address.code}+${address.number}`);
             dispatch(checkAddress(`${address.code}+${address.number}`));
-            setShowButton(true)
-            //setAddress({code:'' , number:''});
         }
         else
         {
@@ -57,7 +60,7 @@ const StoreAddress = () =>{
         ):<></>}
         {/* --------- Store Rgisteration ------------ */}
         {showButton ? (
-            <StoreData storeDefaultData={storeDefaultData} address={address}/>
+            <StoreData storeDefaultData={storeDefaultData} address={address} showButton={showButton}/>
         ):<></>}
         </div>
 

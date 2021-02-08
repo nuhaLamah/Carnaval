@@ -7,7 +7,7 @@ import { Checkbox,Button, Modal } from 'semantic-ui-react';
 import './style.css';
 
 
-const StoreData = ({storeDefaultData , address}) => {
+const StoreData = ({storeDefaultData , address , showButton}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const data = useSelector((data)=>data.stores.address);
@@ -16,6 +16,7 @@ const StoreData = ({storeDefaultData , address}) => {
     const [checkbox,setCheckbox] = useState(true);
     const [storeCode , setStoreCode] = useState(0);
     const [open, setOpen] = useState(false)
+    //const [showButton , setShowButton] = useState(false);
 
     useEffect(() => {
         setStoreCode(uniqueRandom(100000, 1000000, 50));
@@ -27,6 +28,7 @@ const StoreData = ({storeDefaultData , address}) => {
           storeData.postcode = address.code;
           storeData.building_Number = address.number;
           storeData.code = storeCode;
+          //setShowButton(true);
         }
     },[data.status]);
 
@@ -43,7 +45,7 @@ const StoreData = ({storeDefaultData , address}) => {
     };
 
     return (
-        <>
+        showButton?
         <form className="ui form" onSubmit={handleSubmit}>
         <div className="ui form">
         <div className="field">
@@ -109,9 +111,9 @@ const StoreData = ({storeDefaultData , address}) => {
         <button className="ui button text" disabled = {checkbox} type="submit">تـسـجـيـل</button>
         </div>
         </div>
-        </form>  
+        </form>  :<></>
          
-       </>
+      
     );
 }
 
