@@ -7,12 +7,7 @@ import CustomerRegForm from './component/customer/CustomerRegForm'
 import Login from './component/login/Login'
 import Store from './component/StoreForms/StoreAddress'
 import SuccessReg from './component/StoreForms/SuccessReg';
-<<<<<<< HEAD
 import QrReader from './component/QrReader/QrReader';
-import SuccessPage from './component/SuccessMsgPage';
-=======
-import QrReader from './component/qrReader/QrReader';
->>>>>>> 5b41ff9e598f0daccfc70aecd9a3c5f0d5c83ebc
 import Demo from './component/customer/CustomerForm';
 
 const App = (props)=> {
