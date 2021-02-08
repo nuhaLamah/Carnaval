@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 
-import storeRegReducer from './storeRegReducer';
+import storeReducer from './storeReducer';
 import loginReducer from './loginReducer';
 import customerReducer from './customerReducer';
 
 export default combineReducers({
-    stores: storeRegReducer,
+    stores: storeReducer,
     loginInfo: loginReducer,
     customer : customerReducer
 

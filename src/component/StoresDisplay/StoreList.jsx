@@ -28,6 +28,7 @@ const StoreList = ()=> {
         <SearchBox />
         </NavBar> 
         <div className="ui container stores-table ">
+        {markets.length==0? <div className="ui container center aligned">لا يوجد نتائج</div>:
         <table className="ui table ">
           <thead>
             <tr>
@@ -50,13 +51,13 @@ const StoreList = ()=> {
           </thead>
           <tbody>
             
-          {
-          markets.map((store,index)=>
-          <Store store = {store} key={index} />         
-          )
+          { 
+            markets.map((store,index)=>
+            <Store store = {store} key={index} />         
+            )
         }
           </tbody>
-          </table>
+          </table> }
           </div>
           <p></p>
           <p></p>
