@@ -6,25 +6,23 @@ import {login} from '../../redux/Actions/login';
 import InputField from './components/InputField';
 import ErrorMessage from '../ErrorMessage';
 
+import logo from '../../image/logo.png';
 import './Login.css';
 
 const Login = (props) => {
     const [loginData, setLoginData] = useState({username: '', password: ''});
    
-    const [showPassword, setShowPassword] = useState();
+    const [isShowPassword, setIsShowPassword] = useState(false);
  
    
-    const handleShowPassword = ()=> {
-    setShowPassword(!showPassword);
+    const showPassword = ()=> {
+        console.log('show')
+    setIsShowPassword(!isShowPassword);
     } 
 
     const onChangeInput = (e) => {
     setLoginData({...loginData, [e.target.name]: e.target.value});
     }
-
-   
-
-  
 
     const onSubmitForm= (e) =>{
         e.preventDefault();
@@ -38,17 +36,24 @@ const Login = (props) => {
         <div className="ui container centered grid log-container">
           
           <form className="ui form segment log-form" onSubmit={onSubmitForm}>
+          <img  className="ui centered medium image" src={logo} />
               <div className="field">
               {props.logError? <ErrorMessage head="Login Error" content="Wrong username or password" />:null}
               </div>
-            <h4 className="ui header">Login</h4>
+            <h4 className="ui header title" >تسجيل الدخول</h4>
+            <p style={{padding: '5px'}}></p>
                     <InputField name="username" type="text" placeholder="Username" onChange={onChangeInput} icon="user icon" />
-                    <InputField name="password" type={showPassword ? 'text' : 'password'} placeholder="Password" onChange={onChangeInput} icon="lock icon"/>
-
-                    <div className="field button-container">
-                        <button className="fluid ui blue button" type="submit">Login</button>
+                    <p style={{padding: '1.5px'}}></p>
+                    <InputField name="password" type={isShowPassword ? 'text' : 'password'} placeholder="Password" onChange={onChangeInput} 
+                    icon={isShowPassword? 'icon eye': 'icon eye slash'} onIconClick = {showPassword}/>
+                  
+                  
+                    <div className="field">
+                        <center>
+                        <button className="fluid ui button log-btn" type="submit">تسجيل الدخول</button>
+                        </center>
                     </div>
-                    <button onClick={handleShowPassword}>show password</button>
+                    
                     
             </form>
             </div>
