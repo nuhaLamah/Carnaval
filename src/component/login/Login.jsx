@@ -50,7 +50,7 @@ const Login = (props) => {
                   
                     <div className="field">
                         <center>
-                        <button className="fluid ui button log-btn" type="submit">تسجيل الدخول</button>
+                        <button className="fluid ui button log-btn" type="submit">دخول</button>
                         </center>
                     </div>
                     
