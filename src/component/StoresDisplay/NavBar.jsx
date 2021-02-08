@@ -13,7 +13,7 @@ const NavBar = (props) => {
         dispatch(logout())
     }
     return(
-        <div className="ui large menu" style={{position: 'fixed',  top: 10, width: "100%", background: '#ffffff', zIndex: 100}}>
+        <div className="ui large menu" style={{position: 'fixed',  top: 10, width: "90%", background: '#ffffff', zIndex: 100}}>
             <a href="/StoreList" className="active item">
                 Home
             </a>
