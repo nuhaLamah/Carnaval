@@ -7,7 +7,7 @@ import {Redirect} from 'react-router-dom';
 
 const CustomerForm = () => {
 
-    //const [error,setError] = useState(false);
+    const [error,setError] = useState(false);
     const isError = useSelector(state => state.customer.isError);
     const isDone = useSelector(state => state.customer.isDone);
     const storeInfo = useSelector(state => state.stores.storeInfo);
@@ -22,6 +22,7 @@ const CustomerForm = () => {
            customerData.market_code = storeInfo.code;
         }
     //console.log(storeInfo)
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {fullname,phone_number} = customerData
@@ -34,12 +35,18 @@ const CustomerForm = () => {
         }
         else
         {
-            alert("error")
+            setError(true)
         }
     };
     
     const handleChange = (e)=> {
         setCustomerData({...customerData,[e.target.name]:e.target.value})
+    }
+    const handleChangePhoneNumber = (e)=> {
+        if(typeof(e.target.value)!== Number){
+        setError(true);
+        setCustomerData({...customerData,[e.target.name]:e.target.value})
+        }
     }
 
     const form = () => (
@@ -49,17 +56,17 @@ const CustomerForm = () => {
         <img className="ui  medium image" alt="logo" src={logo}/>
         <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  المشاركة </h2>
         <h3 style={{fontFamily: 'inherit'}}>اسم المحل: {storeInfo.name} </h3>
-        {isError? (<ErrorMessage head="Can't be added" content="you have to check your inputs" /> ): null}
+        {isError ? (<ErrorMessage head="Can't be added" content="you have to check your inputs" /> ): null}
         <div className="ui form" >
         <div className="field ">
             <label className="text">الاسم</label>
             <input type="text" name="fullname" onChange ={handleChange} placeholder="الاسم" required/>
         </div>
 
-        <div className="field ">
-            <label className="text  " >رقم الهاتف</label>
+        <div className={error ? `error field` : 'field'}>
+            <label className="text " >رقم الهاتف</label>
             <div className="ui labeled input ">
-            <input type="tel" name="phone_number" placeholder="xxxxxxxx" onChange ={handleChange} maxLength="8" required/>
+            <input type="tel" name="phone_number" placeholder="xxxxxxxx" onChange ={handleChangePhoneNumber} minLength="8" maxLength="8" required/>
             <div className="ui label five wide field">09</div>
             </div>
         </div>
