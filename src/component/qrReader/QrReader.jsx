@@ -19,9 +19,11 @@ const QrScanner = () => {
 
     return (
       <div className="center aligned reader" >
-        <div className="border"></div>
+       
         {info?
         <CustomerForm />:
+        <div className="content" >
+          <div className="border"> </div>
           <QrReader
           delay={300}
           onError={handleError}
@@ -29,6 +31,7 @@ const QrScanner = () => {
           style={{ width: '100%', height: '100%', postion: 'relative',
           borderRadius: '25px'}}
         />
+        </div>
     
         
     }
