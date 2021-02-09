@@ -12,7 +12,8 @@
 .log-form{
     position: absolute;
     width: 800px !important;
-    padding: 5% 15% !important;
+    padding: 5%  10%!important;
+    
 }
 
 input{
@@ -20,3 +21,17 @@ input{
     
 }
 
+.log-btn{
+width: 150px !important;
+
+}
+
+center{
+    margin-top: 30px;
+}
+
+.title{
+    font-family: inherit !important;
+    font-size: 20px !important;
+   
+}

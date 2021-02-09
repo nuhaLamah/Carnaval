@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+<<<<<<< HEAD
 import Login from './component/login/Login'
 import Store from './component/StoreForms/StoreAddress'
 import SuccessReg from './component/StoreForms/SuccessReg';
@@ -10,6 +11,16 @@ import StoreList from './component/StoresDisplay/StoreList';
 import Print from './component/StoresDisplay/Print';
 import QrReader from './component/qrReader/QrReader';
 
+=======
+import StoreList from './component/StoresDisplay/StoreList';
+import Print from './component/StoresDisplay/Print';
+import Login from './component/login/Login';
+import Store from './component/StoreForms/StoreAddress'
+import SuccessReg from './component/StoreForms/SuccessReg';
+import QrReader from './component/QrReader/QrReader';
+import Customer from './component/customer/CustomerForm';
+import Home from './component/Home';
+>>>>>>> 99ee4d57c8a2aa8d3499a72dd71cdb3593f47e13
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
