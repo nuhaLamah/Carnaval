@@ -28,7 +28,7 @@ const StoreList = ()=> {
         <SearchBox />
         </NavBar> 
         <div className="ui container stores-table ">
-        {markets.length==0? <div className="ui container center aligned">لا يوجد نتائج</div>:
+        {markets.length===0? <div className="ui container center aligned">لا يوجد نتائج</div>:
         <table className="ui table ">
           <thead>
             <tr>
