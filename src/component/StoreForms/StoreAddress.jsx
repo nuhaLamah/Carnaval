@@ -3,41 +3,42 @@ import logo from '../../image/logo.png';
 import StoreData from './StoreData';
 import { useDispatch , useSelector} from 'react-redux';
 import { checkAddress } from '../../redux/Actions/stores';
-
+import ErrorMessage from '../ErrorMessage';
 import './style.css';
 
 const StoreAddress = () =>{
     const dispatch = useDispatch();
     const [address , setAddress] = useState({code:'', number:''});
     const [showButton , setShowButton] = useState(false);
+    const isInValid = useSelector(state => state.stores.isInValid);
     const storeDefaultData = useSelector((addressData) => addressData.stores.address);
     useEffect(() => {
         if(storeDefaultData.status === 'valid' ) 
-        setShowButton(true) 
+        {
+            setShowButton(true); 
+        }                   
     },[storeDefaultData.status]);
-
+   
     const handleAdressSubmit = (e) =>{
         e.preventDefault();
         const {code , number} = address
-        if(code && number)
+        if(code && number) 
         {
             //console.log(`${address.code}+${address.number}`);
             dispatch(checkAddress(`${address.code}+${address.number}`));
-        }
-        else
-        {
-            //alert("please check again");
         }
     };
     const handleChange = (e)=>{
         setAddress({...address,[e.target.name]:e.target.value})
     }
+   
     return (
-        <div className="ui container centered grid reg-container" > 
+        <div className="ui container centered grid log-container" > 
         <div className="ui form segment log-form" >
         <form className="ui form" >
         <img className="ui centered medium image" alt="logo" src={logo}/>
         <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  التسجيل </h2>
+        {isInValid ? (<ErrorMessage head="لقد حدث خطأ " content="لا يمكن التحقق من العنوان الرجاء التأكد من البيانات المدخلة " /> ): null}
         {/* --------- Makani validation ------------ */}
         <div className="ui form">
         <div className="field">

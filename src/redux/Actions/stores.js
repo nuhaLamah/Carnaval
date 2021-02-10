@@ -1,8 +1,4 @@
 import * as api from '../../api';
-import ChangeStoreState from '../../component/StoresDisplay/ChangeStoreState';
-
-
-
 export const addStore = (store) => async (dispatch) => {
   try {
     const msg = await api.addStore(store);
@@ -15,8 +11,7 @@ export const addStore = (store) => async (dispatch) => {
 
 
 export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch, useState) => {
-  console.log(keySearch);
- 
+  //console.log(keySearch);
   const { totalPages } = useState().stores;
   console.log( useState().stores)
   console.log('page', totalPages)
@@ -30,12 +25,10 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
       dispatch({ type:'CHANGE_PAGE' , payload: pageNumber});
       dispatch({ type:'CHANGE_FILTER_TERM' , payload: keySearch});
     }
-    
-
   } catch (error) {
     if(error.response.data.status===401 && error.response.data.sub_status===42){
       const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
-      
+    
       localStorage.setItem("access_token", newAccessToken);
       filterStores();
   }
@@ -43,29 +36,34 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
 }
 };
 
-
 export const checkAddress = (address) => async (dispatch) => {
   //console.log(address);
   try {
     const {data} = await api.checkAddress(address);
     //console.log(data.place_info);
-    dispatch({ type: 'ADDRESS', payload: data.place_info });
+    if(data.place_info.status === "valid")
+    dispatch({ type: 'ADDRESS', payload: data.place_info , isInValid:false });
+    else
+    {
+      console.log(data.place_info.status);
+      dispatch({ type: 'ADDRESS', payload: data.place_info , isInValid:true });
+    }
+
   } catch (error) {
     console.log(error);
+    dispatch({ type: 'INVALID_ADDRESS', payload: true });
   }
 };
 
 
 export const changeState= (storeCode, state) => async (dispatch, useState) => {
   try {
-    console.log('state', storeCode, state)
+    //console.log('state', storeCode, state)
     const {data} = await api.ChangeStoreState(storeCode, state);
     const storeList = [...useState().stores.storeList].map(store => store.code ===storeCode? {... store, state:state}: store);
 
     dispatch({ type:'FETCH_STORES' , payload: storeList });
-    console.log(data)
-
-    
+    //console.log(data)   
   } catch (error) {
     console.log(error);
   }
@@ -75,7 +73,7 @@ export const changeState= (storeCode, state) => async (dispatch, useState) => {
 export const getStoreInfo = (storeCode) => async (dispatch) => {
   try{
     const {data} = await api.getStore(storeCode);
-    console.log(data.market_info)
+    //console.log(data.market_info)
     dispatch({type:'SET_STORE_INFO', payload: data.market_info});
   }
   catch(e){

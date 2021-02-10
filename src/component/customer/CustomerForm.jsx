@@ -7,7 +7,7 @@ import {Redirect} from 'react-router-dom';
 
 const CustomerForm = () => {
 
-    const [error,setError] = useState(false);
+    const [error,setError] = useState({state:false,msg:''});
     const isError = useSelector(state => state.customer.isError);
     const isDone = useSelector(state => state.customer.isDone);
     const storeInfo = useSelector(state => state.stores.storeInfo);
@@ -22,7 +22,20 @@ const CustomerForm = () => {
            customerData.market_code = storeInfo.code;
         }
     //console.log(storeInfo)
-    
+    //---- Function to check name validation ---
+    const validateName = (name) => {
+        if(/[!@#$%^&*(),.?":{}|<>]/g.test(name) || !/^[A-Z]/.test(name) || /\d+/g.test(name)) {
+            setError(true,'you have to enter a valid name');
+        }
+    }
+    //---- Function to check phone validation ---
+    const validateNumber = (number) => {
+        let phone = parseInt(number)
+        if(typeof(phone)!== Number)
+            setError(true , 'you have to enter a valid phone');
+    }
+      
+      
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {fullname,phone_number} = customerData
@@ -56,7 +69,7 @@ const CustomerForm = () => {
         <img className="ui  medium image" alt="logo" src={logo}/>
         <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  المشاركة </h2>
         <h3 style={{fontFamily: 'inherit'}}>اسم المحل: {storeInfo.name} </h3>
-        {isError ? (<ErrorMessage head="Can't be added" content="you have to check your inputs" /> ): null}
+        {isError ? (<ErrorMessage head="لقد حدث خطأ" content="يرجى التأكد من صحة البيانات المدخلة" /> ): null}
         <div className="ui form" >
         <div className="field ">
             <label className="text">الاسم</label>
