@@ -2,7 +2,6 @@ import * as api from '../../api';
 export const addStore = (store) => async (dispatch) => {
   try {
     const msg = await api.addStore(store);
-
     dispatch({ type: 'REG_STORE', payload: msg });
   } catch (error) {
     console.log(error);
@@ -11,13 +10,9 @@ export const addStore = (store) => async (dispatch) => {
 
 
 export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch, useState) => {
-  //console.log(keySearch);
-  const { totalPages } = useState().stores;
-  console.log( useState().stores)
-  console.log('page', totalPages)
   try {
     const response = await api.filterStores(keySearch, pageNumber, perPage);
-    console.log(response);
+    //console.log(response);
     if(response.status ===200 || response.status ===201) {
       const totalPages =  response.data.total_pages;
       dispatch({ type:'FETCH_STORES' , payload: response.data.markets });
@@ -45,30 +40,25 @@ export const checkAddress = (address) => async (dispatch) => {
     dispatch({ type: 'ADDRESS', payload: data.place_info , isInValid:false });
     else
     {
-      console.log(data.place_info.status);
       dispatch({ type: 'ADDRESS', payload: data.place_info , isInValid:true });
     }
-
   } catch (error) {
     console.log(error);
     dispatch({ type: 'INVALID_ADDRESS', payload: true });
   }
 };
 
-
 export const changeState= (storeCode, state) => async (dispatch, useState) => {
   try {
     //console.log('state', storeCode, state)
-    const {data} = await api.ChangeStoreState(storeCode, state);
-    const storeList = [...useState().stores.storeList].map(store => store.code ===storeCode? {... store, state:state}: store);
-
+    await api.ChangeStoreState(storeCode, state);
+    const storeList = [...useState().stores.storeList].map(store => store.code ===storeCode? {...store, state:state}: store);
     dispatch({ type:'FETCH_STORES' , payload: storeList });
     //console.log(data)   
   } catch (error) {
     console.log(error);
   }
 }; 
-
 
 export const getStoreInfo = (storeCode) => async (dispatch) => {
   try{

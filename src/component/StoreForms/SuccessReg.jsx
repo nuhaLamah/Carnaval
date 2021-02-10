@@ -4,9 +4,9 @@ import logo from '../../image/logo.png';
 import './style.css';
 
 const SuccessReg = ({match}) => {
-    console.log(match);
+    //console.log(match);
     return (
-        <div className="ui container centered grid reg-container" > 
+        <div className="ui container centered grid log-container" > 
         <div className="ui form segment log-form" >
         
         <img className="ui centered medium image" alt="logo" src={logo}/>

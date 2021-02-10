@@ -16,11 +16,10 @@ const QrScanner = () => {
     console.error(err)
   }
   
-
     return (
       <div className="center aligned reader" >
        
-        {info?
+      {info?
         <CustomerForm />:
         <div className="content" >
           <div className="border"> </div>
@@ -31,15 +30,10 @@ const QrScanner = () => {
           style={{ width: '100%', height: '100%', postion: 'relative',
           borderRadius: '25px'}}
         />
-        </div>
-    
-        
-    }
-      
-      
+        </div>   
+      }
       </div>
     )
-  
 }
 
 export default QrScanner;

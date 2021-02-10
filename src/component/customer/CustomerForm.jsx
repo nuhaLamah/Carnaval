@@ -7,11 +7,11 @@ import {Redirect} from 'react-router-dom';
 
 const CustomerForm = () => {
 
-    const [error,setError] = useState({state:false,msg:''});
     const isError = useSelector(state => state.customer.isError);
     const isDone = useSelector(state => state.customer.isDone);
     const storeInfo = useSelector(state => state.stores.storeInfo);
     const dispatch = useDispatch();
+    const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     const [customerData, setCustomerData] = useState({fullname:'', phone_number:'',building_number:'',postcode:'',market_code:'', city:'مصراتة'});
     
     const cityList = ['مصراتة','طرابلس','بنغازي','غريان','الخمس','زليتن','سرت','الزاوية'];
@@ -21,44 +21,37 @@ const CustomerForm = () => {
            customerData.postcode = storeInfo.postcode;
            customerData.market_code = storeInfo.code;
         }
-    //console.log(storeInfo)
-    //---- Function to check name validation ---
-    const validateName = (name) => {
-        if(/[!@#$%^&*(),.?":{}|<>]/g.test(name) || !/^[A-Z]/.test(name) || /\d+/g.test(name)) {
-            setError(true,'you have to enter a valid name');
-        }
-    }
-    //---- Function to check phone validation ---
-    const validateNumber = (number) => {
-        let phone = parseInt(number)
-        if(typeof(phone)!== Number)
-            setError(true , 'you have to enter a valid phone');
-    }
-      
+    //console.log(storeInfo)  
       
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const {fullname,phone_number} = customerData
-            
+        const {fullname,phone_number} = customerData      
         if(fullname && phone_number )
         {
-          //console.log(customerData);
-         // dispatch(addCustomer(customerData));
-          //setCustomerData({name:'',phone_number:'',building_number:'',postcode:''})
+          console.log(customerData);
+          dispatch(addCustomer(customerData));
         }
         else
         {
-            setError(true)
+          setValidInput({status : true ,type:'generalError', msg:"يجب أن لا تكون المدخلات فارغة "})
         }
     };
     
-    const handleChange = (e)=> {
-        setCustomerData({...customerData,[e.target.name]:e.target.value})
+    const handleChangeOfNumber = (e)=>{
+        if(isNaN(e.target.value))
+        setValidInput({status : true , type :"NumberError" , msg:"يجب إدخال رقم فقط"})
+        else{
+            setCustomerData({...customerData,[e.target.name]:e.target.value})
+            setValidInput({status : false,type:"" , msg:""})
+        }
     }
-    const handleChangePhoneNumber = (e)=> {
-        if(typeof(e.target.value)!== Number){
-        setError(true);
-        setCustomerData({...customerData,[e.target.name]:e.target.value})
+    const handleChangeOfText = (e)=>{
+        let format = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+        if(!isNaN(e.target.value)  || format.test(e.target.value))
+        setValidInput({status : true , type :"TextError" , msg:"يجب ادخال حروف فقط"})
+        else{
+            setCustomerData({...customerData,[e.target.name]:e.target.value})
+            setValidInput({status : false,type:"" , msg:""})
         }
     }
 
@@ -66,21 +59,26 @@ const CustomerForm = () => {
         <div className="ui container centered grid log-container" > 
         <div className="ui form segment log-form" >
         <form className="ui form " >
-        <img className="ui  medium image" alt="logo" src={logo}/>
+        <img className="ui centered medium image" alt="logo" src={logo}/>
         <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  المشاركة </h2>
         <h3 style={{fontFamily: 'inherit'}}>اسم المحل: {storeInfo.name} </h3>
-        {isError ? (<ErrorMessage head="لقد حدث خطأ" content="يرجى التأكد من صحة البيانات المدخلة" /> ): null}
+        {isError || (validInput.status && validInput.type=== "generalError") ? (<ErrorMessage head="لقد حدث خطأ" content={validInput.msg} /> ): null}
         <div className="ui form" >
-        <div className="field ">
+        <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
             <label className="text">الاسم</label>
-            <input type="text" name="fullname" onChange ={handleChange} placeholder="الاسم" required/>
+            <input type="text" name="fullname" onChange ={handleChangeOfText} placeholder="الاسم" required  maxLength="40"/>
+            <div className="five wide field">
+            <p>{validInput.status && validInput.type=== "TextError" ?`${validInput.msg}`:''}</p>
+            </div>
+            
         </div>
 
-        <div className={error ? `error field` : 'field'}>
+        <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
             <label className="text " >رقم الهاتف</label>
             <div className="ui labeled input ">
-            <input type="tel" name="phone_number" placeholder="xxxxxxxx" onChange ={handleChangePhoneNumber} minLength="8" maxLength="8" required/>
+            <input type="tel" name="phone_number" placeholder="xxxxxxxx" onChange ={handleChangeOfNumber} minLength="8" maxLength="8" required/>
             <div className="ui label five wide field">09</div>
+            <p>{validInput.status && validInput.type=== "NumberError" ?`${validInput.msg}`:''}</p>
             </div>
         </div>
        
