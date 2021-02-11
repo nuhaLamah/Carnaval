@@ -8,6 +8,7 @@ import './style.css';
 
 const StoreAddress = () =>{
     const dispatch = useDispatch();
+    const isError = useSelector(state => state.stores.isError);
     const isInValid = useSelector(state => state.stores.isInValid);
     const storeDefaultData = useSelector((addressData) => addressData.stores.address);
     const [showButton , setShowButton] = useState(false);
@@ -47,7 +48,7 @@ const StoreAddress = () =>{
         <form className="ui form" >
         <img className="ui centered medium image" alt="logo" src={logo}/>
         <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  التسجيل </h2>
-        {isInValid || (validInput.status && validInput.type=== "generalError")? (<ErrorMessage head="لقد حدث خطأ " content="لا يمكن التحقق من العنوان الرجاء التأكد من البيانات المدخلة " /> ): null}
+        {isError ||isInValid || (validInput.status && validInput.type=== "generalError")? (<ErrorMessage head="لقد حدث خطأ " content="لا يمكن التحقق من العنوان الرجاء التأكد من البيانات المدخلة " /> ): null}
         {/* --------- Makani validation ------------ */}
         <div className="ui form">
         <div className="field">
@@ -74,7 +75,7 @@ const StoreAddress = () =>{
         {/* --------- Store Rgisteration ------------ */}
         {showButton ? (
             <StoreData storeDefaultData={storeDefaultData} address={address} showButton={showButton}/>
-        ):<></>}
+        ):null}
         </div>
 
        

@@ -2,9 +2,10 @@ import * as api from '../../api';
 export const addStore = (store) => async (dispatch) => {
   try {
     const msg = await api.addStore(store);
-    dispatch({ type: 'REG_STORE', payload: msg });
+    dispatch({ type: 'REG_STORE', payload: msg , done:true });
   } catch (error) {
     console.log(error);
+    dispatch({ type: 'IS_Error', payload:true });
   }
 };
 

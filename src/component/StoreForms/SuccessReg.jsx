@@ -1,11 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 import logo from '../../image/logo.png';
 import './style.css';
 
 const SuccessReg = ({match}) => {
-    //console.log(match);
+
     return (
+       
         <div className="ui container centered grid log-container" > 
         <div className="ui form segment log-form" >
         

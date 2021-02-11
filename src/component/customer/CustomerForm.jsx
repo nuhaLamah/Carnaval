@@ -30,6 +30,7 @@ const CustomerForm = () => {
         {
           console.log(customerData);
           dispatch(addCustomer(customerData));
+          setCustomerData({fullname:'', phone_number:'',building_number:'',postcode:'',market_code:'', city:'مصراتة'})
         }
         else
         {
@@ -103,7 +104,7 @@ const CustomerForm = () => {
     )
     return (
         
-        isDone?  <Redirect to="/Success" />:form()
+        isDone ?  <Redirect to="/Success" />: storeInfo? form() : <></>
     )
 }
 

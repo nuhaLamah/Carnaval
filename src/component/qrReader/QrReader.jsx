@@ -1,13 +1,18 @@
-import React from 'react';
+import React , {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import QrReader from 'react-qr-reader';
 import { getStoreInfo } from '../../redux/Actions/stores';
 import './QrReader.css';
 import CustomerForm from '../customer/CustomerForm';
- 
+import { clearInfo } from '../../redux/Actions/customer';
+
 const QrScanner = () => {
   const dispatch = useDispatch();
   const info = useSelector(state => state.stores.storeInfo);
+
+    useEffect(() => {
+        dispatch(clearInfo());
+    },[]);
   const handleScan = data => {
     console.log(data);
     if(data)dispatch(getStoreInfo(data));
