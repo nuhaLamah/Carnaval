@@ -11,12 +11,11 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const data = useSelector((data)=>data.stores.address);
-
+    const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:''})
     const [checkbox,setCheckbox] = useState(true);
     const [storeCode , setStoreCode] = useState(0);
     const [open, setOpen] = useState(false)
-    //const [showButton , setShowButton] = useState(false);
 
     useEffect(() => {
         setStoreCode(uniqueRandom(100000, 1000000, 50));
@@ -28,7 +27,6 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
           storeData.postcode = address.code;
           storeData.building_Number = address.number;
           storeData.code = storeCode;
-          //setShowButton(true);
         }
     },[data.status]);
 
@@ -43,26 +41,50 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
         history.push(`/Success/${storeCode}`);
         setStoreData({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:''})
     };
+    const handleChangeOfNumber = (e)=>{
+        if(isNaN(e.target.value))
+        setValidInput({status : true , type :"NumberError" , msg:"يجب إدخال رقم فقط"})
+        else{
+            setStoreData({...storeData,[e.target.name]:e.target.value});
+            setValidInput({status : false,type:"" , msg:""})
+        }
+    }
+    const handleChangeOfText = (e)=>{
+        let format = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+        if(!isNaN(e.target.value)  || format.test(e.target.value))
+        setValidInput({status : true , type :"TextError" , msg:"يجب ادخال حروف فقط"})
+        else{
+            setStoreData({...storeData,[e.target.name]:e.target.value});
+            setValidInput({status : false,type:"" , msg:""})
+        }
+    }
 
     return (
         showButton?
         <form className="ui form" onSubmit={handleSubmit}>
         <div className="ui form">
+
         <div className="field">
-            <label className="text">اسم المحل</label>
-            <input type="text" name="name" placeholder="اسم المحل" defaultValue={storeDefaultData.name} onChange={handleChange}/>
+        <label className="text">اسم المحل</label>
+            <input type="text" name="name" placeholder="اسم المحل" defaultValue={storeDefaultData.name} onChange ={handleChange} required  maxLength="40"/>
         </div>
-        <div className="field">
+        <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
             <label className="text" >اسم صاحب المحل</label>
-            <input type="text" name="owner_name" placeholder="اسم صاحب المحل"  onChange={handleChange}/>
+            <input type="text" name="owner_name" placeholder="اسم صاحب المحل"  onChange={handleChangeOfText}/>
+            <div className="five wide field">
+            <p>{validInput.status && validInput.type=== "TextError" ?`${validInput.msg}`:''}</p>
+            </div>  
         </div>
-        <div className="field">
+        <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
             <label className="text" >رقم هاتف المحل</label>
-            <input type="text" name="market_phone" placeholder="رقم هاتف المحل" defaultValue ={storeDefaultData.phoneNumber} onChange={handleChange}/>
+            <input type="text" name="market_phone"  defaultValue ={storeDefaultData.phoneNumber} placeholder="xxxxxxxx" onChange ={handleChangeOfNumber} maxLength="10"/>
+            <p>{validInput.status && validInput.type=== "NumberError" ?`${validInput.msg}`:''}</p>
         </div>
-        <div className="field">
+
+        <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
             <label className="text" >رقم هاتف صاحب المحل</label>
-            <input type="text" name="owner_phone" placeholder="رقم هاتف صاحب المحل" onChange={handleChange}/>
+            <input type="text" name="owner_phone" placeholder="xxxxxxxx" onChange ={handleChangeOfNumber} maxLength="10"/>
+            <p>{validInput.status && validInput.type=== "NumberError" ?`${validInput.msg}`:''}</p>
         </div>
         <div className="field">
             <label className="text" >البريد الالكتروني</label>
