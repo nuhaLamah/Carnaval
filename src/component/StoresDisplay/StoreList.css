@@ -1,10 +1,18 @@
 .stores-table{
     width: 100% !important;
-    margin-top: 100px;
+    margin-top: 10px;
     margin-bottom: 50px;
     font-family: inherit;
 }
 
 .main-div{
     width: 90% !important;
+}
+
+.page-title{
+color: grey;
+font-family: inherit;
+padding-top: 10px;
+padding-bottom: 10px;
+
 }

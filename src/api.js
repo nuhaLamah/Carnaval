@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = 'http://10.40.0.49:5000/api';
+const URL = 'https://carnivalapi.staging.ly/api';
 
 const    getHeaders = (isAuth) => { return {
     'Authorization': isAuth? `Bearer ${localStorage.getItem('access_token')}`:null,
@@ -53,10 +53,6 @@ export const ChangeStoreState = (code, state) => {
 
 //-------------------------Stores Form---------------------// 
 
-export const checkAddress = (address) => {
-    const config = { headers: getHeaders(false) };
-    return axios.get(`${URL}/location_info/${address}`, config);
-} 
 
 export const addStore = (newStore) => {
     const config = { headers: getHeaders(false) };

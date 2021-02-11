@@ -6,7 +6,9 @@ import Store from './Store';
 import NavBar from './NavBar';
 import SearchBox from './SearchBox';
 import PageButtons from './PageButtons';
+
 import './StoreList.css';
+import backgroundImg from '../../image/header.png';
 
 const StoreList = ()=> {
   
@@ -23,11 +25,20 @@ const StoreList = ()=> {
 
       
     return (
-      <div className="ui container main-div ">
+      <div>
+        <center>
         <NavBar>
-        <SearchBox />
-        </NavBar> 
+              <SearchBox />
+        </NavBar>
+          <img src={backgroundImg} width='100%' />
+           
+        </center>
+        <div className="ui container main-div ">
+
+        
+ 
         <div className="ui container stores-table ">
+          <h1 className="ui container center aligned page-title">المحلات المسجلة</h1>
         {markets.length===0? <div className="ui container center aligned">لا يوجد نتائج</div>:
         <table className="ui table ">
           <thead>
@@ -64,6 +75,8 @@ const StoreList = ()=> {
           <p></p>
           <PageButtons />
       </div>
+      </div>
+      
     
     )
 }
