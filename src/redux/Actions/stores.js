@@ -1,11 +1,8 @@
 import * as api from '../../api';
-<<<<<<< HEAD
 import ChangeStoreState from '../../component/StoresDisplay/ChangeStoreState';
 import{ getLocationInfo } from '../../makaniAPI';
 
 
-=======
->>>>>>> f40d70612e0c04e8f6aecc719418a89b9f907a80
 export const addStore = (store) => async (dispatch) => {
   try {
     const msg = await api.addStore(store);
@@ -41,21 +38,10 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
 export const checkAddress = (address) => async (dispatch) => {
   //console.log(address);
   try {
-<<<<<<< HEAD
     const {data} = await getLocationInfo(address);
     console.log(data);
 
     dispatch({ type: 'ADDRESS', payload: data });
-=======
-    const {data} = await api.checkAddress(address);
-    //console.log(data.place_info);
-    if(data.place_info.status === "valid")
-    dispatch({ type: 'ADDRESS', payload: data.place_info , isInValid:false });
-    else
-    {
-      dispatch({ type: 'ADDRESS', payload: data.place_info , isInValid:true });
-    }
->>>>>>> f40d70612e0c04e8f6aecc719418a89b9f907a80
   } catch (error) {
     console.log(error);
     dispatch({ type: 'INVALID_ADDRESS', payload: true });

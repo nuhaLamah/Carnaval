@@ -76,8 +76,6 @@ export const addCustomer = (newCustomer) => {
     //console.log(newCustomer[key]);
     //console.log(form_data.append(key, newCustomer[key]));
     } 
-    console.log(newCustomer);
-   console.log(formData);
      return axios.post(`${URL}/clients`, formData, config)
 }
 
