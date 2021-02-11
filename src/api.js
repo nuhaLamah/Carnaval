@@ -53,10 +53,6 @@ export const ChangeStoreState = (code, state) => {
 
 //-------------------------Stores Form---------------------// 
 
-export const checkAddress = (address) => {
-    const config = { headers: getHeaders(false) };
-    return axios.get(`${URL}/location_info/${address}`, config);
-} 
 
 export const addStore = (newStore) => {
     const config = { headers: getHeaders(false) };

@@ -1,6 +1,6 @@
 import * as api from '../../api';
 import ChangeStoreState from '../../component/StoresDisplay/ChangeStoreState';
-
+import{ getLocationInfo } from '../../makaniAPI';
 
 
 export const addStore = (store) => async (dispatch) => {
@@ -47,9 +47,10 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
 export const checkAddress = (address) => async (dispatch) => {
   //console.log(address);
   try {
-    const {data} = await api.checkAddress(address);
-    //console.log(data.place_info);
-    dispatch({ type: 'ADDRESS', payload: data.place_info });
+    const {data} = await getLocationInfo(address);
+    console.log(data);
+
+    dispatch({ type: 'ADDRESS', payload: data });
   } catch (error) {
     console.log(error);
   }
