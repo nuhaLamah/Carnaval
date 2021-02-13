@@ -33,7 +33,7 @@ const Login = (props) => {
  return  props.logState? <Redirect to="/StoreList" />
     :(
        
-        <div className="ui container centered grid log-container">
+        <div className="ui container centered grid center-all">
           
           <form className="ui form segment log-form" onSubmit={onSubmitForm}>
           <img  className="ui centered medium image" src={logo} />
