@@ -1,7 +1,5 @@
 import * as api from '../../api';
-import ChangeStoreState from '../../component/StoresDisplay/ChangeStoreState';
 import{ getLocationInfo } from '../../makaniAPI';
-
 
 export const addStore = (store) => async (dispatch) => {
   try {
@@ -12,7 +10,6 @@ export const addStore = (store) => async (dispatch) => {
     dispatch({ type: 'IS_Error', payload:true });
   }
 };
-
 
 export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch, useState) => {
   try {
@@ -28,11 +25,9 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
   } catch (error) {
     if(error.response.data.status===401 && error.response.data.sub_status===42){
       const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
-    
       localStorage.setItem("access_token", newAccessToken);
       filterStores();
   }
-  
 }
 };
 
@@ -41,8 +36,10 @@ export const checkAddress = (address) => async (dispatch) => {
   try {
     const {data} = await getLocationInfo(address);
     console.log(data);
-
-    dispatch({ type: 'ADDRESS', payload: data });
+    if(data.status === 'valid')
+    dispatch({ type: 'ADDRESS', payload: data, isInValid:false });
+    else
+    dispatch({ type: 'ADDRESS', payload: data, isInValid:true });
   } catch (error) {
     console.log(error);
     dispatch({ type: 'INVALID_ADDRESS', payload: true });

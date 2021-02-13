@@ -12,7 +12,7 @@ const QrScanner = () => {
 
     useEffect(() => {
         dispatch(clearInfo());
-    },[]);
+    },[dispatch]);
   const handleScan = data => {
     console.log(data);
     if(data)dispatch(getStoreInfo(data));
