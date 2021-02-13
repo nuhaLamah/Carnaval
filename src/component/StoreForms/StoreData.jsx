@@ -12,12 +12,18 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
     
     const data = useSelector((data)=>data.stores.address);
     const isDone = useSelector(state => state.stores.isDone);
-   
-    const [storeCode , setStoreCode] = useState(uniqueRandom(100000, 1000000, 50));
+
     const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
+<<<<<<< HEAD
     const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:storeCode})
     const [checkbox,setCheckbox] = useState(false);
     const [open, setOpen] = useState(false)
+=======
+    const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
+    const [checkbox,setCheckbox] = useState(true);
+    const [open, setOpen] = useState(false);
+    const [storeCode , setStoreCode] = useState(uniqueRandom(100000, 1000000, 50));
+>>>>>>> 62adc1a5289025c48df0e7ed7439a14dd2579d74
 
     useEffect(() => {
         //setStoreCode(uniqueRandom(100000, 1000000, 50));
@@ -28,7 +34,7 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
           storeData.category = storeDefaultData.category;
           storeData.postcode = address.code;
           storeData.building_number = address.number;
-          //storeData.code =
+          storeData.code =storeCode;
         }
     },[data.status]);
 
@@ -38,10 +44,12 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(storeCode);
+        console.log(storeData);
         if(validInput.status===false) {
-        dispatch(addStore(storeData));  
-        setStoreData({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
-        setStoreCode(0);
+         dispatch(addStore(storeData));  
+         setStoreData({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
+         setStoreCode(0)
         }
 
         else
