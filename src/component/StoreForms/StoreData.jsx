@@ -3,7 +3,6 @@ import { useDispatch , useSelector} from 'react-redux';
 import {addStore} from '../../redux/Actions/stores';
 import { Redirect } from "react-router-dom";
 import  uniqueRandom from 'unique-random-at-depth';
-import { Checkbox } from 'semantic-ui-react';
 import Modal from 'react-modal';
 import './style.css';
 
@@ -17,7 +16,7 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
     const [storeCode , setStoreCode] = useState(uniqueRandom(100000, 1000000, 50));
     const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:storeCode})
-    const [checkbox,setCheckbox] = useState(true);
+    const [checkbox,setCheckbox] = useState(false);
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
@@ -120,13 +119,13 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
           isOpen={open}  
           onRequestClose={() => setOpen(false)}
           ariaHideApp={false}
-          contentLabel="Example Modal"
+          contentLabel="Terms Modal"
            style={customStyles}
         >
- 
-          <h2 >شروط الاشتراك</h2>
-          <button onClick={() => setOpen(false)}>close</button>
-          <div>I am a modal</div>
+          <div className = "term-header">شروط الاشتراك</div>
+          <div className="term-desc">
+            فيما يلي القوانين اللازم اتباعها للمشاركة في مهرجان مصراتة للتسوق
+          </div>
           <ol className="term-list">
                 <li>الالتزام بالإجراءات الوقائية من فيروس كورونا حسب الخطة الموضوعة اللجنة العليا .</li>
                 <li>إلزام الموظفين والزوار بارتداء الكمامات داخل الجناح او المحل.</li>
@@ -135,17 +134,15 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
                 <li>التقيد بعدم الإزدحام وذلك بتحديد العدد الكافي للتباعد الإجتماعي.</li>
                 <li>توزيع كوبونات المهرجان مجانا بدون فرض قيمة على الزبون او اجباره على الشراء .</li>
             </ol>
-            <button className="ui button primary" onClick={() => setOpen(false)} >
+            <button className="button primary" onClick={() => setOpen(false)} >
             إغلاق
             </button>
         </Modal>
       </div>
-        {isDone ? <Redirect to={`/Success/${storeCode}` }/> : <Redirect to={`/Store` }/>}
-            
-        </div>
-            
+        {isDone ? <Redirect to={`/Success/${storeCode}` }/> : <Redirect to={`/Store` }/>}         
+        </div>          
         <div className="field"> 
-        <button className="ui button text" disabled = {checkbox} type="submit">تـسـجـيـل</button>
+        <button className="ui button text" disabled = {!checkbox} type="submit">تـسـجـيـل</button>
         </div>
         </div>
         </form>  :<></>

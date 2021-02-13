@@ -40,6 +40,8 @@
 .term-list{
     text-align:right;
     font-size: 17px;
+    overflow-y: scroll;
+    height: 200px;
 }
 li {
     padding: 5px 0px;
@@ -48,6 +50,7 @@ li {
     font-weight: bold;
     font-size: 24px;
     text-align : right;
+    margin: 10px 0px 20px 0px;
 }
 .term-desc {
     font-weight: bold;
