@@ -14,7 +14,7 @@ class QrCode extends Component {
     const text = this.props.code;
     console.log(text)
         return (
-          <div className="center-all" style={{paddingTop:100}}>
+          <div className="center-all" >
             <QRCode
                 bgColor="#FFFFFF"
                 fgColor="#000000"
