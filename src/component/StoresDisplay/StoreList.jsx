@@ -28,7 +28,7 @@ const StoreList = ()=> {
       <div>
         <center>
 
-          <img src={backgroundImg} width='100%' />
+          <img className="background" src={backgroundImg} width='100%' />
   
         </center>
 
