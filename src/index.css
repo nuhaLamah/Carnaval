@@ -1,6 +1,6 @@
 body {
   margin:0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, 'Tajwal','Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Almarai','Tajwal','Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif !important;
 }
@@ -9,7 +9,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+input[type="text"]
+{
+    font-size:15px !important;
+    font-family: inherit !important;
+    font-weight: 500;
+}
 .center-all {
   margin: 0 !important;
   position: absolute !important;

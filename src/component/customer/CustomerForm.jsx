@@ -3,7 +3,7 @@ import logo from '../../image/logo.png';
 import { useDispatch, useSelector} from 'react-redux';
 import { addCustomer } from '../../redux/Actions/customer';
 import ErrorMessage from '../ErrorMessage';
-import {Redirect} from 'react-router-dom';
+//import {Redirect} from 'react-router-dom';
 
 const CustomerForm = () => {
 
@@ -20,17 +20,13 @@ const CustomerForm = () => {
            customerData.building_number = storeInfo.building_number;
            customerData.postcode = storeInfo.postcode;
            customerData.market_code = storeInfo.code;
-        }
-    //console.log(storeInfo)  
-      
+        }   
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {full_name,phone_number} = customerData      
         if(full_name && phone_number )
         {
-          console.log(customerData);
           dispatch(addCustomer(customerData));
-          setCustomerData({full_name:'', phone_number:'',building_number:'',postcode:'',market_code:'', city:'مصراتة'})
         }
         else
         {
@@ -104,7 +100,11 @@ const CustomerForm = () => {
     )
     return (
         
-        isDone ?  <Redirect to="/Success" />: storeInfo? form() : <></>
+        //isDone ?  (<Redirect to="/Success" />): storeInfo? form() : <></>
+        isDone ? (()=>{
+            setCustomerData({full_name:'', phone_number:'',building_number:'',postcode:'',market_code:'', city:'مصراتة'});
+            //<Redirect to="/Success" />
+        }): storeInfo? form() : <></>
     )
 }
 

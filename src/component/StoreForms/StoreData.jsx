@@ -1,17 +1,14 @@
 import React , {useState , useEffect } from 'react';
 import { useDispatch , useSelector} from 'react-redux';
 import { addStore , clearInfo} from '../../redux/Actions/stores';
-//import { Redirect } from "react-router-dom";
 import  uniqueRandom from 'unique-random-at-depth';
 import { Checkbox,Button, Modal } from 'semantic-ui-react';
 import './style.css';
-
 
 const StoreData = ({address }) => {
     const dispatch = useDispatch();
     
     const data = useSelector((data)=>data.stores.address);
-    //const isDone = useSelector(state => state.stores.isDone);
     const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
     const [checkbox,setCheckbox] = useState(true);
@@ -74,7 +71,7 @@ const StoreData = ({address }) => {
         <div className="ui form">
         <div className="field">
         <label className="text">اسم المحل</label>
-            <input type="text" name="name" placeholder="اسم المحل" defaultValue={data.name} onChange ={handleChange} required  maxLength="40"/>
+            <input disabled type="text" name="name" placeholder="اسم المحل" defaultValue={data.name} onChange ={handleChange} required  maxLength="40"/>
         </div>
         <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
             <label className="text" >اسم صاحب المحل</label>
@@ -100,7 +97,7 @@ const StoreData = ({address }) => {
         </div>
         <div className="field">
             <label className="text">نوع النشاط</label>
-            <input type="text" name="category" placeholder="نوع النشاط" defaultValue ={data.category} onChange={handleChange}/>
+            <input disabled type="text" name="category" placeholder="نوع النشاط" defaultValue ={data.category} onChange={handleChange}/>
         </div>
         <div className="field" >   
             <Checkbox name = "isChecked" onClick={()=>setCheckbox(!checkbox)} className="checkbox" />

@@ -14,11 +14,12 @@ const QrScanner = () => {
         dispatch(clearInfo());
     },[dispatch]);
   const handleScan = data => {
-    console.log(data);
+  //  console.log(data);
     if(data)dispatch(getStoreInfo(data));
   }
   const handleError = err => {
     console.error(err)
+    alert(err)
   }
   
     return (

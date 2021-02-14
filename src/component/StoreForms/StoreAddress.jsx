@@ -2,7 +2,7 @@ import React, { useState , useEffect} from 'react';
 import logo from '../../image/logo.png';
 import StoreData from './StoreData';
 import { useDispatch , useSelector} from 'react-redux';
-import { checkAddress  } from '../../redux/Actions/stores';
+import { checkAddress } from '../../redux/Actions/stores';
 import ErrorMessage from '../ErrorMessage';
 import './style.css';
 
@@ -18,10 +18,9 @@ const StoreAddress = () =>{
     useEffect(() => {
         if(storeDefaultData.status === 'valid')
             setShowButton(true); 
-        
-         
+      
                    
-    },[storeDefaultData]);
+    },[storeDefaultData ]);
    
     const handleAdressSubmit = (e) =>{
         e.preventDefault();

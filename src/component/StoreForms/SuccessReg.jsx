@@ -6,6 +6,7 @@ import './style.css';
 
 const SuccessReg = ({match}) => {
 
+     
     return (
        
         <div className="ui container centered grid log-container" > 
