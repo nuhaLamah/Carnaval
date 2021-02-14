@@ -6,7 +6,7 @@ import Print from './component/StoresDisplay/Print';
 import Login from './component/login/Login';
 import Store from './component/StoreForms/StoreAddress'
 import SuccessReg from './component/StoreForms/SuccessReg';
-import QrReader from './component/qrReader/QrReader';
+import QrReader from './component/QrReader/QrReader';
 import Customer from './component/customer/CustomerForm';
 import Home from './component/Home';
 

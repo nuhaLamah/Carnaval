@@ -3,7 +3,7 @@ import { useDispatch , useSelector} from 'react-redux';
 import { addStore } from '../../redux/Actions/stores';
 import { Redirect } from "react-router-dom";
 import  uniqueRandom from 'unique-random-at-depth';
-import { Checkbox,Button, Modal } from 'semantic-ui-react';
+import Modal from 'react-modal';
 import './style.css';
 
 
@@ -69,7 +69,16 @@ const StoreData = ({address }) => {
             setValidInput({status : false,type:"" , msg:""})
         }
     }
-   
+    const customStyles = {
+        content : {
+          top                   : '50%',
+          left                  : '50%',
+          right                 : 'auto',
+          bottom                : 'auto',
+          marginRight           : '-50%',
+          transform             : 'translate(-50%, -50%)'
+        }
+      };
     return (
         data?(
         <form className="ui form" onSubmit={handleSubmit}>
@@ -105,23 +114,23 @@ const StoreData = ({address }) => {
             <input type="text" name="category" placeholder="نوع النشاط" defaultValue ={data.category} onChange={handleChange}/>
         </div>
         <div className="field" >   
-            <Checkbox name = "isChecked" onClick={()=>setCheckbox(!checkbox)} className="checkbox" />
-             <span> اوافق على  </span>
-            <Modal
-            open={open}
-            onClose={() => setOpen(false)}
-            onOpen={() => setOpen(true)}
-            trigger={<b className="terms" >شروط الاشتراك</b>  }
-            >
-            <Modal.Header className="term-header">شروط الاشترك </Modal.Header>
-            <Modal.Content   scrolling>
+         <input className="checkbox" type="checkbox" name = "isChecked" onClick={()=>setCheckbox(!checkbox)} /> 
+             <span> أوافق على  </span>
+            <span className="terms" onClick={(e) => {setOpen(true)}}>شروط الاشتراك</span>
+            <div>
         
-            <Modal.Description>
-            <p className="term-desc">
+        <Modal
+          isOpen={open}  
+          onRequestClose={() => setOpen(false)}
+          ariaHideApp={false}
+          contentLabel="Terms Modal"
+           style={customStyles}
+        >
+          <div className = "term-header">شروط الاشتراك</div>
+          <div className="term-desc">
             فيما يلي القوانين اللازم اتباعها للمشاركة في مهرجان مصراتة للتسوق
-            </p>
-
-            <ol className="term-list">
+          </div>
+          <ol className="term-list">
                 <li>الالتزام بالإجراءات الوقائية من فيروس كورونا حسب الخطة الموضوعة اللجنة العليا .</li>
                 <li>إلزام الموظفين والزوار بارتداء الكمامات داخل الجناح او المحل.</li>
                 <li>توفير المعقمات الطبية داخل المحل .</li>
@@ -129,29 +138,21 @@ const StoreData = ({address }) => {
                 <li>التقيد بعدم الإزدحام وذلك بتحديد العدد الكافي للتباعد الإجتماعي.</li>
                 <li>توزيع كوبونات المهرجان مجانا بدون فرض قيمة على الزبون او اجباره على الشراء .</li>
             </ol>
-            </Modal.Description>
-            </Modal.Content>
-            <Modal.Actions>
-            <Button onClick={() => setOpen(false)} primary>
+            <button className="button primary" onClick={() => setOpen(false)} >
             إغلاق
-            </Button>
-            </Modal.Actions>
-            </Modal>
-        
-            
-        </div>
-            
+            </button>
+        </Modal>
+      </div>
+        {isDone ? <Redirect to={`/Success/${storeCode}` }/> : <Redirect to={`/Store` }/>}         
+        </div>          
         <div className="field"> 
-        <button className="ui button text" disabled = {checkbox} type="submit">تـسـجـيـل</button>
+        <button className="ui button text" disabled = {!checkbox} type="submit">تـسـجـيـل</button>
         </div>
         </div>
         {isDone ? (<Redirect to={`/Success/${storeCode}` }/> ): <></>}
         </form> ) :<></>
-       
-         
-      
-    );
+ 
+    );}
 
-}
 
 export default StoreData;

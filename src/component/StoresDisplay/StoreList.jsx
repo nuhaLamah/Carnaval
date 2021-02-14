@@ -27,18 +27,19 @@ const StoreList = ()=> {
     return (
       <div>
         <center>
-        <NavBar>
-              <SearchBox />
-        </NavBar>
-          <img src={backgroundImg} width='100%' />
-           
+
+          <img className="background" src={backgroundImg} width='100%' />
+  
         </center>
+
         <div className="ui container main-div ">
 
-        
- 
+        <h1 className="ui container center aligned page-title">المحلات المسجلة</h1>
+        <NavBar>
+              <SearchBox />
+        </NavBar>  
         <div className="ui container stores-table ">
-          <h1 className="ui container center aligned page-title">المحلات المسجلة</h1>
+          
         {markets.length===0? <div className="ui container center aligned">لا يوجد نتائج</div>:
         <table className="ui table ">
           <thead>
