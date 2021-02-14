@@ -2,7 +2,7 @@ import React, { useState , useEffect} from 'react';
 import logo from '../../image/logo.png';
 import StoreData from './StoreData';
 import { useDispatch , useSelector} from 'react-redux';
-import { checkAddress } from '../../redux/Actions/stores';
+import { checkAddress  } from '../../redux/Actions/stores';
 import ErrorMessage from '../ErrorMessage';
 import './style.css';
 
@@ -14,13 +14,13 @@ const StoreAddress = () =>{
     const [showButton , setShowButton] = useState(false);
     const [address , setAddress] = useState({code:'', number:''});
     const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
-   
+    
     useEffect(() => {
-        if(storeDefaultData.status === 'valid' ) 
-        {
+        if(storeDefaultData.status === 'valid')
             setShowButton(true); 
-        }                   
-    },[storeDefaultData.status]);
+        
+                   
+    },[storeDefaultData]);
    
     const handleAdressSubmit = (e) =>{
         e.preventDefault();
@@ -45,6 +45,7 @@ const StoreAddress = () =>{
     return (
         <div className="ui container centered grid log-container" > 
         <div className="ui form segment log-form" >
+        
         <form className="ui form" >
         <img className="ui centered medium image" alt="logo" src={logo}/>
         <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  التسجيل </h2>
@@ -74,7 +75,7 @@ const StoreAddress = () =>{
         ):<></>}
         {/* --------- Store Rgisteration ------------ */}
         {showButton ? (
-            <StoreData storeDefaultData={storeDefaultData} address={address} showButton={showButton}/>
+            <StoreData  address={address} />
         ):null}
         </div>
 

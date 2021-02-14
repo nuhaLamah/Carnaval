@@ -15,10 +15,10 @@ const App = (props)=> {
 
   return (
     <Router>
-    
+     
     <Switch>
          <Route path="/" exact component={Home}/> {/* Login Form */}
-         <Route path="/login" exact component={Login}/> {/* Login Form */}
+         <Route path="/login"  component={Login}/> {/* Login Form */}
          <Route path="/StoreList"  component={!props.isLog? DirectToLogin: StoreList}/> {/* Store List Page */}
          <Route path="/Store"  component={Store}/> {/* Store Regiteration Form */}
          <Route path="/Success/:StoreCode"  component={SuccessReg}/> {/* Success Store Regiteration Page */}

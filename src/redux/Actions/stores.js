@@ -3,8 +3,10 @@ import{ getLocationInfo } from '../../makaniAPI';
 
 export const addStore = (store) => async (dispatch) => {
   try {
+    console.log(store);
     const msg = await api.addStore(store);
-    dispatch({ type: 'REG_STORE', payload: msg , done:true });
+    dispatch({ type: 'REG_STORE', payload: msg , isDone:true });
+    console.log(msg);
   } catch (error) {
     console.log(error);
     dispatch({ type: 'IS_Error', payload:true });
@@ -35,7 +37,7 @@ export const checkAddress = (address) => async (dispatch) => {
   //console.log(address);
   try {
     const {data} = await getLocationInfo(address);
-    console.log(data);
+    //console.log(data);
     if(data.status === 'valid')
     dispatch({ type: 'ADDRESS', payload: data, isInValid:false });
     else
@@ -68,3 +70,12 @@ export const getStoreInfo = (storeCode) => async (dispatch) => {
     console.log(e)
   }
 }
+export const clearInfo = () => async (dispatch) => {
+  try {
+    dispatch({type:'REG_STORE',payload:null, isDone: false});
+    dispatch({type:'ADDRESS', payload: null , isInValid:false});
+  } catch (error) {
+    console.log(error);
+    dispatch({ type:'SET_IS_ERROR', payload:true });
+  }
+};

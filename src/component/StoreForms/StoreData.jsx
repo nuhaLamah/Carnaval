@@ -1,36 +1,37 @@
-import React , {useState , useEffect} from 'react';
+import React , {useState , useEffect } from 'react';
 import { useDispatch , useSelector} from 'react-redux';
-import {addStore} from '../../redux/Actions/stores';
+import { addStore } from '../../redux/Actions/stores';
 import { Redirect } from "react-router-dom";
 import  uniqueRandom from 'unique-random-at-depth';
 import { Checkbox,Button, Modal } from 'semantic-ui-react';
 import './style.css';
 
 
-const StoreData = ({storeDefaultData , address , showButton}) => {
+const StoreData = ({address }) => {
     const dispatch = useDispatch();
     
     const data = useSelector((data)=>data.stores.address);
     const isDone = useSelector(state => state.stores.isDone);
-
     const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
     const [checkbox,setCheckbox] = useState(true);
     const [open, setOpen] = useState(false);
     const [storeCode , setStoreCode] = useState(uniqueRandom(100000, 1000000, 50));
-
-    useEffect(() => {
-        //setStoreCode(uniqueRandom(100000, 1000000, 50));
-        if (data.status === 'valid') 
-        {
-          storeData.name = storeDefaultData.name;
-          storeData.market_phone = storeDefaultData.phoneNumber;
-          storeData.category = storeDefaultData.category;
+   
+    const setValues = ()=>{
+        if(data){
+          storeData.name = data.name;
+          storeData.market_phone = data.phoneNumber;
+          storeData.category = data.category;
           storeData.postcode = address.code;
           storeData.building_number = address.number;
           storeData.code =storeCode;
         }
-    },[data.status]);
+    }
+    useEffect(() => {
+        setValues();
+        
+     });
 
     const handleChange =(e)=>{
         setStoreData({...storeData,[e.target.name]:e.target.value});
@@ -38,10 +39,11 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(storeCode);
+        console.log(data);
         console.log(storeData);
         if(validInput.status===false) {
          dispatch(addStore(storeData));  
+         //dispatch(clearInfo());
          setStoreData({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
          setStoreCode(0)
         }
@@ -67,13 +69,14 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
             setValidInput({status : false,type:"" , msg:""})
         }
     }
+   
     return (
-        showButton?
+        data?(
         <form className="ui form" onSubmit={handleSubmit}>
         <div className="ui form">
         <div className="field">
         <label className="text">اسم المحل</label>
-            <input type="text" name="name" placeholder="اسم المحل" defaultValue={storeDefaultData.name} onChange ={handleChange} required  maxLength="40"/>
+            <input type="text" name="name" placeholder="اسم المحل" defaultValue={data.name} onChange ={handleChange} required  maxLength="40"/>
         </div>
         <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
             <label className="text" >اسم صاحب المحل</label>
@@ -84,7 +87,7 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
         </div>
         <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
             <label className="text" >رقم هاتف المحل</label>
-            <input type="text" name="market_phone"  defaultValue ={storeDefaultData.phoneNumber} placeholder="xxxxxxxx" onChange ={handleChangeOfNumber} maxLength="10"/>
+            <input type="text" name="market_phone"  defaultValue ={data.phoneNumber} placeholder="xxxxxxxx" onChange ={handleChangeOfNumber} maxLength="10"/>
             <p>{validInput.status && validInput.type=== "NumberError" ?`${validInput.msg}`:''}</p>
         </div>
 
@@ -99,7 +102,7 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
         </div>
         <div className="field">
             <label className="text">نوع النشاط</label>
-            <input type="text" name="category" placeholder="نوع النشاط" defaultValue ={storeDefaultData.category} onChange={handleChange}/>
+            <input type="text" name="category" placeholder="نوع النشاط" defaultValue ={data.category} onChange={handleChange}/>
         </div>
         <div className="field" >   
             <Checkbox name = "isChecked" onClick={()=>setCheckbox(!checkbox)} className="checkbox" />
@@ -134,7 +137,7 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
             </Button>
             </Modal.Actions>
             </Modal>
-        {isDone ? <Redirect to={`/Success/${storeCode}` }/> : ""}
+        
             
         </div>
             
@@ -142,10 +145,13 @@ const StoreData = ({storeDefaultData , address , showButton}) => {
         <button className="ui button text" disabled = {checkbox} type="submit">تـسـجـيـل</button>
         </div>
         </div>
-        </form>  :<></>
+        {isDone ? (<Redirect to={`/Success/${storeCode}` }/> ): <></>}
+        </form> ) :<></>
+       
          
       
     );
+
 }
 
 export default StoreData;
