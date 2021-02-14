@@ -16,7 +16,6 @@ const StoreAddress = () =>{
     const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     
     useEffect(() => {
-       
         if(storeDefaultData.status === 'valid')
             setShowButton(true); 
         
