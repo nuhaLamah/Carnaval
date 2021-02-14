@@ -83,7 +83,6 @@ export const getStoreInfo = (storeCode) => async (dispatch) => {
 }
 export const clearInfo = () => async (dispatch) => {
   try {
-    //dispatch({type:'REG_STORE',payload:null, isDone: false});
     dispatch({type:'ADDRESS', payload: {} , isInValid:false});
   } catch (error) {
     console.log(error);

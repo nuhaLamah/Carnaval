@@ -18,7 +18,8 @@ const regStore = (state = {storeList: [], address:{}, storeId: 0, pageNumber:1, 
         case 'SET_STORE_INFO':
             return {...state, storeInfo: action.payload};   
         case 'INVALID_ADDRESS':
-            return {...state, isInValid: action.payload};            
+            return {...state, isInValid: action.payload};  
+                
         default:
             return  state 
     }

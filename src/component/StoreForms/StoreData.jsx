@@ -1,6 +1,6 @@
 import React , {useState , useEffect } from 'react';
 import { useDispatch , useSelector} from 'react-redux';
-import { addStore } from '../../redux/Actions/stores';
+import { addStore , clearInfo } from '../../redux/Actions/stores';
 //import { Redirect } from "react-router-dom";
 import  uniqueRandom from 'unique-random-at-depth';
 import { Checkbox,Button, Modal } from 'semantic-ui-react';
@@ -11,7 +11,6 @@ const StoreData = ({address }) => {
     const dispatch = useDispatch();
     
     const data = useSelector((data)=>data.stores.address);
-    //const isDone = useSelector(state => state.stores.isDone);
     const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
     const [checkbox,setCheckbox] = useState(true);
@@ -27,7 +26,8 @@ const StoreData = ({address }) => {
             storeData.building_number = address.number;
             storeData.code =storeCode;
           }
-        
+          dispatch(clearInfo());
+
      },[data,address,storeCode]);
 
     const handleChange =(e)=>{
@@ -141,7 +141,7 @@ const StoreData = ({address }) => {
         <button className="ui button text" disabled = {checkbox} type="submit">تـسـجـيـل</button>
         </div>
         </div>
-        {/* {isDone ? (<Redirect to={`/Success/${storeCode}` }/> ): <></>} */}
+     
         </form> ) :<></>
        
          
