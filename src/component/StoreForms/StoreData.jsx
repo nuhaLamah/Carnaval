@@ -1,9 +1,9 @@
 import React , {useState , useEffect } from 'react';
 import { useDispatch , useSelector} from 'react-redux';
 import { addStore } from '../../redux/Actions/stores';
-import { Redirect } from "react-router-dom";
+//import { Redirect } from "react-router-dom";
 import  uniqueRandom from 'unique-random-at-depth';
-import Modal from 'react-modal';
+import { Checkbox,Button, Modal } from 'semantic-ui-react';
 import './style.css';
 
 
@@ -11,27 +11,24 @@ const StoreData = ({address }) => {
     const dispatch = useDispatch();
     
     const data = useSelector((data)=>data.stores.address);
-    const isDone = useSelector(state => state.stores.isDone);
+    //const isDone = useSelector(state => state.stores.isDone);
     const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
     const [checkbox,setCheckbox] = useState(true);
     const [open, setOpen] = useState(false);
     const [storeCode , setStoreCode] = useState(uniqueRandom(100000, 1000000, 50));
    
-    const setValues = ()=>{
-        if(data){
-          storeData.name = data.name;
-          storeData.market_phone = data.phoneNumber;
-          storeData.category = data.category;
-          storeData.postcode = address.code;
-          storeData.building_number = address.number;
-          storeData.code =storeCode;
-        }
-    }
     useEffect(() => {
-        setValues();
+        if(data.status === 'valid'){
+            storeData.name = data.name;
+            storeData.market_phone = data.phoneNumber;
+            storeData.category = data.category;
+            storeData.postcode = address.code;
+            storeData.building_number = address.number;
+            storeData.code =storeCode;
+          }
         
-     });
+     },[data,address,storeCode]);
 
     const handleChange =(e)=>{
         setStoreData({...storeData,[e.target.name]:e.target.value});
@@ -43,9 +40,8 @@ const StoreData = ({address }) => {
         console.log(storeData);
         if(validInput.status===false) {
          dispatch(addStore(storeData));  
-         //dispatch(clearInfo());
          setStoreData({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
-         setStoreCode(0)
+         setStoreCode(0);
         }
 
         else
@@ -69,16 +65,7 @@ const StoreData = ({address }) => {
             setValidInput({status : false,type:"" , msg:""})
         }
     }
-    const customStyles = {
-        content : {
-          top                   : '50%',
-          left                  : '50%',
-          right                 : 'auto',
-          bottom                : 'auto',
-          marginRight           : '-50%',
-          transform             : 'translate(-50%, -50%)'
-        }
-      };
+   
     return (
         data?(
         <form className="ui form" onSubmit={handleSubmit}>
@@ -114,23 +101,23 @@ const StoreData = ({address }) => {
             <input type="text" name="category" placeholder="نوع النشاط" defaultValue ={data.category} onChange={handleChange}/>
         </div>
         <div className="field" >   
-         <input className="checkbox" type="checkbox" name = "isChecked" onClick={()=>setCheckbox(!checkbox)} /> 
-             <span> أوافق على  </span>
-            <span className="terms" onClick={(e) => {setOpen(true)}}>شروط الاشتراك</span>
-            <div>
+            <Checkbox name = "isChecked" onClick={()=>setCheckbox(!checkbox)} className="checkbox" />
+             <span> اوافق على  </span>
+            <Modal
+            open={open}
+            onClose={() => setOpen(false)}
+            onOpen={() => setOpen(true)}
+            trigger={<b className="terms" >شروط الاشتراك</b>  }
+            >
+            <Modal.Header className="term-header">شروط الاشترك </Modal.Header>
+            <Modal.Content   scrolling>
         
-        <Modal
-          isOpen={open}  
-          onRequestClose={() => setOpen(false)}
-          ariaHideApp={false}
-          contentLabel="Terms Modal"
-           style={customStyles}
-        >
-          <div className = "term-header">شروط الاشتراك</div>
-          <div className="term-desc">
+            <Modal.Description>
+            <p className="term-desc">
             فيما يلي القوانين اللازم اتباعها للمشاركة في مهرجان مصراتة للتسوق
-          </div>
-          <ol className="term-list">
+            </p>
+
+            <ol className="term-list">
                 <li>الالتزام بالإجراءات الوقائية من فيروس كورونا حسب الخطة الموضوعة اللجنة العليا .</li>
                 <li>إلزام الموظفين والزوار بارتداء الكمامات داخل الجناح او المحل.</li>
                 <li>توفير المعقمات الطبية داخل المحل .</li>
@@ -138,21 +125,29 @@ const StoreData = ({address }) => {
                 <li>التقيد بعدم الإزدحام وذلك بتحديد العدد الكافي للتباعد الإجتماعي.</li>
                 <li>توزيع كوبونات المهرجان مجانا بدون فرض قيمة على الزبون او اجباره على الشراء .</li>
             </ol>
-            <button className="button primary" onClick={() => setOpen(false)} >
+            </Modal.Description>
+            </Modal.Content>
+            <Modal.Actions>
+            <Button onClick={() => setOpen(false)} primary>
             إغلاق
-            </button>
-        </Modal>
-      </div>
-        {isDone ? <Redirect to={`/Success/${storeCode}` }/> : <Redirect to={`/Store` }/>}         
-        </div>          
+            </Button>
+            </Modal.Actions>
+            </Modal>
+        
+            
+        </div>
+            
         <div className="field"> 
-        <button className="ui button text" disabled = {!checkbox} type="submit">تـسـجـيـل</button>
+        <button className="ui button text" disabled = {checkbox} type="submit">تـسـجـيـل</button>
         </div>
         </div>
-        {isDone ? (<Redirect to={`/Success/${storeCode}` }/> ): <></>}
+        {/* {isDone ? (<Redirect to={`/Success/${storeCode}` }/> ): <></>} */}
         </form> ) :<></>
- 
-    );}
+       
+         
+      
+    );
 
+}
 
 export default StoreData;

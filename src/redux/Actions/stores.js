@@ -2,11 +2,22 @@ import * as api from '../../api';
 import{ getLocationInfo } from '../../makaniAPI';
 
 export const addStore = (store) => async (dispatch) => {
+
   try {
-    console.log(store);
-    const msg = await api.addStore(store);
-    dispatch({ type: 'REG_STORE', payload: msg , isDone:true });
-    console.log(msg);
+    //console.log(store.code);
+    const  data  = await api.addStore(store);
+    dispatch({ type: 'REG_STORE', payload: data , isDone:true });
+    
+    if(data.status === 201)
+    {
+    dispatch(clearInfo);
+    window.location.replace(`/Success/${store.code}`);
+     //alert("the market was addedd succefully")
+    }
+    else if(data.status === 422)
+    {
+     alert("something went wrong ! please try again")
+    }
   } catch (error) {
     console.log(error);
     dispatch({ type: 'IS_Error', payload:true });
@@ -72,8 +83,8 @@ export const getStoreInfo = (storeCode) => async (dispatch) => {
 }
 export const clearInfo = () => async (dispatch) => {
   try {
-    dispatch({type:'REG_STORE',payload:null, isDone: false});
-    dispatch({type:'ADDRESS', payload: null , isInValid:false});
+    //dispatch({type:'REG_STORE',payload:null, isDone: false});
+    dispatch({type:'ADDRESS', payload: {} , isInValid:false});
   } catch (error) {
     console.log(error);
     dispatch({ type:'SET_IS_ERROR', payload:true });
