@@ -1,9 +1,10 @@
-import * as api from '../../api';
+import * as api from '../../apiCustomer';
 
 export const addCustomer = (customer) => async (dispatch) => {
     try {
       const data   = await api.addCustomer(customer);
-      if(data.status === 201)
+      console.log(data);
+      if(data.status === 200)
       {
         dispatch({ type:'SET_IS_DONE', payload:true , data:data});
         dispatch({type:'SET_STORE_INFO', payload: null});

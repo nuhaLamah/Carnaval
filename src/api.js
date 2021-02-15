@@ -65,20 +65,6 @@ export const addStore = (newStore) => {
 
 
 
-//----------------------------- Customer ----------------------//
-
-export const addCustomer = (newCustomer) => {
-    const config = { headers: getHeaders(false) };
-    //console.log(newCustomer);
-    const formData = new FormData();
-    for ( var key in newCustomer ) {
-        formData.append(key, newCustomer[key]);
-    //console.log(newCustomer[key]);
-    //console.log(form_data.append(key, newCustomer[key]));
-    } 
-     return axios.post(`${URL}/customers`, formData, config)
-}
-
 
 export const getStore = (code) =>{
     const config = {

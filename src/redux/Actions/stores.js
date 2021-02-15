@@ -1,5 +1,5 @@
 import * as api from '../../api';
-import{ getLocationInfo } from '../../makaniAPI';
+import{ getLocationInfo } from '../../apiMakani';
 
 export const addStore = (store) => async (dispatch) => {
   try {
@@ -78,3 +78,14 @@ export const clearInfo = () => async (dispatch) => {
     dispatch({ type:'SET_IS_ERROR', payload:true });
   }
 };
+
+export const clearAddress = () => async (dispatch) => {
+  try {
+    dispatch({type:'INVALID_ADDRESS', isInValid:false});
+    dispatch({type:'IS_ERROR', isError:false});
+  } catch (error) {
+    console.log(error);
+    dispatch({ type:'IS_ERROR', payload:true });
+  }
+};
+
