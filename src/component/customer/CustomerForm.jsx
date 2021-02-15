@@ -12,21 +12,22 @@ const CustomerForm = () => {
     const storeInfo = useSelector(state => state.stores.storeInfo);
     const dispatch = useDispatch();
     const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
-    const [customerData, setCustomerData] = useState({full_name:'', phone_number:'',building_number:'',postcode:'',market_code:'', city:'مصراتة'});
+    const [customerData, setCustomerData] = useState({fullname:'', phonenumber:'',buildingnumber:'',postcode:'',shopname:'', city:''});
     
-    const cityList = ['مصراتة','طرابلس','بنغازي','غريان','الخمس','زليتن','سرت','الزاوية'];
+    const cityList = ['misurata','طرابلس','بنغازي','غريان','الخمس','زليتن','سرت','الزاوية'];
         if (storeInfo) 
         {
-           customerData.building_number = storeInfo.building_number;
+           customerData.buildingnumber = storeInfo.building_number;
            customerData.postcode = storeInfo.postcode;
-           customerData.market_code = storeInfo.code;
+           customerData.shopname = storeInfo.name;
         }   
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const {full_name,phone_number} = customerData      
-        if(full_name && phone_number )
+        const {fullname,phonenumber} = customerData      
+        if(fullname && phonenumber )
         {
-          dispatch(addCustomer(customerData));
+           // console.log(customerData);
+            dispatch(addCustomer(customerData));
         }
         else
         {
@@ -38,7 +39,8 @@ const CustomerForm = () => {
         if(isNaN(e.target.value))
         setValidInput({status : true , type :"NumberError" , msg:"يجب إدخال رقم فقط"})
         else{
-            setCustomerData({...customerData,[e.target.name]:e.target.value})
+            const number = `09${e.target.value}`
+            setCustomerData({...customerData,[e.target.name]:number})
             setValidInput({status : false,type:"" , msg:""})
         }
     }
@@ -47,6 +49,7 @@ const CustomerForm = () => {
         if(!isNaN(e.target.value)  || format.test(e.target.value))
         setValidInput({status : true , type :"TextError" , msg:"يجب ادخال حروف فقط"})
         else{
+          
             setCustomerData({...customerData,[e.target.name]:e.target.value})
             setValidInput({status : false,type:"" , msg:""})
         }
@@ -63,7 +66,7 @@ const CustomerForm = () => {
         <div className="ui form" >
         <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
             <label className="text">الاسم</label>
-            <input type="text" name="full_name" onChange ={handleChangeOfText} placeholder="الاسم" required  maxLength="40"/>
+            <input type="text" name="fullname" onChange ={handleChangeOfText} placeholder="الاسم" required  maxLength="40"/>
             <div className="five wide field">
             <p>{validInput.status && validInput.type=== "TextError" ?`${validInput.msg}`:''}</p>
             </div>
@@ -73,7 +76,7 @@ const CustomerForm = () => {
         <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
             <label className="text " >رقم الهاتف</label>
             <div className="ui labeled input ">
-            <input type="tel" name="phone_number" placeholder="xxxxxxxx" onChange ={handleChangeOfNumber} minLength="8" maxLength="8" required/>
+            <input type="tel" name="phonenumber" placeholder="xxxxxxxx" onChange ={handleChangeOfNumber}  maxLength="8" required/>
             <div className="ui label five wide field">09</div>
             <p>{validInput.status && validInput.type=== "NumberError" ?`${validInput.msg}`:''}</p>
             </div>
@@ -81,7 +84,7 @@ const CustomerForm = () => {
        
         <div className="field ">
             <label className="text" >المدينة</label>
-            <select name="city" className="ui search dropdown drop-text" >
+            <select name="city" className="ui search dropdown drop-text" onChange={(e)=>setCustomerData({...customerData,city:e.target.value})}>
             <option value="">اختر مدينة</option>
             {
                 cityList.map((city,index)=>
@@ -98,12 +101,9 @@ const CustomerForm = () => {
         </div>
         </div>
     )
-    return (
-        
-        //isDone ?  (<Redirect to="/Success" />): storeInfo? form() : <></>
+    return ( 
         isDone ? (()=>{
-            setCustomerData({full_name:'', phone_number:'',building_number:'',postcode:'',market_code:'', city:'مصراتة'});
-            //<Redirect to="/Success" />
+            setCustomerData({fullname:'', phonenumber:'',buildingnumber:'',postcode:'',shopname:'', city:'مصراتة'});
         }): storeInfo? form() : <></>
     )
 }
