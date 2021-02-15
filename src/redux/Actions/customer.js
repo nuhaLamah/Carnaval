@@ -3,7 +3,7 @@ import * as api from '../../apiCustomer';
 export const addCustomer = (customer) => async (dispatch) => {
     try {
       const data   = await api.addCustomer(customer);
-      console.log(data);
+      //console.log(data);
       if(data.status === 200)
       {
         dispatch({ type:'SET_IS_DONE', payload:true , data:data});

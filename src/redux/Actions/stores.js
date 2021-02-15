@@ -12,7 +12,7 @@ export const addStore = (store) => async (dispatch) => {
     } 
   } catch (error) {
     console.log(error)
-    alert("something went wrong!please try again :"+error)
+    alert("لقد حدث خطأ ! الرجاء التأكد من صحة البيانات المدخلة"+error)
     dispatch({ type: 'IS_Error', payload:true });
   }
 };
@@ -56,7 +56,8 @@ export const changeState= (storeCode, state) => async (dispatch, useState) => {
     dispatch({ type:'FETCH_STORES' , payload: storeList }); 
   } catch (error) {
     console.log(error);
-    alert("something went wrong ! please try again")
+    alert("لقد حدث خطأ ! الرجاء التأكد من صحة البيانات المدخلة"+error)
+    
   }
 }; 
 

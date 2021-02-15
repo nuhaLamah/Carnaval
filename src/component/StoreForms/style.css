@@ -40,7 +40,6 @@
 .term-list{
     text-align:right;
     font-size: 17px;
-    overflow-y: scroll;
     height: 200px;
 }
 li {
@@ -60,4 +59,8 @@ li {
 .checkbox {
     text-align : right;
     direction: rtl;
+}
+.btn-terms :hover{
+cursor: pointer !important;
+padding: 10px 30px !important;
 }

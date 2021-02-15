@@ -26,7 +26,7 @@ const CustomerForm = () => {
         const {fullname,phonenumber} = customerData      
         if(fullname && phonenumber )
         {
-            console.log(customerData);
+           // console.log(customerData);
             dispatch(addCustomer(customerData));
         }
         else
