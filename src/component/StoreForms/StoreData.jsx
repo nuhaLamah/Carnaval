@@ -143,7 +143,6 @@ const StoreData = ({address }) => {
         <button className="ui button text" disabled = {checkbox} type="submit">تـسـجـيـل</button>
         </div>
         </div>
-        {/* {isDone ? (<Redirect to={`/Success/${storeCode}` }/> ): <></>} */}
         </form> ) :<></>
        
          
