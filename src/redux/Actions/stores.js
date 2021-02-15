@@ -3,10 +3,16 @@ import{ getLocationInfo } from '../../makaniAPI';
 
 export const addStore = (store) => async (dispatch) => {
   try {
-    const msg = await api.addStore(store);
-    dispatch({ type: 'REG_STORE', payload: msg , done:true });
+    const  data  = await api.addStore(store);
+    dispatch({ type: 'REG_STORE', payload: data , isDone:true });   
+    if(data.status === 201)
+    {
+      dispatch(clearInfo);
+      window.location.replace(`/Success/${store.code}`);
+    } 
   } catch (error) {
-    console.log(error);
+    console.log(error)
+    alert("something went wrong!please try again :"+error)
     dispatch({ type: 'IS_Error', payload:true });
   }
 };
@@ -14,7 +20,6 @@ export const addStore = (store) => async (dispatch) => {
 export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch, useState) => {
   try {
     const response = await api.filterStores(keySearch, pageNumber, perPage);
-    //console.log(response);
     if(response.status ===200 || response.status ===201) {
       const totalPages =  response.data.total_pages;
       dispatch({ type:'FETCH_STORES' , payload: response.data.markets });
@@ -32,10 +37,8 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
 };
 
 export const checkAddress = (address) => async (dispatch) => {
-  //console.log(address);
   try {
     const {data} = await getLocationInfo(address);
-    console.log(data);
     if(data.status === 'valid')
     dispatch({ type: 'ADDRESS', payload: data, isInValid:false });
     else
@@ -48,23 +51,30 @@ export const checkAddress = (address) => async (dispatch) => {
 
 export const changeState= (storeCode, state) => async (dispatch, useState) => {
   try {
-    //console.log('state', storeCode, state)
     await api.ChangeStoreState(storeCode, state);
     const storeList = [...useState().stores.storeList].map(store => store.code ===storeCode? {...store, state:state}: store);
-    dispatch({ type:'FETCH_STORES' , payload: storeList });
-    //console.log(data)   
+    dispatch({ type:'FETCH_STORES' , payload: storeList }); 
   } catch (error) {
     console.log(error);
+    alert("something went wrong ! please try again")
   }
 }; 
 
 export const getStoreInfo = (storeCode) => async (dispatch) => {
   try{
     const {data} = await api.getStore(storeCode);
-    //console.log(data.market_info)
     dispatch({type:'SET_STORE_INFO', payload: data.market_info});
   }
   catch(e){
     console.log(e)
+    alert("The QR Is Invalid")
   }
 }
+export const clearInfo = () => async (dispatch) => {
+  try {
+    dispatch({type:'ADDRESS', payload: {} , isInValid:false});
+  } catch (error) {
+    console.log(error);
+    dispatch({ type:'SET_IS_ERROR', payload:true });
+  }
+};

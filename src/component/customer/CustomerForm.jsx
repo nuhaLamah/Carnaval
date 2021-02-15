@@ -3,7 +3,7 @@ import logo from '../../image/logo.png';
 import { useDispatch, useSelector} from 'react-redux';
 import { addCustomer } from '../../redux/Actions/customer';
 import ErrorMessage from '../ErrorMessage';
-import {Redirect} from 'react-router-dom';
+//import {Redirect} from 'react-router-dom';
 
 const CustomerForm = () => {
 
@@ -12,7 +12,7 @@ const CustomerForm = () => {
     const storeInfo = useSelector(state => state.stores.storeInfo);
     const dispatch = useDispatch();
     const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
-    const [customerData, setCustomerData] = useState({fullname:'', phone_number:'',building_number:'',postcode:'',market_code:'', city:'مصراتة'});
+    const [customerData, setCustomerData] = useState({full_name:'', phone_number:'',building_number:'',postcode:'',market_code:'', city:'مصراتة'});
     
     const cityList = ['مصراتة','طرابلس','بنغازي','غريان','الخمس','زليتن','سرت','الزاوية'];
         if (storeInfo) 
@@ -20,17 +20,13 @@ const CustomerForm = () => {
            customerData.building_number = storeInfo.building_number;
            customerData.postcode = storeInfo.postcode;
            customerData.market_code = storeInfo.code;
-        }
-    //console.log(storeInfo)  
-      
+        }   
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const {fullname,phone_number} = customerData      
-        if(fullname && phone_number )
+        const {full_name,phone_number} = customerData      
+        if(full_name && phone_number )
         {
-          console.log(customerData);
           dispatch(addCustomer(customerData));
-          setCustomerData({fullname:'', phone_number:'',building_number:'',postcode:'',market_code:'', city:'مصراتة'})
         }
         else
         {
@@ -67,7 +63,7 @@ const CustomerForm = () => {
         <div className="ui form" >
         <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
             <label className="text">الاسم</label>
-            <input type="text" name="fullname" onChange ={handleChangeOfText} placeholder="الاسم" required  maxLength="40"/>
+            <input type="text" name="full_name" onChange ={handleChangeOfText} placeholder="الاسم" required  maxLength="40"/>
             <div className="five wide field">
             <p>{validInput.status && validInput.type=== "TextError" ?`${validInput.msg}`:''}</p>
             </div>
@@ -104,7 +100,11 @@ const CustomerForm = () => {
     )
     return (
         
-        isDone ?  <Redirect to="/Success" />: storeInfo? form() : <></>
+        //isDone ?  (<Redirect to="/Success" />): storeInfo? form() : <></>
+        isDone ? (()=>{
+            setCustomerData({full_name:'', phone_number:'',building_number:'',postcode:'',market_code:'', city:'مصراتة'});
+            //<Redirect to="/Success" />
+        }): storeInfo? form() : <></>
     )
 }
 

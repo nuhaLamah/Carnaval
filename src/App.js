@@ -6,19 +6,21 @@ import Print from './component/StoresDisplay/Print';
 import Login from './component/login/Login';
 import Store from './component/StoreForms/StoreAddress'
 import SuccessReg from './component/StoreForms/SuccessReg';
-import QrReader from './component/QrReader/QrReader';
+import QrReader from './component/qrReader/QrReader';
 import Customer from './component/customer/CustomerForm';
 import Home from './component/Home';
+
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
 
+ 
   return (
     <Router>
-    
+     
     <Switch>
          <Route path="/" exact component={Home}/> {/* Login Form */}
-         <Route path="/login" exact component={Login}/> {/* Login Form */}
+         <Route path="/login"  component={Login}/> {/* Login Form */}
          <Route path="/StoreList"  component={!props.isLog? DirectToLogin: StoreList}/> {/* Store List Page */}
          <Route path="/Store"  component={Store}/> {/* Store Regiteration Form */}
          <Route path="/Success/:StoreCode"  component={SuccessReg}/> {/* Success Store Regiteration Page */}

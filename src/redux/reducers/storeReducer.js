@@ -2,7 +2,7 @@
 const regStore = (state = {storeList: [], address:{}, storeId: 0, pageNumber:1, totalPages:1, filterTerm: '', storeInfo: null, isInValid:false,isDone: false,isError: false}, action)=>{
     switch (action.type){
         case 'REG_STORE':
-            return {...state, storeList: action.payload, isDone: action.done};
+            return {...state, storeList: action.payload, isDone: action.isDone};
         case 'IS_ERROR':
             return {...state, isError: action.payload}
         case 'FETCH_STORES':
@@ -18,7 +18,8 @@ const regStore = (state = {storeList: [], address:{}, storeId: 0, pageNumber:1, 
         case 'SET_STORE_INFO':
             return {...state, storeInfo: action.payload};   
         case 'INVALID_ADDRESS':
-            return {...state, isInValid: action.payload};            
+            return {...state, isInValid: action.payload};  
+                
         default:
             return  state 
     }

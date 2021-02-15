@@ -3,8 +3,10 @@ import { Link  } from 'react-router-dom';
 import logo from '../../image/logo.png';
 import './style.css';
 
+
 const SuccessReg = ({match}) => {
 
+     
     return (
        
         <div className="ui container centered grid log-container" > 
