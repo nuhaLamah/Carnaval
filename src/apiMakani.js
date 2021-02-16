@@ -6,8 +6,5 @@ const URL = 'https://pas.makani-api.com/public/makani';
 const config = {headers : {'API-KEY': API_KEY}};
 
 export const getLocationInfo = (location)=>{
-   // console.log(URL);
-   // console.log(API_KEY);
-   // console.log(location);
     return axios.get(`${URL}/placeinformation/${location}`, config);
 }
