@@ -28,7 +28,7 @@ const Store = ({store})=> {
                 <div className="ui center aligned ten column grid">
                     <div className="row">
                     <Link to = {`/QRCode/${store.code}`}>
-                    <button className="ui basic grey  icon button qr-button" style={{}}>
+                    <button disabled={store.state===0} className="ui basic grey  icon button qr-button" style={{}}>
                         <i className="qrcode icon"></i> 
                     </button></Link> 
                     <ChangeStoreState storeCode = {store.code} storeState = {store.state} />
