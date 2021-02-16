@@ -5,3 +5,22 @@
   RewriteCond %{REQUEST_URI} !=/favicon.ico
   RewriteRule ^ index.html [L]
 </IfModule>
+
+
+#############
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  #for app in subdirectory
+  RewriteBase /carnival/
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteRule ^.*carnival/.* /carnival/index.html [L]
+  #for root app
+  RewriteBase /
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteRule . /index.html [L]
+</IfModule>      
