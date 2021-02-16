@@ -10,8 +10,6 @@ const NavBar = (props) => {
     const dispatch = useDispatch();
 
     const onClickSignOut = () => {
-        console.log('sign out');
-    
         dispatch(logout())
     }
     return(

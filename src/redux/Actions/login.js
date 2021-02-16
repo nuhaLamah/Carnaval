@@ -18,12 +18,8 @@ export const login = (loginInput) => async (dispatch) => {
 };
 
 export const logout = () => async(dispatch) =>{
-  console.log('out')
   localStorage.removeItem('access_token');
   localStorage.removeItem('refresh_token');
   localStorage.setItem('is_log', false);
   dispatch({ type: 'CHANGE_LOG_STATE', payload: false});
-  console.log(localStorage.getItem('access_token'))
-  console.log(localStorage.getItem('refresh_token'))
-
 }

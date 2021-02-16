@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const URL = "http://207.154.221.31/api/winners";
+
+const URL = "https://207.154.221.31/api/winners";
 const ApiKey = "hL4bA4nB4y93TYu89PVw45LK12fA6";
 
 //----------------------------- Customer ----------------------//
