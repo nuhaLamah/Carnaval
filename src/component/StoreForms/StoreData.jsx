@@ -120,7 +120,7 @@ const StoreData = ({address }) => {
           onRequestClose={() => setOpen(false)}
           ariaHideApp={false}
           contentLabel="Terms Modal"
-           style={customStyles}
+          style={customStyles}
         >
           <div className = "term-header">شروط الاشتراك</div>
           <div className="term-desc">

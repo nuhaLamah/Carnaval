@@ -10,7 +10,7 @@ const ReCaptcha = ()=> {
     return (
        
             <ReCAPTCHA
-              sitekey="6LdSdloaAAAAAB4IKUMPB1fS9oWNkV_kAF0HSlIZ"
+              sitekey="6LcNhVoaAAAAAHAmxGVPfxtU_FeyIP3WfOtUNcdP"
               onChange={onChange}
             />
         
