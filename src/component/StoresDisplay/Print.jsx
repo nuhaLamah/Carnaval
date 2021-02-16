@@ -11,8 +11,6 @@ class Print extends React.PureComponent {
         <NavBar>
           <ReactToPrint
             trigger={() => {
-              // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
-              // to the root node of the returned component as it will be overwritten.
               return  <a href="#print">
                 <button className="ui huge basic icon button" style={{width: '50px'}}>
                 <i className="print icon"></i> 
