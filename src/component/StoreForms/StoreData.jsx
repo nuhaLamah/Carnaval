@@ -29,27 +29,26 @@ const StoreData = ({address }) => {
           
      },[data,address,storeCode,dispatch]);
 
-    const handleChange =(e)=>{
-        setStoreData({...storeData,[e.target.name]:e.target.value});
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(data);
-        console.log(storeData);
-        if(validInput.status===false) {
+        const {owner_name ,owner_phone} = storeData
+        if(owner_name && owner_phone && validInput.status===false) {
          dispatch(addStore(storeData));  
          setStoreData({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
          setStoreCode(0);
         }
-
         else
         setValidInput({status : true ,type:'generalError', msg:"يجب أن لا تكون المدخلات فارغة "})
+        alert(validInput.msg)
     };
-
+    const handleChange =(e)=>{
+        setStoreData({...storeData,[e.target.name]:e.target.value});
+    }
     const handleChangeOfNumber = (e)=>{
-        if(isNaN(e.target.value))
-        setValidInput({status : true , type :"NumberError" , msg:"يجب إدخال رقم فقط"})
+        if(isNaN(e.target.value) && e.target.name === 'market_phone')
+        setValidInput({status : true , type :"NumberErrorMarket" , msg:"يجب إدخال رقم فقط"})
+        else if (isNaN(e.target.value) && e.target.name === 'owner_phone')
+        setValidInput({status : true , type :"NumberErrorOwner" , msg:"يجب إدخال رقم فقط"})
         else{
             setStoreData({...storeData,[e.target.name]:e.target.value});
             setValidInput({status : false,type:"" , msg:""})
@@ -79,40 +78,40 @@ const StoreData = ({address }) => {
         <form className="ui form" onSubmit={handleSubmit}>
         <div className="ui form">
         <div className="field">
-        <label className="text">اسم المحل</label>
-            <input disabled type="text" name="name" placeholder="اسم المحل" defaultValue={data.name} onChange ={handleChange} required  maxLength="40"/>
+        <label className="text ">اسم المحل</label>
+            <input disabled type="text" name="name" placeholder="اسم المحل" defaultValue={data.name}  required  />
         </div>
         <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
-            <label className="text" >اسم صاحب المحل</label>
-            <input type="text" name="owner_name" placeholder="اسم صاحب المحل"  onChange={handleChangeOfText}/>
+            <label className="text required" >اسم صاحب المحل</label>
+            <input type="text" name="owner_name" placeholder="اسم صاحب المحل"  onChange={handleChangeOfText} maxLength="40"/>
             <div className="five wide field">
             <p>{validInput.status && validInput.type=== "TextError" ?`${validInput.msg}`:''}</p>
             </div>  
         </div>
-        <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
+        <div className={validInput.status && validInput.type=== "NumberErrorMarket" ?'error field':'field'}>
             <label className="text" >رقم هاتف المحل</label>
             <input type="text" name="market_phone"  defaultValue ={data.phoneNumber} placeholder="xxxxxxxx" onChange ={handleChangeOfNumber} maxLength="10"/>
-            <p>{validInput.status && validInput.type=== "NumberError" ?`${validInput.msg}`:''}</p>
+            <p>{validInput.status && validInput.type=== "NumberErrorMarket" ?`${validInput.msg}`:''}</p>
         </div>
 
-        <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
-            <label className="text" >رقم هاتف صاحب المحل</label>
+        <div className={validInput.status && validInput.type=== "NumberErrorOwner" ?'error field':'field'}>
+            <label className="text required" >رقم هاتف صاحب المحل</label>
             <input type="text" name="owner_phone" placeholder="xxxxxxxx" onChange ={handleChangeOfNumber} maxLength="10"/>
-            <p>{validInput.status && validInput.type=== "NumberError" ?`${validInput.msg}`:''}</p>
+            <p>{validInput.status && validInput.type=== "NumberErrorOwner" ?`${validInput.msg}`:''}</p>
         </div>
         <div className="field">
             <label className="text" >البريد الالكتروني</label>
             <input type="email" name="email" placeholder="البريد الالكتروني" onChange={handleChange}/>
         </div>
-        <div className="field">
-            <label className="text">نوع النشاط</label>
-            <input disabled type="text" name="category" placeholder="نوع النشاط" defaultValue ={data.category} onChange={handleChange}/>
+        <div className="field ">
+            <label  className="text">نوع النشاط</label>
+            <input disabled type="text" name="category" placeholder="نوع النشاط" defaultValue ={data.category} />
         </div>
         
         <div className="field" >   
          <input className="checkbox" type="checkbox" name = "isChecked" onClick={()=>setCheckbox(!checkbox)} /> 
              <span> أوافق على  </span>
-            <span className="terms" onClick={(e) => {setOpen(true)}}>شروط الاشتراك</span>
+            <span className="terms" onClick={(e) => {setOpen(true)}}>شروط الاشتراك</span><span className="required"></span>
             <div>
         <Modal
           isOpen={open}  
@@ -144,9 +143,6 @@ const StoreData = ({address }) => {
         </div>
         </div>
         </form> ) :<></>
-       
-         
-      
     );
 
 }

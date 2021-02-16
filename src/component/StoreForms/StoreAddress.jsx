@@ -29,6 +29,7 @@ const StoreAddress = () =>{
         else
             setValidInput({status : true ,type:'generalError', msg:"يجب أن لا تكون المدخلات فارغة "})
     };
+
     const handleChange = (e)=>{
         setAddress({...address,[e.target.name]:e.target.value})
     }
@@ -40,9 +41,10 @@ const StoreAddress = () =>{
         setValidInput({status : false,type:"" , msg:""})
     }
     }
+    
    
     return (
-        <div className="ui container centered grid log-container" > 
+        <div className="ui container centered grid reg-container" > 
         <div className="ui form segment log-form" >
         
         <form className="ui form" >
@@ -51,17 +53,19 @@ const StoreAddress = () =>{
         {isError ||isInValid || (validInput.status && validInput.type=== "generalError")? (<ErrorMessage head="لقد حدث خطأ " content="لا يمكن التحقق من العنوان الرجاء التأكد من البيانات المدخلة " /> ): null}
         {/* --------- Makani validation ------------ */}
         <div className="ui form">
-        <div className="field">
-            <label className="text">الرمز البريدي</label>
-            <input type="text" name="code" onChange ={handleChange} placeholder="الرمز البريدي" maxLength="5" required/>
-        </div>
         <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
-            <label className="text" >رقم المبنى</label>
+            <label className="text required" >رقم المبنى</label>
             <input type="text" name="number" placeholder="رقم المبنى" onChange ={handleChangeOfNumber} maxLength="4" required/>
             <div className="five wide field">
             <p>{validInput.status && validInput.type=== "NumberError" ?`${validInput.msg}`:''}</p>
             </div>
         </div>
+
+        <div className="field ">
+            <label className="text required">الرمز البريدي</label>
+            <input type="text" name="code" onChange ={handleChange} placeholder="الرمز البريدي" maxLength="5" required/>
+        </div>
+        
         <div className="field">
         {!showButton ? (<button className="ui button text" type="submit" onClick={handleAdressSubmit}>تحقق</button>):<></>}
         </div>

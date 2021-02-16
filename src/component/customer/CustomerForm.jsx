@@ -14,7 +14,7 @@ const CustomerForm = () => {
     const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     const [customerData, setCustomerData] = useState({fullname:'', phonenumber:'',buildingnumber:'',postcode:'',shopname:'', city:''});
     
-    const cityList = ['misurata','طرابلس','بنغازي','غريان','الخمس','زليتن','سرت','الزاوية'];
+    const cityList = ['مصراتة','طرابلس','بنغازي','غريان','الخمس','زليتن','سرت','الزاوية'];
         if (storeInfo) 
         {
            customerData.buildingnumber = storeInfo.building_number;
@@ -24,14 +24,14 @@ const CustomerForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {fullname,phonenumber} = customerData      
-        if(fullname && phonenumber )
+        if(fullname && phonenumber && !validInput.status)
         {
            // console.log(customerData);
             dispatch(addCustomer(customerData));
         }
         else
         {
-          setValidInput({status : true ,type:'generalError', msg:"يجب أن لا تكون المدخلات فارغة "})
+          setValidInput({status : true ,type:'generalError', msg:" يجب أن لا تكون المدخلات فارغة وصحيحة "})
         }
     };
     
@@ -65,7 +65,7 @@ const CustomerForm = () => {
         {isError || (validInput.status && validInput.type=== "generalError") ? (<ErrorMessage head="لقد حدث خطأ" content={validInput.msg} /> ): null}
         <div className="ui form" >
         <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
-            <label className="text">الاسم</label>
+            <label className="text required">الاسم</label>
             <input type="text" name="fullname" onChange ={handleChangeOfText} placeholder="الاسم" required  maxLength="40"/>
             <div className="five wide field">
             <p>{validInput.status && validInput.type=== "TextError" ?`${validInput.msg}`:''}</p>
@@ -74,7 +74,7 @@ const CustomerForm = () => {
         </div>
 
         <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
-            <label className="text " >رقم الهاتف</label>
+            <label className="text required" >رقم الهاتف</label>
             <div className="ui labeled input ">
             <input type="tel" name="phonenumber" placeholder="xxxxxxxx" onChange ={handleChangeOfNumber}  maxLength="8" required/>
             <div className="ui label five wide field">09</div>
@@ -83,7 +83,7 @@ const CustomerForm = () => {
         </div>
        
         <div className="field ">
-            <label className="text" >المدينة</label>
+            <label className="text required" >المدينة</label>
             <select name="city" className="ui search dropdown drop-text" onChange={(e)=>setCustomerData({...customerData,city:e.target.value})}>
             <option value="">اختر مدينة</option>
             {

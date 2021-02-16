@@ -1,10 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 import ChangeStoreState from './ChangeStoreState';
 import './Store.css';
 
 const Store = ({store})=> {
+
+    const history = useHistory();
+    
     return (
           <tr>
             <td className="center aligned"> {store.name} </td>
@@ -27,10 +30,11 @@ const Store = ({store})=> {
             <td className="center aligned">
                 <div className="ui center aligned ten column grid">
                     <div className="row">
-                    <Link to = {`/QRCode/${store.code}`}>
-                    <button className="ui basic grey  icon button qr-button" style={{}}>
+                    {/* <Link to = {`/QRCode/${store.code}`}> */}
+                    <button className="ui basic grey  icon button qr-button" disabled={store.state ===0} onClick={()=>history.push(`/QRCode/${store.code}`)}>
                         <i className="qrcode icon"></i> 
-                    </button></Link> 
+                    </button>
+                    {/* </Link>  */}
                     <ChangeStoreState storeCode = {store.code} storeState = {store.state} />
                 </div>
              </div>

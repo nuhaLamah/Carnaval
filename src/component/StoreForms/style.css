@@ -64,3 +64,12 @@ li {
 cursor: pointer !important;
 padding: 10px 30px !important;
 }
+
+.reg-container {
+     margin: 50px !important;
+}
+
+.required:after {
+    content:" *";
+    color: red;
+}

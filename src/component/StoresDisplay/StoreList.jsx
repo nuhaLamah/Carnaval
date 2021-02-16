@@ -1,6 +1,5 @@
 import React , {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-
 import {filterStores} from '../../redux/Actions/stores';
 import Store from './Store';
 import NavBar from './NavBar';
@@ -19,11 +18,7 @@ const StoreList = ()=> {
     dispatch(filterStores("", 1, 5));
     }, [dispatch]);
 
-     
-      // const [search,setSearchInput] = useState("");
-      const markets = useSelector((markets) => markets.stores.storeList)
-
-      
+    const markets = useSelector((markets) => markets.stores.storeList)
     return (
       <div>
         <center>
