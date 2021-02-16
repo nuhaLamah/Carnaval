@@ -10,7 +10,8 @@ class QrCode extends Component {
     const size =  600;
   
         return (
-          <div className="center-all" >
+          <center>
+            <div className="ui center-all large image " >
             <QRCode
                 bgColor="#FFFFFF"
                 fgColor="#000000"
@@ -19,6 +20,8 @@ class QrCode extends Component {
                 value= {this.props.code}
             />
             </div>
+            </center>
+
         );
         
     }

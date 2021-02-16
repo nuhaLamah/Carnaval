@@ -30,13 +30,8 @@ const Store = ({store})=> {
             <td className="center aligned">
                 <div className="ui center aligned ten column grid">
                     <div className="row">
-<<<<<<< HEAD
                     {/* <Link to = {`/QRCode/${store.code}`}> */}
                     <button className="ui basic grey  icon button qr-button" disabled={store.state ===0} onClick={()=>history.push(`/QRCode/${store.code}`)}>
-=======
-                    <Link to = {`/QRCode/${store.code}`}>
-                    <button disabled={store.state===0} className="ui basic grey  icon button qr-button" style={{}}>
->>>>>>> 16f2bd72dbd2b199e019beb63f5323c28424bd5a
                         <i className="qrcode icon"></i> 
                     </button>
                     {/* </Link>  */}
