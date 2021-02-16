@@ -16,7 +16,6 @@ const Login = (props) => {
  
    
     const showPassword = ()=> {
-        console.log('show')
     setIsShowPassword(!isShowPassword);
     } 
 
@@ -36,9 +35,9 @@ const Login = (props) => {
         <div className="ui container centered grid center-all">
           
           <form className="ui form segment log-form" onSubmit={onSubmitForm}>
-          <img  className="ui centered medium image" src={logo} />
+          <img  className="ui centered medium image" src={logo} alt="logo"/>
               <div className="field">
-              {props.logError? <ErrorMessage head="Login Error" content="Wrong username or password" />:null}
+              {props.logError? <ErrorMessage head="لقد حدث خطأ" content="الرجاء التأكد من اسم المستخدم و كلمة المرور" />:null}
               </div>
             <h4 className="ui header title" >تسجيل الدخول</h4>
             <p style={{padding: '5px'}}></p>
@@ -63,7 +62,6 @@ const Login = (props) => {
 }
 
 const mapStateToProps = ({loginInfo}) => {
-    console.log(loginInfo.logState)
 return {logState: loginInfo.logState, logError: loginInfo.logError}
 }
 

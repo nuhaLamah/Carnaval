@@ -10,7 +10,6 @@ import QrReader from './component/qrReader/QrReader';
 import Customer from './component/customer/CustomerForm';
 import Home from './component/Home';
 
-
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
 

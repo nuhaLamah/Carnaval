@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = 'https://carnivalapi.staging.ly/api';
+const URL = 'https://api.misratafestival.ly';
 
 const    getHeaders = (isAuth) => { return {
     'Authorization': isAuth? `Bearer ${localStorage.getItem('access_token')}`:null,

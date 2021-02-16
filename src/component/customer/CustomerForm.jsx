@@ -3,6 +3,7 @@ import logo from '../../image/logo.png';
 import { useDispatch, useSelector} from 'react-redux';
 import { addCustomer } from '../../redux/Actions/customer';
 import ErrorMessage from '../ErrorMessage';
+import ReCaptcha from './ReCaptcha';
 //import {Redirect} from 'react-router-dom';
 
 const CustomerForm = () => {
@@ -92,7 +93,9 @@ const CustomerForm = () => {
             }
             </select>
         </div>
-
+        <div className="field ">
+            <ReCaptcha />
+        </div>
         <div className="field">
         <button className="ui button text" type="submit" onClick={handleSubmit}>تسجيل</button>
         </div>
