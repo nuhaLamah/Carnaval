@@ -12,7 +12,6 @@ const SearchBox = (props) => {
     useEffect(() => {
        const timer = setTimeout(() => {
           dispatch(filterStores(term, 1, 5));
-          console.log(term)
        }, 1000);
 
         return () => clearTimeout(timer);
