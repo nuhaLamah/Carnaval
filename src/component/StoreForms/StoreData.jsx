@@ -9,7 +9,7 @@ const StoreData = ({address ,validInput ,setValidInput }) => {
     const dispatch = useDispatch();
     
     const data = useSelector((data)=>data.stores.address);
-    const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
+    const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :'',owner_phone:'',email:'',category:'',postcode:'',building_number:'',code:0})
     const [checkbox,setCheckbox] = useState(true);
     const [open, setOpen] = useState(false);
     const [storeCode , setStoreCode] = useState(uniqueRandom(100000, 1000000, 50));
@@ -33,7 +33,7 @@ const StoreData = ({address ,validInput ,setValidInput }) => {
         const {owner_name ,owner_phone} = storeData
         if(owner_name && owner_phone && validInput.status===false) {
          dispatch(addStore(storeData));  
-         setStoreData({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
+         //setStoreData({name:'',owner_name:'',market_phone :'',owner_phone:'',email:'',category:'',postcode:'',building_number:'',code:0})
          setStoreCode(0);
         }
         else
