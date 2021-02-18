@@ -93,7 +93,7 @@ const CustomerForm = () => {
             }
             </select>
         </div>
-        <div className="field " style={{marginTop:"30px"}}>
+        <div className="ui centered medium image" style={{marginTop:"30px"}}>
         <ReCaptcha  setVerified={setVerified} />
         </div>
         <div className="field">

@@ -8,7 +8,7 @@ import Store from './component/StoreForms/StoreAddress'
 import SuccessReg from './component/StoreForms/SuccessReg';
 import QrReader from './component/QrReader/QrReader';
 import Customer from './component/Customer/CustomerForm';
-import Home from './component/Home';
+// import Home from './component/Home';
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/login" />;
@@ -18,7 +18,7 @@ const App = (props)=> {
     <Router>
      
     <Switch>
-         <Route path="/" exact component={Home}/> {/* Main page */}
+         {/* <Route path="/" exact component={Home}/> Main page */}
          <Route path="/fs-com-e"  component={Login}/> {/* Login Form */}
          <Route path="/StoreList"  component={!props.isLog? DirectToLogin: StoreList}/> {/* Store List Page */}
          <Route path="/Store"  component={Store}/> {/* Store Regiteration Form */}
