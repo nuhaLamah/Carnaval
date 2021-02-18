@@ -5,12 +5,11 @@ import  uniqueRandom from 'unique-random-at-depth';
 import Modal from 'react-modal';
 import './style.css';
 
-const StoreData = ({address }) => {
+const StoreData = ({address ,validInput ,setValidInput }) => {
     const dispatch = useDispatch();
     
     const data = useSelector((data)=>data.stores.address);
-    const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
-    const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
+    const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :'',owner_phone:'',email:'',category:'',postcode:'',building_number:'',code:0})
     const [checkbox,setCheckbox] = useState(true);
     const [open, setOpen] = useState(false);
     const [storeCode , setStoreCode] = useState(uniqueRandom(100000, 1000000, 50));
@@ -34,14 +33,12 @@ const StoreData = ({address }) => {
         const {owner_name ,owner_phone} = storeData
         if(owner_name && owner_phone && validInput.status===false) {
          dispatch(addStore(storeData));  
-         setStoreData({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
+         //setStoreData({name:'',owner_name:'',market_phone :'',owner_phone:'',email:'',category:'',postcode:'',building_number:'',code:0})
          setStoreCode(0);
         }
         else
         {
-            alert(validInput.msg)
             setValidInput({status : true ,type:'generalError', msg:"يجب أن لا تكون المدخلات فارغة "})
-           
         }
     };
     const handleChange =(e)=>{
@@ -147,7 +144,6 @@ const StoreData = ({address }) => {
         </div>
         </form> ) :<></>
     );
-
 }
 
 export default StoreData;

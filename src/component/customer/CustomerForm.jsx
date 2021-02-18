@@ -5,6 +5,7 @@ import { addCustomer } from '../../redux/Actions/customer';
 import { getStoreInfo } from '../../redux/Actions/stores';
 import ErrorMessage from '../ErrorMessage';
 import Recaptcha  from 'react-recaptcha';
+import ReCaptcha from './ReCaptcha'
 
 const CustomerForm = (props) => {
 
@@ -33,7 +34,7 @@ useEffect(()=>{
         const {fullname,phonenumber,city} = customerData      
         if(fullname && phonenumber&&city && !validInput.status)
         {
-            dispatch(addCustomer(customerData));
+          dispatch(addCustomer(customerData));
         }
         else
         {
@@ -96,13 +97,8 @@ useEffect(()=>{
             }
             </select>
         </div>
-        <div className="field ">
-        <Recaptcha
-          sitekey="6LfxN10aAAAAAIJjjf87ZLgpO2mpP1T-Rzp_6mab"
-          render="explicit"
-          verifyCallback={()=>console.log("recaptcha is working")}
-          onloadCallback={(response) => {if(response)setVerified(true)}}
-        />
+        <div className="field " style={{marginTop:"30px"}}>
+        <ReCaptcha  setVerified={setVerified} />
         </div>
         <div className="field">
         <button className="ui button text" type="submit" onClick={handleSubmit} disabled ={!verfied} >تسجيل</button>
