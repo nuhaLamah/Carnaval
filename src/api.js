@@ -63,14 +63,25 @@ export const addStore = (newStore) => {
     return axios.post(`${URL}/markets`, form_data, config)
 }
 
-
-
-
 export const getStore = (code) =>{
     const config = {
+        headers: getHeaders(false),
         params: {
            market_code: code,}
         };
          
     return axios.get(`${URL}/get_market`, config);
 } 
+
+
+export const checkIfLocationUsed = (postcode, building_number) =>{
+    console.log(postcode, building_number)
+    const config = {
+            headers: getHeaders(false),
+            params: {
+            postcode: postcode,
+            building_number: building_number
+            }
+        };
+    return axios.get(`${URL}/check_market_location`, config);
+}

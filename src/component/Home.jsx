@@ -14,7 +14,7 @@ return (
         <center>
         <Link to ={'/QrReader'}><button className="ui button text" type="submit" >Customer</button></Link>
         <Link to ={'/Store'}><button className="ui button text" type="submit" >Store</button></Link>
-        <Link to ={'/login'}><button className="ui button text" type="submit" >Login</button></Link>
+        <Link to ={'/fs-com-e'}><button className="ui button text" type="submit" >Login</button></Link>
         </center>
         </div>
     </div>

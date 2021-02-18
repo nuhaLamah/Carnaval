@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import QrReader from 'react-qr-reader';
 import { getStoreInfo } from '../../redux/Actions/stores';
 import './QrReader.css';
-import CustomerForm from '../customer/CustomerForm';
+import CustomerForm from '../Customer/CustomerForm';
 import { clearInfo } from '../../redux/Actions/customer';
 
 const QrScanner = () => {
