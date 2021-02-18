@@ -3,15 +3,17 @@ import logo from '../../image/logo.png';
 import { useDispatch, useSelector} from 'react-redux';
 import { addCustomer } from '../../redux/Actions/customer';
 import ErrorMessage from '../ErrorMessage';
-import ReCaptcha from './ReCaptcha';
-//import {Redirect} from 'react-router-dom';
+import Recaptcha  from 'react-recaptcha';
 
 const CustomerForm = () => {
+
+    const dispatch = useDispatch();
 
     const isError = useSelector(state => state.customer.isError);
     const isDone = useSelector(state => state.customer.isDone);
     const storeInfo = useSelector(state => state.stores.storeInfo);
-    const dispatch = useDispatch();
+   
+    const [verfied,setVerified] = useState(false)
     const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     const [customerData, setCustomerData] = useState({fullname:'', phonenumber:'',buildingnumber:'',postcode:'',shopname:'', city:''});
     
@@ -22,17 +24,17 @@ const CustomerForm = () => {
            customerData.postcode = storeInfo.postcode;
            customerData.shopname = storeInfo.name;
         }   
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const {fullname,phonenumber} = customerData      
-        if(fullname && phonenumber && !validInput.status)
+        const {fullname,phonenumber,city} = customerData      
+        if(fullname && phonenumber&&city && !validInput.status)
         {
-           // console.log(customerData);
             dispatch(addCustomer(customerData));
         }
         else
         {
-          setValidInput({status : true ,type:'generalError', msg:" يجب أن لا تكون المدخلات فارغة وصحيحة "})
+          setValidInput({status : true ,type:'generalError', msg:" يجب أن تكون المدخلات غير فارغة وصحيحة "})
         }
     };
     
@@ -49,13 +51,12 @@ const CustomerForm = () => {
         let format = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
         if(!isNaN(e.target.value)  || format.test(e.target.value))
         setValidInput({status : true , type :"TextError" , msg:"يجب ادخال حروف فقط"})
-        else{
-          
+        else{     
             setCustomerData({...customerData,[e.target.name]:e.target.value})
             setValidInput({status : false,type:"" , msg:""})
         }
     }
-
+    
     const form = () => (
         <div className="ui container centered grid log-container" > 
         <div className="ui form segment log-form" >
@@ -70,8 +71,7 @@ const CustomerForm = () => {
             <input type="text" name="fullname" onChange ={handleChangeOfText} placeholder="الاسم" required  maxLength="40"/>
             <div className="five wide field">
             <p>{validInput.status && validInput.type=== "TextError" ?`${validInput.msg}`:''}</p>
-            </div>
-            
+            </div>  
         </div>
 
         <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
@@ -94,10 +94,15 @@ const CustomerForm = () => {
             </select>
         </div>
         <div className="field ">
-            <ReCaptcha />
+        <Recaptcha
+          sitekey="6LfxN10aAAAAAIJjjf87ZLgpO2mpP1T-Rzp_6mab"
+          render="explicit"
+          verifyCallback={()=>console.log("recaptcha is working")}
+          onloadCallback={(response) => {if(response)setVerified(true)}}
+        />
         </div>
         <div className="field">
-        <button className="ui button text" type="submit" onClick={handleSubmit}>تسجيل</button>
+        <button className="ui button text" type="submit" onClick={handleSubmit} disabled ={!verfied} >تسجيل</button>
         </div>
         </div>
         </form>
