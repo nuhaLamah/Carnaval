@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
-import StoreList from './component/StoresDisplay/StoreList';
-import Print from './component/StoresDisplay/Print';
+import StoreList from './component/storesDisplay/StoreList';
+import Print from './component/storesDisplay/Print';
 import Login from './component/login/Login';
-import Store from './component/StoreForms/StoreAddress'
-import SuccessReg from './component/StoreForms/SuccessReg';
+import Store from './component/storeForms/StoreAddress'
+import SuccessReg from './component/storeForms/SuccessReg';
 import QrReader from './component/qrReader/QrReader';
 import Customer from './component/customer/CustomerForm';
 import Home from './component/Home';
