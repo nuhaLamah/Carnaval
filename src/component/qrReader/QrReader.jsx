@@ -1,21 +1,26 @@
-import React , {useEffect} from 'react';
+import React , {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import QrReader from 'react-qr-reader';
+
 import { getStoreInfo } from '../../redux/Actions/stores';
-import './QrReader.css';
-import CustomerForm from '../customer/CustomerForm';
 import { clearInfo } from '../../redux/Actions/customer';
+
+import CustomerForm from '../customer/CustomerForm';
+import './QrReader.css';
+import { Redirect } from 'react-router-dom';
+
 
 const QrScanner = () => {
   const dispatch = useDispatch();
-  const info = useSelector(state => state.stores.storeInfo);
+  const [data, setData] = useState();
 
     useEffect(() => {
         dispatch(clearInfo());
     },[dispatch]);
-  const handleScan = data => {
+  const handleScan = code => {
   //  console.log(data);
-    if(data)dispatch(getStoreInfo(data));
+    if(code) setData(code);
+    //
   }
   const handleError = err => {
     console.error(err)
@@ -25,8 +30,8 @@ const QrScanner = () => {
     return (
       <div className="center aligned reader" >
        
-      {info?
-        <CustomerForm />:
+      {data?
+       <Redirect to={`/${data.split('/')[-1]}`}  />:
         <div className="content" >
           <div className="border"> </div>
           <QrReader

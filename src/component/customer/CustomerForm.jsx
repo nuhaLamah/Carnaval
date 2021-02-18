@@ -1,14 +1,14 @@
-import React , {useState } from 'react'
+import React , {useEffect, useState } from 'react'
 import logo from '../../image/logo.png';
 import { useDispatch, useSelector} from 'react-redux';
 import { addCustomer } from '../../redux/Actions/customer';
+import { getStoreInfo } from '../../redux/Actions/stores';
 import ErrorMessage from '../ErrorMessage';
 import Recaptcha  from 'react-recaptcha';
 
-const CustomerForm = () => {
+const CustomerForm = (props) => {
 
     const dispatch = useDispatch();
-
     const isError = useSelector(state => state.customer.isError);
     const isDone = useSelector(state => state.customer.isDone);
     const storeInfo = useSelector(state => state.stores.storeInfo);
@@ -24,7 +24,10 @@ const CustomerForm = () => {
            customerData.postcode = storeInfo.postcode;
            customerData.shopname = storeInfo.name;
         }   
+useEffect(()=>{
+    dispatch(getStoreInfo(props.match.params.storeCode));
 
+});
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {fullname,phonenumber,city} = customerData      

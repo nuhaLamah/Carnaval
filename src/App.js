@@ -26,7 +26,8 @@ const App = (props)=> {
          <Route path="/Success"  component={SuccessReg}/> {/* Success Customer Regiteration Page */}
          <Route path="/QRCode/:code"  component={!props.isLog? DirectToLogin: Print}/> {/* Print QR Code */}
          <Route path="/QrReader"  component={QrReader} />   {/* QR Reader Page */}
-         <Route path="/Customer"  component={Customer} />   {/* Customer Regiteration Form */}
+         <Route path="/Customer/:storeCode"  component={Customer} />   {/* Customer Regiteration Form */}
+
     </Switch>
    
     </Router>
