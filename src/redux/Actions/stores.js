@@ -37,13 +37,21 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
 
 export const checkAddress = (address) => async (dispatch) => {
   try {
+    let isExisit = false;
     const {data} = await getLocationInfo(address);
-    if(data.status === 'valid')
-    dispatch({ type: 'ADDRESS', payload: data, isInValid:false });
+    if(data.status === 'valid') {
+      isExisit = await api.checkIfLocationUsed(...address.split('+'));
+      if(isExisit.data.is_exist){
+      alert('العنوان موجود مسبقًا')
+    }
+      else
+     dispatch({ type: 'ADDRESS', payload: data, isInValid:false })
+     
+    }
+    
     else
     dispatch({ type: 'ADDRESS', payload: data, isInValid:true });
   } catch (error) {
-    //console.log(error);
     dispatch({ type: 'INVALID_ADDRESS', payload: true });
   }
 };
