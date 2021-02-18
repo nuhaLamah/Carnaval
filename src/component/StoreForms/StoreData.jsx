@@ -39,8 +39,9 @@ const StoreData = ({address }) => {
         }
         else
         {
-            setValidInput({status : true ,type:'generalError', msg:"يجب أن لا تكون المدخلات فارغة "})
             alert(validInput.msg)
+            setValidInput({status : true ,type:'generalError', msg:"يجب أن لا تكون المدخلات فارغة "})
+           
         }
     };
     const handleChange =(e)=>{
