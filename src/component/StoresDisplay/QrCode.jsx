@@ -17,7 +17,7 @@ class QrCode extends Component {
                 fgColor="#000000"
                 level="Q"
                 style={{marginTop:0, width: size }}
-                value= {this.props.code}
+                value= {`http:${window.location.hostname}:3000/Customer/${this.props.code}`}
             />
             </div>
             </center>
