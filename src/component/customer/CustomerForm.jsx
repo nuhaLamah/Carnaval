@@ -3,8 +3,7 @@ import logo from '../../image/logo.png';
 import { useDispatch, useSelector} from 'react-redux';
 import { addCustomer } from '../../redux/Actions/customer';
 import ErrorMessage from '../ErrorMessage';
-import Recaptcha  from 'react-recaptcha';
-
+import ReCaptcha from './ReCaptcha'
 const CustomerForm = () => {
 
     const dispatch = useDispatch();
@@ -24,13 +23,14 @@ const CustomerForm = () => {
            customerData.postcode = storeInfo.postcode;
            customerData.shopname = storeInfo.name;
         }   
+   
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {fullname,phonenumber,city} = customerData      
         if(fullname && phonenumber&&city && !validInput.status)
         {
-            dispatch(addCustomer(customerData));
+          dispatch(addCustomer(customerData));
         }
         else
         {
@@ -93,13 +93,8 @@ const CustomerForm = () => {
             }
             </select>
         </div>
-        <div className="field ">
-        <Recaptcha
-          sitekey="6LfxN10aAAAAAIJjjf87ZLgpO2mpP1T-Rzp_6mab"
-          render="explicit"
-          verifyCallback={()=>console.log("recaptcha is working")}
-          onloadCallback={(response) => {if(response)setVerified(true)}}
-        />
+        <div className="field " style={{marginTop:"30px"}}>
+        <ReCaptcha  setVerified={setVerified} />
         </div>
         <div className="field">
         <button className="ui button text" type="submit" onClick={handleSubmit} disabled ={!verfied} >تسجيل</button>

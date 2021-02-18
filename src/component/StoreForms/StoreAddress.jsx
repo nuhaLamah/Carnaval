@@ -13,7 +13,7 @@ const StoreAddress = () =>{
     const storeDefaultData = useSelector((addressData) => addressData.stores.address);
     const [showButton , setShowButton] = useState(false);
     const [address , setAddress] = useState({code:'', number:''});
-    const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
+    const [validInput,setValidInput] = useState ({status:false ,type:'generalError' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     
     useEffect(() => {
         if(storeDefaultData.status === 'valid')
@@ -27,7 +27,7 @@ const StoreAddress = () =>{
         if(code && number && validInput.status===false) 
             dispatch(checkAddress(`${address.code}+${address.number}`));
         else
-            setValidInput({status : true ,type:'generalError', msg:"يجب أن لا تكون المدخلات فارغة "})
+            setValidInput({status : true ,type:'generalError', msg:" العنوان المدخل غير صحيح الرجاء التأكد"})
     };
 
     const handleChange = (e)=>{
@@ -50,7 +50,7 @@ const StoreAddress = () =>{
         <form className="ui form" >
         <img className="ui centered medium image" alt="logo" src={logo}/>
         <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  التسجيل </h2>
-        {isError ||isInValid || (validInput.status && validInput.type=== "generalError")? (<ErrorMessage head="لقد حدث خطأ " content="لا يمكن التحقق من العنوان الرجاء التأكد من البيانات المدخلة " /> ): null}
+        {isError ||isInValid || (validInput.status && validInput.type=== "generalError")? (<ErrorMessage head="لقد حدث خطأ " content={validInput.msg?validInput.msg:" العنوان المدخل غير صحيح الرجاء التأكد"} /> ): null}
         {/* --------- Makani validation ------------ */}
         <div className="ui form">
         <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
@@ -78,7 +78,7 @@ const StoreAddress = () =>{
         ):<></>}
         {/* --------- Store Rgisteration ------------ */}
         {showButton ? (
-            <StoreData  address={address} />
+            <StoreData  address={address}  validInput={validInput} setValidInput={setValidInput}/>
         ):null}
         </div>
 

@@ -5,11 +5,10 @@ import  uniqueRandom from 'unique-random-at-depth';
 import Modal from 'react-modal';
 import './style.css';
 
-const StoreData = ({address }) => {
+const StoreData = ({address ,validInput ,setValidInput }) => {
     const dispatch = useDispatch();
     
     const data = useSelector((data)=>data.stores.address);
-    const [validInput,setValidInput] = useState ({status:false ,type:'' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :0,owner_phone:0,email:'',category:'',postcode:'',building_number:'',code:0})
     const [checkbox,setCheckbox] = useState(true);
     const [open, setOpen] = useState(false);
@@ -39,9 +38,7 @@ const StoreData = ({address }) => {
         }
         else
         {
-            alert(validInput.msg)
             setValidInput({status : true ,type:'generalError', msg:"يجب أن لا تكون المدخلات فارغة "})
-           
         }
     };
     const handleChange =(e)=>{
@@ -147,7 +144,6 @@ const StoreData = ({address }) => {
         </div>
         </form> ) :<></>
     );
-
 }
 
 export default StoreData;
