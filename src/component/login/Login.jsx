@@ -29,7 +29,7 @@ const Login = (props) => {
     }
 
 
- return  props.logState? <Redirect to="/StoreList" />
+ return  props.logState? <Redirect to="/fs-com-e/StoreList" />
     :(
        
         <div className="ui container centered grid center-all">

@@ -14,7 +14,7 @@ const NavBar = (props) => {
     }
     return(
         <div className="ui large menu nav">
-            <a href="/StoreList" className="item">
+            <a href="/fs-com-e/StoreList" className="item">
                 الرئيسية
             </a>
             <div className="item" onClick={onClickSignOut} style={{cursor: 'pointer'}}>

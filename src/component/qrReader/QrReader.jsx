@@ -19,10 +19,7 @@ const QrScanner = () => {
 
     if(code) { 
       setData(code);
-      console.log(data); 
-      console.log( data);
     }
-    //
   }
   const handleError = err => {
     console.error(err)

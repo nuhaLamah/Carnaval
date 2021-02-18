@@ -75,7 +75,8 @@ export const getStoreInfo = (storeCode) => async (dispatch) => {
   }
   catch(e){
     //console.log(e)
-    alert("The QR Is Invalid")
+    
+    //alert("The QR Is Invalid")
   }
 }
 export const clearInfo = () => async (dispatch) => {
