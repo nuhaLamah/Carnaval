@@ -31,7 +31,7 @@ const Store = ({store})=> {
                 <div className="ui center aligned ten column grid">
                     <div className="row">
                     {/* <Link to = {`/QRCode/${store.code}`}> */}
-                    <button className="ui basic grey  icon button qr-button" disabled={store.state ===0} onClick={()=>history.push(`/QRCode/${store.code}`)}>
+                    <button className="ui basic grey  icon button qr-button" disabled={store.state ===0} onClick={()=>history.push(`/fs-com-e/QrCode/${store.code}`)}>
                         <i className="qrcode icon"></i> 
                     </button>
                     {/* </Link>  */}
