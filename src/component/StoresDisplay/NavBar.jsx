@@ -22,10 +22,7 @@ const NavBar = (props) => {
             </div>
             <div className="left item">
                 {props.children}
-            </div>
-         
-
-            
+            </div>  
         </div>
     )
 }

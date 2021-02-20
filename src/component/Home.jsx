@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import logo from '../image/logo.png';
 
 const Home = () => {
@@ -10,12 +9,6 @@ return (
         <img className="ui centered large image" alt="logo" src={logo}/>
         <div className="ui section divider"></div>
         <h2 style={{textAlign:'center', fontFamily: 'inherit'}}> مهرجان مصراتة للتسوق 2021 </h2>
-        {/* --------- Makani validation ------------ */}
-        {/* <center>
-        <Link to ={'/QrReader'}><button className="ui button text" type="submit" >Customer</button></Link>
-        <Link to ={'/Store'}><button className="ui button text" type="submit" >Store</button></Link>
-        <Link to ={'/fs-com-e'}><button className="ui button text" type="submit" >Login</button></Link>
-        </center> */}
         </div>
     </div>
 )
