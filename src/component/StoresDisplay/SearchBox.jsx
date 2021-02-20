@@ -6,13 +6,13 @@ import Input from '../login/components/InputField';
 const SearchBox = (props) => {
 
     const dispatch = props.dispatch;
-    const [term, setTerm] = useState('');
+    const [term, setTerm] = useState(null);
 
     useEffect(() => {
       console.log('search')
       
        const timer = setTimeout(() => {
-        if(term) (filterStores(term, 1, 5));
+        if(term !==null) dispatch (filterStores(term, 1, 5));
        }, 1000);
 
         return () => clearTimeout(timer);
