@@ -16,7 +16,7 @@ const SearchBox = (props) => {
        }, 1000);
 
         return () => clearTimeout(timer);
-      }, [term]);
+      }, [term, dispatch]);
 
     const handleInput= (e) =>{
         setTerm(e.target.value);
