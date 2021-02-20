@@ -59,6 +59,7 @@ useEffect(()=>{
             setValidInput({status : false,type:"" , msg:""})
         }
     }
+ 
     
     const form = () => (
         <div className="ui container centered grid log-container" > 
@@ -88,7 +89,7 @@ useEffect(()=>{
        
         <div className="field ">
             <label className="text required" >المدينة</label>
-            <select name="city" className="ui search dropdown drop-text" onChange={(e)=>setCustomerData({...customerData,city:e.target.value})}>
+            <select name="city" className="ui search dropdown drop-text" onChange={handleChangeOfText}>
             <option value="">اختر مدينة</option>
             {
                 cityList.map((city,index)=>
@@ -97,7 +98,7 @@ useEffect(()=>{
             </select>
         </div>
         <div className="ui centered medium image" style={{marginTop:"30px"}}>
-        <ReCaptcha  setVerified={setVerified} />
+        <ReCaptcha setVerified={setVerified}/>
         </div>
         <div className="field">
         <button className="ui button text" type="submit" onClick={handleSubmit} disabled ={!verfied} >تسجيل</button>
@@ -109,7 +110,8 @@ useEffect(()=>{
     )
     return ( 
         isDone ? (()=>{
-            setCustomerData({fullname:'', phonenumber:'',buildingnumber:'',postcode:'',shopname:'', city:'مصراتة'});
+            setCustomerData({fullname:'', phonenumber:'',buildingnumber:'',postcode:'',shopname:'', city:''});
+            
         }): storeInfo? form() : <></>
     )
 }
