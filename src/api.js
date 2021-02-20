@@ -75,7 +75,6 @@ export const getStore = (code) =>{
 
 
 export const checkIfLocationUsed = (postcode, building_number) =>{
-    console.log(postcode, building_number)
     const config = {
             headers: getHeaders(false),
             params: {
