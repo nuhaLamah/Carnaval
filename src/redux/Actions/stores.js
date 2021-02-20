@@ -27,7 +27,9 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
       dispatch({ type:'CHANGE_FILTER_TERM' , payload: keySearch});
     }
   } catch (error) {
-    if(error.response.data.status===307 && error.response.data.sub_status===42){
+    
+    if(error.response.data.status===401 && error.response.data.sub_status===42){
+      const mut = error;
       const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
       localStorage.setItem("access_token", newAccessToken);
       filterStores();
