@@ -24,7 +24,7 @@ const App = (props)=> {
          <Route path="/Store"  component={Store}/> {/* Store Regiteration Form */}
          <Route path="/Success/:StoreCode"  component={SuccessReg}/> {/* Success Store Regiteration Page */}
          <Route path="/Success"  component={SuccessReg}/> {/* Success Customer Regiteration Page */}
-         <Route path="/QRCode/:code"  component={!props.isLog? DirectToLogin: Print}/> {/* Print QR Code */}
+         <Route path="/fs-com-e/QrCode/:code"  component={!props.isLog? DirectToLogin: Print}/> {/* Print QR Code */}
          <Route path="/Scan"  component={QrReader} />   {/* QR Reader Page */}
          <Route path="/Customer/:storeCode"  component={Customer} />   {/* Customer Regiteration Form */}
          <Route exact path="/website" render={() => (window.location = "https://misratafestival.ly/")} />
