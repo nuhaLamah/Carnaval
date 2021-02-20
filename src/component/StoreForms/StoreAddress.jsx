@@ -14,17 +14,21 @@ const StoreAddress = () =>{
     const [showButton , setShowButton] = useState(false);
     const [address , setAddress] = useState({code:'', number:''});
     const [validInput,setValidInput] = useState ({status:false ,type:'generalError' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
+    const categoryList = ['أراضي','الجامعات والكليات','مساجد ومباني دينية','مصف سيارات','مجمع وعمارة','منازل','مصارف'];
+
     
     useEffect(() => {
-        if(storeDefaultData.status === 'valid')
-            setShowButton(true); 
-                  
-    },[storeDefaultData , dispatch]);
+        if(storeDefaultData.status === 'valid' && !categoryList.includes(storeDefaultData.category))
+            {
+                setShowButton(true);
+            }
+          
+    },[storeDefaultData , dispatch , categoryList ]);
    
     const handleAdressSubmit = (e) =>{
         e.preventDefault();
         const {code , number} = address
-        if(code && number && validInput.status===false) 
+        if(code && number && validInput.status===false ) 
             dispatch(checkAddress(`${address.code}+${address.number}`));
         else
             setValidInput({status : true ,type:'generalError', msg:" العنوان المدخل غير صحيح الرجاء التأكد"})
@@ -46,7 +50,6 @@ const StoreAddress = () =>{
     return (
         <div className="ui container centered grid reg-container" > 
         <div className="ui form segment log-form" >
-        
         <form className="ui form" >
         <img className="ui centered medium image" alt="logo" src={logo}/>
         <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  التسجيل </h2>
@@ -71,7 +74,7 @@ const StoreAddress = () =>{
         </div>
         </div>
         </form>
-    
+
         {/* --------- divider ------------ */}
         {showButton ? (
             <div className="ui section divider"></div>
