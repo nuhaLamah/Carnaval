@@ -20,7 +20,7 @@ const SuccessReg = ({match}) => {
         </div>
         <div className="ui section divider"></div>
         <div className="field"> 
-        {match.params.StoreCode?<Link to={'/'}><button className="ui button text"  type="submit">الرجوع إلى الرئيسية</button></Link>:<></>}
+        {match.params.StoreCode?<Link to={'/website'}><button className="ui button text"  type="submit">الرجوع إلى الرئيسية</button></Link>:<></>}
         </div>
         </div>
         </div>

@@ -27,7 +27,9 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
       dispatch({ type:'CHANGE_FILTER_TERM' , payload: keySearch});
     }
   } catch (error) {
+    
     if(error.response.data.status===401 && error.response.data.sub_status===42){
+      const mut = error;
       const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
       localStorage.setItem("access_token", newAccessToken);
       filterStores();
@@ -39,16 +41,20 @@ export const checkAddress = (address) => async (dispatch) => {
   try {
     let isExisit = false;
     const {data} = await getLocationInfo(address);
+
     if(data.status === 'valid') {
-      isExisit = await api.checkIfLocationUsed(...address.split('+'));
-      if(isExisit.data.is_exist){
-      alert('العنوان موجود مسبقًا')
-    }
-      else
-     dispatch({ type: 'ADDRESS', payload: data, isInValid:false })
-     
-    }
-    
+      try{
+        isExisit = await api.checkIfLocationUsed(...address.split('+'));
+        if(isExisit.data.is_exist){
+        alert('العنوان موجود مسبقًا')
+        }
+        else
+        dispatch({ type: 'ADDRESS', payload: data, isInValid:false })
+  }
+    catch(e){
+      alert(`${e} لقد حدث خطأ!`)
+    } 
+      } 
     else
     dispatch({ type: 'ADDRESS', payload: data, isInValid:true });
   } catch (error) {
