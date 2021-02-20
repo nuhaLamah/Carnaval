@@ -1,10 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import {filterStores} from '../../redux/Actions/stores';
 
-const PageButtons = () => {
-    const dispatch = useDispatch();
+const PageButtons = (props) => {
+    const dispatch = props.dispatch;
     const pageNumber = useSelector((state) => state.stores.pageNumber);
     const totalPages = useSelector((state) => state.stores.totalPages);
     const filterTerm = useSelector((state) => state.stores.filterTerm);
@@ -12,7 +12,7 @@ const PageButtons = () => {
             dispatch(filterStores(filterTerm, pageNumber+1, 5));
     }
     const decrease = () => {
-       
+  
         dispatch(filterStores(filterTerm, pageNumber-1, 5));
     }
     const buttonStyle = {
