@@ -16,26 +16,38 @@ export const addStore = (store) => async (dispatch) => {
   }
 };
 
-export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch, useState) => {
-  try {
-    dispatch({type: 'SET_IS_LOADING', payload: true});
-    const response = await api.filterStores(keySearch, pageNumber, perPage);
-    dispatch({type: 'SET_IS_LOADING', payload: false});
-    if(response.status ===200 || response.status ===201) {
-      const totalPages =  response.data.total_pages;
-      dispatch({ type:'FETCH_STORES' , payload: response.data.markets });
-      dispatch({ type:'CHANGE_TOTAL_PAGES' , payload: totalPages===0?1:totalPages });
-      dispatch({ type:'CHANGE_PAGE' , payload: pageNumber});
-      dispatch({ type:'CHANGE_FILTER_TERM' , payload: keySearch});
+export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch) => {
+
+  const getStores = async() =>  {
+      dispatch({type: 'SET_IS_LOADING', payload: true});
+      const response = await api.filterStores(keySearch, pageNumber, perPage);
+      dispatch({type: 'SET_IS_LOADING', payload: false});
+      if(response.status ===200 || response.status ===201) {
+        const totalPages =  response.data.total_pages;
+        dispatch({ type:'FETCH_STORES' , payload: response.data.markets });
+        dispatch({ type:'CHANGE_TOTAL_PAGES' , payload: totalPages===0?1:totalPages });
+        dispatch({ type:'CHANGE_PAGE' , payload: pageNumber});
+        dispatch({ type:'CHANGE_FILTER_TERM' , payload: keySearch});
     }
-  } catch (error) {
-    const mut = error;
-    if(error.response?.data?.status===401 && error.response?.data?.sub_status===42){
-      const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
-      localStorage.setItem("access_token", newAccessToken);
-      filterStores();
-  }else alert(`حدث خطأ ${error}`)
-}
+  }
+  try {
+   await getStores();
+    }
+  catch (error) {
+    
+    if(error.response.data.status===401 && error.response.data.sub_status===42){
+      try{
+        const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
+        localStorage.setItem("access_token", newAccessToken);
+        await  getStores();
+      }
+      catch(e) {
+        alert(`حدث خطأ ${e}`)
+      }
+      
+  }
+    else alert(`حدث خطأ ${error}`)
+  }
 };
 
 export const checkAddress = (address) => async (dispatch) => {
