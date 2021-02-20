@@ -39,13 +39,12 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
 };
 
 export const checkAddress = (address) => async (dispatch) => {
+  
   try {
     let isExisit = false;
     const {data} = await getLocationInfo(address);
-    if(data.category === 'منازل')
-    alert('يجب أن يكون العنوان المدخل من ضمن التصنيفات المتاحة')
     
-    else if(data.status === 'valid') {
+     if(data.status === 'valid') {
       try{
         isExisit = await api.checkIfLocationUsed(...address.split('+'));
         if(isExisit.data.is_exist){

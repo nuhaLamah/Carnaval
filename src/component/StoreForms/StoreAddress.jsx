@@ -16,14 +16,24 @@ const StoreAddress = () =>{
     const [validInput,setValidInput] = useState ({status:false ,type:'generalError' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
     const categoryList = ['أراضي','الجامعات والكليات','مساجد ومباني دينية','مصف سيارات','مجمع وعمارة','منازل','مصارف'];
 
-    
-    useEffect(() => {
-        if(storeDefaultData.status === 'valid' && !categoryList.includes(storeDefaultData.category))
+    const checkCategory = (category) => {
+        
+        if(categoryList.includes(category))
+           {
+            setValidInput({status:true ,type:'generalError' , msg:'يجب أن يكون العنوان المدخل من ضمن التصنيفات المتاحة'});
+            return true;
+        }
+        setValidInput({status : false,type:"" , msg:""})
+        return false; 
+    }
+
+    useEffect(() => { 
+        if(storeDefaultData.status === 'valid' && !checkCategory(storeDefaultData.category) )
             {
                 setShowButton(true);
             }
           
-    },[storeDefaultData , dispatch , categoryList ]);
+    },[storeDefaultData , dispatch ]);
    
     const handleAdressSubmit = (e) =>{
         e.preventDefault();
@@ -31,7 +41,7 @@ const StoreAddress = () =>{
         if(code && number && validInput.status===false ) 
             dispatch(checkAddress(`${address.code}+${address.number}`));
         else
-            setValidInput({status : true ,type:'generalError', msg:" العنوان المدخل غير صحيح الرجاء التأكد"})
+            setValidInput({status : true ,type:'generalError', msg:" يجب ادخال الرمز البريدي ورقم المبنى"})
     };
 
     const handleChange = (e)=>{
