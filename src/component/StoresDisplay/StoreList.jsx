@@ -18,7 +18,8 @@ const StoreList = ()=> {
     dispatch(filterStores("", 1, 5));
     }, [dispatch]);
 
-    const markets = useSelector((markets) => markets.stores.storeList)
+    const markets = useSelector((markets) => markets.stores.storeList);
+    const isLoading = useSelector((markets) => markets.stores.isLoading);
     return (
       <div>
         <center>
@@ -31,11 +32,13 @@ const StoreList = ()=> {
 
         <h1 className="ui container center aligned page-title">المحلات المسجلة</h1>
         <NavBar>
-              <SearchBox />
+              <SearchBox dispatch= {dispatch} />
         </NavBar>  
         <div className="ui container stores-table ">
           
-        {markets.length===0? <div className="ui container center aligned">لا يوجد نتائج</div>:
+        {
+        isLoading? <div className="ui active loader"></div>:
+        markets.length===0? <div className="ui container center aligned">لا يوجد نتائج</div>:
         <table className="ui table ">
           <thead>
             <tr>
@@ -69,7 +72,7 @@ const StoreList = ()=> {
           <p></p>
           <p></p>
           <p></p>
-          <PageButtons />
+          <PageButtons dispatch= {dispatch} />
       </div>
       </div>
       

@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react';
-import {useDispatch} from 'react-redux';
 
 import {filterStores} from '../../redux/Actions/stores';
 import Input from '../login/components/InputField';
 
 const SearchBox = (props) => {
 
-    const dispatch = useDispatch();
+    const dispatch = props.dispatch;
     const [term, setTerm] = useState('');
 
     useEffect(() => {
+      console.log('search')
+      
        const timer = setTimeout(() => {
-          dispatch(filterStores(term, 1, 5));
+        if(term) (filterStores(term, 1, 5));
        }, 1000);
 
         return () => clearTimeout(timer);
-      }, [term, dispatch]);
+      }, [term]);
 
     const handleInput= (e) =>{
         setTerm(e.target.value);
