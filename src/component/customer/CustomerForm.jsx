@@ -24,10 +24,10 @@ const CustomerForm = (props) => {
            customerData.postcode = storeInfo.postcode;
            customerData.shopname = storeInfo.name;
         }   
-useEffect(()=>{
-    dispatch(getStoreInfo(props.match.params.storeCode));
+    useEffect(()=>{
+        dispatch(getStoreInfo(props.match.params.storeCode));
 
-});
+    });
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {fullname,phonenumber,city} = customerData      
@@ -60,7 +60,6 @@ useEffect(()=>{
         }
     }
  
-    
     const form = () => (
         <div className="ui container centered grid log-container" > 
         <div className="ui form segment log-form" >
