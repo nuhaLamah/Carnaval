@@ -31,11 +31,10 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
   } catch (error) {
     const mut = error;
     if(error.response?.data?.status===401 && error.response?.data?.sub_status===42){
-      
       const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
       localStorage.setItem("access_token", newAccessToken);
       filterStores();
-  }
+  }else alert(`حدث خطأ ${error}`)
 }
 };
 
