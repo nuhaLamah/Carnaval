@@ -15,25 +15,40 @@ export const addStore = (store) => async (dispatch) => {
   }
 };
 
-export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch) => {
-  try {
-    dispatch({type: 'SET_IS_LOADING', payload: true});
-    const response = await api.filterStores(keySearch, pageNumber, perPage);
-    dispatch({type: 'SET_IS_LOADING', payload: false});
-    if(response.status ===200 || response.status ===201) {
-      const totalPages =  response.data.total_pages;
-      dispatch({ type:'FETCH_STORES' , payload: response.data.markets });
-      dispatch({ type:'CHANGE_TOTAL_PAGES' , payload: totalPages===0?1:totalPages });
-      dispatch({ type:'CHANGE_PAGE' , payload: pageNumber});
-      dispatch({ type:'CHANGE_FILTER_TERM' , payload: keySearch});
-    }
-  } catch (error) {
-    if(error.response?.data?.status===401 && error.response?.data?.sub_status===42){
-      const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
-      localStorage.setItem("access_token", newAccessToken);
-      filterStores();
-  }else alert(`حدث خطأ ${error}`)
+const refresh = async(reRun) => {
+  try{
+    const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
+    localStorage.setItem("access_token", newAccessToken);
+    await  reRun();
+  }
+  catch(e) {
+    alert(`حدث خطأ ${e}`)
+  }
 }
+export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch) => {
+
+  const getStores = async() =>  {
+      dispatch({type: 'SET_IS_LOADING', payload: true});
+      const response = await api.filterStores(keySearch, pageNumber, perPage);
+      dispatch({type: 'SET_IS_LOADING', payload: false});
+      if(response.status ===200 || response.status ===201) {
+        const totalPages =  response.data.total_pages;
+        dispatch({ type:'FETCH_STORES' , payload: response.data.markets });
+        dispatch({ type:'CHANGE_TOTAL_PAGES' , payload: totalPages===0?1:totalPages });
+        dispatch({ type:'CHANGE_PAGE' , payload: pageNumber});
+        dispatch({ type:'CHANGE_FILTER_TERM' , payload: keySearch});
+    }
+  }
+  try {
+   await getStores();
+    }
+  catch (error) {
+    
+    if(error.response.data.status===401 && error.response.data.sub_status===42){
+     await refresh(getStores);   
+  }
+    else alert(`حدث خطأ ${error}`)
+  }
 };
 
 export const checkAddress = (address) => async (dispatch) => {
@@ -60,14 +75,23 @@ export const checkAddress = (address) => async (dispatch) => {
   }
 };
 
+
 export const changeState= (storeCode, state) => async (dispatch, useState) => {
-  try {
+  const stores = useState().stores;
+  const change = async()=>{
     await api.ChangeStoreState(storeCode, state);
-    const storeList = [...useState().stores.storeList].map(store => store.code ===storeCode? {...store, state:state}: store);
-    dispatch({ type:'FETCH_STORES' , payload: storeList }); 
-  } catch (error) {
-    alert("لقد حدث خطأ ! الرجاء التأكد من صحة البيانات المدخلة"+error)
-    
+    const storeList = [...stores.storeList].map(store => store.code ===storeCode? {...store, state:state}: store);
+    dispatch({ type:'FETCH_STORES' , payload: storeList });
+  }
+  try {
+
+    await change();
+
+  } catch (error) { 
+    if(error.response.data.status===401 && error.response.data.sub_status===42){
+     await refresh(change);   
+  }
+    else alert(`حدث خطأ ${error}`)
   }
 }; 
 
@@ -77,6 +101,7 @@ export const getStoreInfo = (storeCode) => async (dispatch) => {
     dispatch({type:'SET_STORE_INFO', payload: data.market_info});
   }
   catch(e){
+    console.log(e)
   }
 }
 
@@ -94,7 +119,7 @@ export const clearAddress = () => async (dispatch) => {
     dispatch({type:'INVALID_ADDRESS', isInValid:false});
     dispatch({type:'IS_ERROR', isError:false});
   } catch (error) {
-    //console.log(error);
+    
     dispatch({ type:'IS_ERROR', payload:true });
   }
 };
