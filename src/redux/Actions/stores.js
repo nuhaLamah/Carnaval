@@ -1,5 +1,4 @@
 import * as api from '../../api';
-import{ getLocationInfo } from '../../apiMakani';
 
 export const addStore = (store) => async (dispatch) => {
   try {
@@ -53,12 +52,10 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch)
 };
 
 export const checkAddress = (address) => async (dispatch) => {
-  
   try {
     let isExisit = false;
-    const {data} = await getLocationInfo(address);
-    
-     if(data.status === 'valid') {
+    const {data} = await api.getLocationInfo(address);
+    if(data.status === 'valid') {
       try{
         isExisit = await api.checkIfLocationUsed(...address.split('+'));
         if(isExisit.data.is_exist){
@@ -105,15 +102,14 @@ export const getStoreInfo = (storeCode) => async (dispatch) => {
   }
   catch(e){
     console.log(e)
-    
-    //alert("The QR Is Invalid")
   }
 }
+
 export const clearInfo = () => async (dispatch) => {
   try {
     dispatch({type:'ADDRESS', payload: {} , isInValid:false});
   } catch (error) {
-    //console.log(error);
+    
     dispatch({ type:'SET_IS_ERROR', payload:true });
   }
 };
@@ -123,7 +119,7 @@ export const clearAddress = () => async (dispatch) => {
     dispatch({type:'INVALID_ADDRESS', isInValid:false});
     dispatch({type:'IS_ERROR', isError:false});
   } catch (error) {
-    //console.log(error);
+    
     dispatch({ type:'IS_ERROR', payload:true });
   }
 };
