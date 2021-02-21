@@ -1,8 +1,6 @@
 import React from 'react'
-import { Link  } from 'react-router-dom';
 import logo from '../../image/logo.png';
 import './style.css';
-
 
 const SuccessReg = ({match}) => {
 
@@ -20,7 +18,7 @@ const SuccessReg = ({match}) => {
         </div>
         <div className="ui section divider"></div>
         <div className="field"> 
-        {match.params.StoreCode?<Link to={'/website'}><button className="ui button text"  type="submit">الرجوع إلى الرئيسية</button></Link>:<></>}
+        {match.params.StoreCode?<a href="https://misratafestival.ly/"><button className="ui button text"  type="submit">الرجوع إلى الرئيسية</button></a>:<></>}
         </div>
         </div>
         </div>

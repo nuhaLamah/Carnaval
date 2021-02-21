@@ -13,7 +13,7 @@ export const addCustomer = (customer) => async (dispatch) => {
       dispatch({ type:'SET_IS_ERROR', payload:true });
      
     } catch (error) {
-      //alert("لقد حدث خطأ ! لا يمكنك التسجيل الآن :"+error)
+      alert("لقد حدث خطأ ! لا يمكنك التسجيل الآن :"+error.message)
       dispatch({ type:'SET_IS_ERROR', payload:true });
     }
   };
