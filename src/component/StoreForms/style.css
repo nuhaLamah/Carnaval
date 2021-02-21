@@ -1,8 +1,7 @@
 .text{
     font-size: 16px !important;
     text-align: right;
-    line-height: 25px !important;
-    
+    line-height: 25px !important;   
 }
 .button {
     background-color: #F53838 !important;
@@ -85,4 +84,20 @@ padding: 10px 30px !important;
 .required:after {
     content:" *";
     color: red;
+}
+.address-reg{
+    margin-top: 20px !important;
+    font-weight:bolder;
+    font-size: 15px;
+    
+}
+a{
+    
+   
+   
+}
+.address-reg a:hover{
+    font-size: 15px;
+    text-decoration: underline;
+    color: #d16161;
 }
