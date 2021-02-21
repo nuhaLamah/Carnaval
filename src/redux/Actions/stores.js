@@ -16,6 +16,16 @@ export const addStore = (store) => async (dispatch) => {
   }
 };
 
+const refresh = async(reRun) => {
+  try{
+    const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
+    localStorage.setItem("access_token", newAccessToken);
+    await  reRun();
+  }
+  catch(e) {
+    alert(`حدث خطأ ${e}`)
+  }
+}
 export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch) => {
 
   const getStores = async() =>  {
@@ -36,15 +46,7 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch)
   catch (error) {
     
     if(error.response.data.status===401 && error.response.data.sub_status===42){
-      try{
-        const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
-        localStorage.setItem("access_token", newAccessToken);
-        await  getStores();
-      }
-      catch(e) {
-        alert(`حدث خطأ ${e}`)
-      }
-      
+     await refresh(getStores);   
   }
     else alert(`حدث خطأ ${error}`)
   }
@@ -76,15 +78,23 @@ export const checkAddress = (address) => async (dispatch) => {
   }
 };
 
+
 export const changeState= (storeCode, state) => async (dispatch, useState) => {
-  try {
+  const stores = useState().stores;
+  const change = async()=>{
     await api.ChangeStoreState(storeCode, state);
-    const storeList = [...useState().stores.storeList].map(store => store.code ===storeCode? {...store, state:state}: store);
-    dispatch({ type:'FETCH_STORES' , payload: storeList }); 
-  } catch (error) {
-    //console.log(error);
-    alert("لقد حدث خطأ ! الرجاء التأكد من صحة البيانات المدخلة"+error)
-    
+    const storeList = [...stores.storeList].map(store => store.code ===storeCode? {...store, state:state}: store);
+    dispatch({ type:'FETCH_STORES' , payload: storeList });
+  }
+  try {
+
+    await change();
+
+  } catch (error) { 
+    if(error.response.data.status===401 && error.response.data.sub_status===42){
+     await refresh(change);   
+  }
+    else alert(`حدث خطأ ${error}`)
   }
 }; 
 
@@ -94,7 +104,7 @@ export const getStoreInfo = (storeCode) => async (dispatch) => {
     dispatch({type:'SET_STORE_INFO', payload: data.market_info});
   }
   catch(e){
-    //console.log(e)
+    console.log(e)
     
     //alert("The QR Is Invalid")
   }
