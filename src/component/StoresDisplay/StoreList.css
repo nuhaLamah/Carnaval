@@ -20,3 +20,8 @@ padding-top: 10px;
 padding-bottom: 10px;
 
 }
+.page-div{
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+}
