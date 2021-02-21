@@ -52,8 +52,6 @@ export const ChangeStoreState = (code, state) => {
 }
 
 //-------------------------Stores Form---------------------// 
-
-
 export const addStore = (newStore) => {
     const config = { headers: getHeaders(false) };
     const form_data = new FormData();
@@ -73,7 +71,6 @@ export const getStore = (code) =>{
     return axios.get(`${URL}/get_market`, config);
 } 
 
-
 export const checkIfLocationUsed = (postcode, building_number) =>{
     const config = {
             headers: getHeaders(false),
@@ -83,4 +80,8 @@ export const checkIfLocationUsed = (postcode, building_number) =>{
             }
         };
     return axios.get(`${URL}/check_market_location`, config);
+}
+
+export const getLocationInfo = (location)=>{
+    return axios.get(`${URL}/location_info/${location}`);
 }

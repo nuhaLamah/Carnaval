@@ -1,5 +1,4 @@
 import * as api from '../../api';
-import{ getLocationInfo } from '../../apiMakani';
 
 export const addStore = (store) => async (dispatch) => {
   try {
@@ -16,7 +15,7 @@ export const addStore = (store) => async (dispatch) => {
   }
 };
 
-export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch, useState) => {
+export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch) => {
   try {
     dispatch({type: 'SET_IS_LOADING', payload: true});
     const response = await api.filterStores(keySearch, pageNumber, perPage);
@@ -29,7 +28,6 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
       dispatch({ type:'CHANGE_FILTER_TERM' , payload: keySearch});
     }
   } catch (error) {
-    const mut = error;
     if(error.response?.data?.status===401 && error.response?.data?.sub_status===42){
       const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
       localStorage.setItem("access_token", newAccessToken);
@@ -39,12 +37,10 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch,
 };
 
 export const checkAddress = (address) => async (dispatch) => {
-  
   try {
     let isExisit = false;
-    const {data} = await getLocationInfo(address);
-    
-     if(data.status === 'valid') {
+    const {data} = await api.getLocationInfo(address);
+    if(data.status === 'valid') {
       try{
         isExisit = await api.checkIfLocationUsed(...address.split('+'));
         if(isExisit.data.is_exist){
@@ -70,7 +66,6 @@ export const changeState= (storeCode, state) => async (dispatch, useState) => {
     const storeList = [...useState().stores.storeList].map(store => store.code ===storeCode? {...store, state:state}: store);
     dispatch({ type:'FETCH_STORES' , payload: storeList }); 
   } catch (error) {
-    //console.log(error);
     alert("لقد حدث خطأ ! الرجاء التأكد من صحة البيانات المدخلة"+error)
     
   }
@@ -82,16 +77,14 @@ export const getStoreInfo = (storeCode) => async (dispatch) => {
     dispatch({type:'SET_STORE_INFO', payload: data.market_info});
   }
   catch(e){
-    //console.log(e)
-    
-    //alert("The QR Is Invalid")
   }
 }
+
 export const clearInfo = () => async (dispatch) => {
   try {
     dispatch({type:'ADDRESS', payload: {} , isInValid:false});
   } catch (error) {
-    //console.log(error);
+    
     dispatch({ type:'SET_IS_ERROR', payload:true });
   }
 };
