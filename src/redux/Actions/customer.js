@@ -2,7 +2,8 @@ import * as api from '../../apiCustomer';
 
 export const addCustomer = (customer) => async (dispatch) => {
     try {
-      const data   = await api.addCustomer(customer);
+       const data = await api.addCustomer(customer)
+    
       if(data.status === 200)
       {
         dispatch({ type:'SET_IS_DONE', payload:true , data:data});
@@ -13,8 +14,9 @@ export const addCustomer = (customer) => async (dispatch) => {
       dispatch({ type:'SET_IS_ERROR', payload:true });
      
     } catch (error) {
-      alert("لقد حدث خطأ ! لا يمكنك التسجيل الآن :"+error.message)
-      dispatch({ type:'SET_IS_ERROR', payload:true });
+      if(error?.response.status === 400){
+        dispatch({ type:'SET_IS_ERROR', payload:true });
+    }
     }
   };
 

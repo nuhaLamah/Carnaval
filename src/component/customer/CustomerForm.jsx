@@ -30,8 +30,8 @@ const CustomerForm = (props) => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const {fullname,phonenumber,city} = customerData      
-        if(fullname && phonenumber&&city && !validInput.status)
+        const {fullname,phonenumber,city} = customerData 
+        if(isNaN(fullname) && !isNaN(phonenumber) && phonenumber.length === 10 &&city && !validInput.status)
         {
           dispatch(addCustomer(customerData));
         }
@@ -67,7 +67,7 @@ const CustomerForm = (props) => {
         <img className="ui centered medium image" alt="logo" src={logo}/>
         <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  المشاركة </h2>
         <h3 style={{fontFamily: 'inherit'}}>اسم المحل: {storeInfo.name} </h3>
-        {isError || (validInput.status && validInput.type=== "generalError") ? (<ErrorMessage head="لقد حدث خطأ" content={validInput.msg?validInput.msg:"لا يمكنك التسجيل الآن"} /> ): null}
+        {isError || (validInput.status && validInput.type=== "generalError") ? (<ErrorMessage head="لقد حدث خطأ" content={validInput.msg?validInput.msg:"لا يمكنك التسجيل أكثر من مرة في نفس المحل"} /> ): null}
         <div className="ui form" >
         <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
             <label className="text required">الاسم</label>

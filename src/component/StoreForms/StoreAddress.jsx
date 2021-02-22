@@ -14,7 +14,7 @@ const StoreAddress = () =>{
     const [showButton , setShowButton] = useState(false);
     const [address , setAddress] = useState({code:'', number:''});
     const [validInput,setValidInput] = useState ({status:false ,type:'generalError' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
-    const categoryList = ['أراضي','الجامعات والكليات','مساجد ومباني دينية','مصف سيارات','مجمع وعمارة','منازل','مصارف'];
+    const categoryList = [1,4,12,15,18,21,23];
 
     const checkCategory = (category) => {
         
@@ -28,7 +28,7 @@ const StoreAddress = () =>{
     }
 
     useEffect(() => { 
-        if(storeDefaultData.status === 'valid' && !checkCategory(storeDefaultData.category) )
+        if(storeDefaultData.status === 'valid' && !checkCategory(storeDefaultData.CategoryId) )
             {
                 setShowButton(true);
             }
@@ -58,7 +58,8 @@ const StoreAddress = () =>{
     
    
     return (
-        <div className="ui container centered grid reg-container" > 
+        <div className = "main-container">
+        <div className="ui container centered grid " > 
         <div className="ui form segment log-form" >
         <form className="ui form" >
         <img className="ui centered medium image" alt="logo" src={logo}/>
@@ -98,6 +99,7 @@ const StoreAddress = () =>{
         </div>
 
        
+        </div>
         </div>
     );
 }

@@ -11,7 +11,7 @@ const SuccessReg = ({match}) => {
         <div className="ui form segment log-form" >
         
         <img className="ui centered medium image" alt="logo" src={logo}/>
-        {/* --------- Makani validation ------------ */}
+        {/* --------- customer and store successful registeration  ------------ */}
         <div className="ui form segment success" >
         <h3>لقد تم التسجيل بنجاح</h3>
         {match.params.StoreCode?<h2 className="code">رقم الكود الخاص بك هو :{`${match.params.StoreCode}`}</h2>:<></>}

@@ -8,6 +8,6 @@ const ApiKey = "hL4bA4nB4y93TYu89PVw45LK12fA6";
 
 export const addCustomer = (newCustomer) => {
    const data = JSON.stringify(newCustomer);
-   return axios.post(URL, data, {headers : {'ApiKey': ApiKey , 'Content-Type': 'application/json'}})
+   return  axios.post(URL, data, {headers : {'ApiKey': ApiKey , 'Content-Type': 'application/json'}});
 }
 
