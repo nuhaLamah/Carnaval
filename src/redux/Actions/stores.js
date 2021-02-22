@@ -101,7 +101,7 @@ export const getStoreInfo = (storeCode) => async (dispatch) => {
     dispatch({type:'SET_STORE_INFO', payload: data.market_info});
   }
   catch(e){
-    console.log(e)
+    alert(`حدث خطأ ${e}`)
   }
 }
 

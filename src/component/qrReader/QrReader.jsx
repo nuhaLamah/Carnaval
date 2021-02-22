@@ -22,7 +22,6 @@ const QrScanner = () => {
     }
   }
   const handleError = err => {
-    console.error(err)
     alert(err)
   }
   
