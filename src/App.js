@@ -9,30 +9,32 @@ import SuccessReg from './component/StoreForms/SuccessReg';
 import QrReader from './component/QrReader/QrReader';
 import Customer from './component/Customer/CustomerForm';
 import Home from './component/Home';
+import Footer from './component/Footer';
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/fs-com-e" />;
 
  
   return (
+    <div className="content-div">
+      
     <Router>
-     
-    <Switch>
-         <Route path="/" exact component={Home}/> Main page
-         <Route path="/fs-com-e" exact component={Login}/> {/* Login Form */}
-         <Route path="/fs-com-e/StoreList"  component={!props.isLog? DirectToLogin: StoreList}/> {/* Store List Page */}
-         <Route path="/Store"  component={Store}/> {/* Store Regiteration Form */}
-         <Route path="/Success/:StoreCode"  component={SuccessReg}/> {/* Success Store Regiteration Page */}
-         <Route path="/Success"  component={SuccessReg}/> {/* Success Customer Regiteration Page */}
-         <Route path="/fs-com-e/QrCode/:code"  component={!props.isLog? DirectToLogin: Print}/> {/* Print QR Code */}
-         <Route path="/Scan"  component={QrReader} />   {/* QR Reader Page */}
-         <Route path="/Customer/:storeCode"  component={Customer} />   {/* Customer Regiteration Form */}
-         <Route exact path="/website" render={() => (window.location = "https://misratafestival.ly/")} />
-
-
-    </Switch>
-   
+      <Switch>
+          <Route path="/" exact component={Home}/> Main page
+          <Route path="/fs-com-e" exact component={Login}/> {/* Login Form */}
+          <Route path="/fs-com-e/StoreList"  component={!props.isLog? DirectToLogin: StoreList}/> {/* Store List Page */}
+          <Route path="/Store"  component={Store}/> {/* Store Regiteration Form */}
+          <Route path="/Success/:StoreCode"  component={SuccessReg}/> {/* Success Store Regiteration Page */}
+          <Route path="/Success"  component={SuccessReg}/> {/* Success Customer Regiteration Page */}
+          <Route path="/fs-com-e/QrCode/:code"  component={!props.isLog? DirectToLogin: Print}/> {/* Print QR Code */}
+          <Route path="/Scan"  component={QrReader} />   {/* QR Reader Page */}
+          <Route path="/Customer/:storeCode"  component={Customer} />   {/* Customer Regiteration Form */}
+          <Route exact path="/website" render={() => (window.location = "https://misratafestival.ly")} />
+      </Switch>
     </Router>
+  
+    <Footer />
+    </div>
   );
 }
 
