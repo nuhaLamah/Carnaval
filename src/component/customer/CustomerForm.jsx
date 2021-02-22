@@ -4,7 +4,8 @@ import { useDispatch, useSelector} from 'react-redux';
 import { addCustomer } from '../../redux/Actions/customer';
 import { getStoreInfo } from '../../redux/Actions/stores';
 import ErrorMessage from '../ErrorMessage';
-import ReCaptcha from './ReCaptcha'
+import ReCaptcha from './ReCaptcha';
+import Footer from '../Footer';
 
 const CustomerForm = (props) => {
 
@@ -61,50 +62,53 @@ const CustomerForm = (props) => {
     }
  
     const form = () => (
-        <div className="ui container centered grid reg-container" >
-        <div className="ui form segment log-form" >
-        <form className="ui form " >
-        <img className="ui centered medium image" alt="logo" src={logo}/>
-        <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  المشاركة </h2>
-        <h3 style={{fontFamily: 'inherit'}}>اسم المحل: {storeInfo.name} </h3>
-        {isError || (validInput.status && validInput.type=== "generalError") ? (<ErrorMessage head="لقد حدث خطأ" content={validInput.msg?validInput.msg:"لا يمكنك التسجيل الآن"} /> ): null}
-        <div className="ui form" >
-        <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
-            <label className="text required">الاسم</label>
-            <input type="text" name="fullname" onChange ={handleChangeOfText} placeholder="الاسم" required  maxLength="40"/>
-            <div className="five wide field">
-            <p>{validInput.status && validInput.type=== "TextError" ?`${validInput.msg}`:''}</p>
-            </div>  
-        </div>
-
-        <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
-            <label className="text required" >رقم الهاتف</label>
-            <div className="ui labeled input ">
-            <input type="tel" name="phonenumber" placeholder="xxxxxxxx" onChange ={handleChangeOfNumber}  maxLength="8" required/>
-            <div className="ui label five wide field">09</div>
-            <p>{validInput.status && validInput.type=== "NumberError" ?`${validInput.msg}`:''}</p>
+        <div>
+            <div className="ui container centered grid reg-container" >
+            <div className="ui form segment log-form" >
+            <form className="ui form " >
+            <img className="ui centered medium image" alt="logo" src={logo}/>
+            <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  المشاركة </h2>
+            <h3 style={{fontFamily: 'inherit'}}>اسم المحل: {storeInfo.name} </h3>
+            {isError || (validInput.status && validInput.type=== "generalError") ? (<ErrorMessage head="لقد حدث خطأ" content={validInput.msg?validInput.msg:"لا يمكنك التسجيل الآن"} /> ): null}
+            <div className="ui form" >
+            <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
+                <label className="text required">الاسم</label>
+                <input type="text" name="fullname" onChange ={handleChangeOfText} placeholder="الاسم" required  maxLength="40"/>
+                <div className="five wide field">
+                <p>{validInput.status && validInput.type=== "TextError" ?`${validInput.msg}`:''}</p>
+                </div>  
             </div>
-        </div>
-       
-        <div className="field ">
-            <label className="text required" >المدينة</label>
-            <select name="city" className="ui search dropdown drop-text" onChange={handleChangeOfText}>
-            <option value="">اختر مدينة</option>
-            {
-                cityList.map((city,index)=>
-                <option value={city} key={index}>{city}</option>)
-            }
-            </select>
-        </div>
-        <div className="ui centered medium image" style={{marginTop:"30px"}}>
-        <ReCaptcha setVerified={setVerified}/>
-        </div>
-        <div className="field">
-        <button className="ui button text" type="submit" onClick={handleSubmit} disabled ={!verfied} >تسجيل</button>
-        </div>
-        </div>
-        </form>
-        </div>
+
+            <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
+                <label className="text required" >رقم الهاتف</label>
+                <div className="ui labeled input ">
+                <input type="tel" name="phonenumber" placeholder="xxxxxxxx" onChange ={handleChangeOfNumber}  maxLength="8" required/>
+                <div className="ui label five wide field">09</div>
+                <p>{validInput.status && validInput.type=== "NumberError" ?`${validInput.msg}`:''}</p>
+                </div>
+            </div>
+        
+            <div className="field ">
+                <label className="text required" >المدينة</label>
+                <select name="city" className="ui search dropdown drop-text" onChange={handleChangeOfText}>
+                <option value="">اختر مدينة</option>
+                {
+                    cityList.map((city,index)=>
+                    <option value={city} key={index}>{city}</option>)
+                }
+                </select>
+            </div>
+            <div className="ui centered medium image" style={{marginTop:"30px"}}>
+            <ReCaptcha setVerified={setVerified}/>
+            </div>
+            <div className="field">
+            <button className="ui button text" type="submit" onClick={handleSubmit} disabled ={!verfied} >تسجيل</button>
+            </div>
+            </div>
+            </form>
+            </div>
+            </div>
+            <Footer />
         </div>
     )
     return ( 
