@@ -10,8 +10,17 @@ export const addStore = (store) => async (dispatch) => {
       window.location.replace(`/Success/${store.code}`);
     } 
   } catch (error) {
-    alert("لقد حدث خطأ ! الرجاء التأكد من صحة البيانات المدخلة"+error)
-    dispatch({ type: 'IS_Error', payload:true });
+    console.log(error.response);
+    if(error.response.status===422 )
+      {
+        dispatch({ type:'SET_IS_ERROR', payload:true });
+        alert("dublicate entry ")
+      }
+      else
+    {
+      alert("لقد حدث خطأ ! الرجاء التأكد من صحة البيانات المدخلة"+error)
+      dispatch({ type: 'SET_IS_Error', payload:true });
+    }
   }
 };
 
@@ -75,7 +84,6 @@ export const checkAddress = (address) => async (dispatch) => {
   }
 };
 
-
 export const changeState= (storeCode, state) => async (dispatch, useState) => {
   const stores = useState().stores;
   const change = async()=>{
@@ -101,7 +109,7 @@ export const getStoreInfo = (storeCode) => async (dispatch) => {
     dispatch({type:'SET_STORE_INFO', payload: data.market_info});
   }
   catch(e){
-    alert(`حدث خطأ ${e}`)
+   return e
   }
 }
 

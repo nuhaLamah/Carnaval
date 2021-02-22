@@ -31,14 +31,13 @@ const StoreData = ({address ,validInput ,setValidInput }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {owner_name ,owner_phone} = storeData
-        if(owner_name && owner_phone && validInput.status===false) {
+        if(isNaN(owner_name) && !isNaN(owner_phone) && owner_phone.length === 10 && validInput.status===false) {
          dispatch(addStore(storeData));  
-         //setStoreData({name:'',owner_name:'',market_phone :'',owner_phone:'',email:'',category:'',postcode:'',building_number:'',code:0})
          setStoreCode(0);
         }
         else
         {
-            setValidInput({status : true ,type:'generalError', msg:"يجب أن لا تكون المدخلات فارغة "})
+            setValidInput({status : true ,type:'generalError', msg:"يجب أن  تكون المدخلات غير فارغة وصحيحة "})
         }
     };
     const handleChange =(e)=>{

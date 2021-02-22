@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from '../image/logo.png';
 
-import './Footer/style.css'
 const Home = () => {
 return (
     <div>
