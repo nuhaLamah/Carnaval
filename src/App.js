@@ -16,7 +16,7 @@ const App = (props)=> {
 
  
   return (
-    <div className="content-div">
+    <div className="">
       
     <Router>
       <Switch>
@@ -33,7 +33,7 @@ const App = (props)=> {
       </Switch>
     </Router>
   
-    <Footer />
+    
     </div>
   );
 }

@@ -5,6 +5,7 @@ import Store from './Store';
 import NavBar from './NavBar';
 import SearchBox from './SearchBox';
 import PageButtons from './PageButtons';
+import Footer from '../Footer';
 
 import './StoreList.css';
 import backgroundImg from '../../image/header.png';
@@ -76,6 +77,7 @@ const StoreList = () => {
         <p></p>
         <PageButtons dispatch={dispatch} />
       </div>
+      <Footer />
     </div>
 
 
