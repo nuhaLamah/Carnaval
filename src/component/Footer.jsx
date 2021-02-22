@@ -1,4 +1,5 @@
 import React from 'react';
+import SimpleReactFooter from "simple-react-footer";
 import './Footer.css';
 
 const Footer = () => (
@@ -11,6 +12,6 @@ const Footer = () => (
        </center>
 
     </div>
-)
+);
 
 export default Footer;

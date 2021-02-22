@@ -61,7 +61,7 @@ const CustomerForm = (props) => {
     }
  
     const form = () => (
-        <div className="ui container centered grid log-container" > 
+        <div className="ui container centered grid reg-container" >
         <div className="ui form segment log-form" >
         <form className="ui form " >
         <img className="ui centered medium image" alt="logo" src={logo}/>

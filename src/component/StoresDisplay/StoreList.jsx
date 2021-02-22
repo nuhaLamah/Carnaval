@@ -5,7 +5,6 @@ import Store from './Store';
 import NavBar from './NavBar';
 import SearchBox from './SearchBox';
 import PageButtons from './PageButtons';
-import Footer from '../Footer';
 
 import './StoreList.css';
 import backgroundImg from '../../image/header.png';
@@ -22,7 +21,7 @@ const StoreList = ()=> {
     const markets = useSelector((markets) => markets.stores.storeList);
     const isLoading = useSelector((markets) => markets.stores.isLoading);
     return (
-      <div className="page-div">
+      <div>
         <center>
 
           <img className="background" src={backgroundImg} width='100%'  alt="main"/>
@@ -75,7 +74,6 @@ const StoreList = ()=> {
           <p></p>
           <PageButtons dispatch= {dispatch} />
       </div>
-      <Footer />
       </div>
       
     
