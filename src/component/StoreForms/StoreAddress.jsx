@@ -87,7 +87,7 @@ const StoreAddress = () => {
                             </div>
                         </form>
                         {!showButton ? <div className="address-reg">
-                            ليس لديك عنوان،<a href="https://makani.ly/addplace/"> قم بتسجيل نشاطك التجاري الآن</a>
+                            ليس لديك عنوان،<a href="https://makani.ly/addplace/" target="_blank"> قم بتسجيل نشاطك التجاري الآن</a>
                         </div> : <></>}
                         {/* --------- divider ------------ */}
                         {showButton ? (

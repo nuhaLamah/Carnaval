@@ -16,7 +16,7 @@ const PageButtons = (props) => {
         dispatch(filterStores(filterTerm, pageNumber-1, 10));
     }
     const buttonStyle = {
-        backgroundColor: '#FF5733',
+        backgroundColor: '',
         color: 'white',
         fontFamily : 'inherit'
     }
@@ -33,7 +33,7 @@ const PageButtons = (props) => {
                         {pageNumber}/{totalPages}
                     </div>
 
-                    <button disabled={pageNumber===1} className="ui column labeled icon button" onClick={decrease} style={buttonStyle}>
+                    <button disabled={pageNumber===1} className="ui column labeled icon button " onClick={decrease} style={buttonStyle}>
                         <i className="left chevron icon"></i>
                        رجوع
                     </button>

@@ -33,7 +33,7 @@ const StoreList = () => {
       <div className="ui container main-div ">
 
         <h1 className="ui container center aligned page-title">المحلات المسجلة</h1>
-        <p className="ui container center aligned" style={{color:"#F53838",fontSize:"22px", fontWeight:'bold'}}>العدد الكلي : {totalStores}</p>
+        <p className="ui container center aligned" style={{color:"#4183c4",fontSize:"22px", fontWeight:'bold'}}>العدد الكلي : {totalStores}</p>
         <NavBar>
           <SearchBox dispatch={dispatch} />
         </NavBar>

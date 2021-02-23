@@ -42,9 +42,9 @@ const Login = (props) => {
               </div>
             <h4 className="ui header title" >تسجيل الدخول</h4>
             <p style={{padding: '5px'}}></p>
-                    <InputField name="username" type="text" placeholder="Username" onChange={onChangeInput} icon="user icon" />
+                    <InputField name="username" type="text" placeholder="اسم المستخدم" onChange={onChangeInput} icon="user icon" />
                     <p style={{padding: '1.5px'}}></p>
-                    <InputField name="password" type={isShowPassword ? 'text' : 'password'} placeholder="Password" onChange={onChangeInput} 
+                    <InputField name="password" type={isShowPassword ? 'text' : 'password'} placeholder="كلمة المرور" onChange={onChangeInput} 
                     icon={isShowPassword? 'icon eye': 'icon eye slash'} onIconClick = {showPassword}/>
                   
                   

@@ -21,7 +21,7 @@ const SearchBox = (props) => {
     } 
     
     return( 
-                <Input onChange={handleInput} placeholder="بحث"  icon="search icon" color="#fef9e7" borderColor="#e5e7e9" width='500px'/>
+                <Input onChange={handleInput} type="text" placeholder="بحث"  icon="search icon" color="#fef9e7" borderColor="#e5e7e9" width='500px' />
             );
 
 }
