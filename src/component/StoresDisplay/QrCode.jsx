@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 
 import { QRCode } from "react-qr-svg";
+
  
 
 class QrCode extends Component {
@@ -10,6 +11,7 @@ class QrCode extends Component {
     const size =  600;
   
         return (
+          <>
           <center>
             <div className="ui center-all large image " >
             <QRCode
@@ -19,8 +21,13 @@ class QrCode extends Component {
                 style={{marginTop:0, width: size }}
                 value= {`https:${window.location.hostname}/Customer/${this.props.code}`}
             />
+            
             </div>
+           
+            
             </center>
+            
+            </>
 
         );
         

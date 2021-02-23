@@ -8,6 +8,7 @@ import ErrorMessage from '../ErrorMessage';
 
 import logo from '../../image/logo.png';
 import './Login.css';
+import Footer from '../Footer';
 
 const Login = (props) => {
     const [loginData, setLoginData] = useState({username: '', password: ''});
@@ -53,7 +54,8 @@ const Login = (props) => {
                         </center>
                     </div>
                     
-                    
+                    <div className="ui section divider"></div>
+                    <Footer />    
             </form>
             </div>
            

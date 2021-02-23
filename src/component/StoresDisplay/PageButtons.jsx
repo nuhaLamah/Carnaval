@@ -9,11 +9,11 @@ const PageButtons = (props) => {
     const totalPages = useSelector((state) => state.stores.totalPages);
     const filterTerm = useSelector((state) => state.stores.filterTerm);
     const increase = () => {
-            dispatch(filterStores(filterTerm, pageNumber+1, 5));
+            dispatch(filterStores(filterTerm, pageNumber+1, 10));
     }
     const decrease = () => {
   
-        dispatch(filterStores(filterTerm, pageNumber-1, 5));
+        dispatch(filterStores(filterTerm, pageNumber-1, 10));
     }
     const buttonStyle = {
         backgroundColor: '#FF5733',

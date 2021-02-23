@@ -16,11 +16,12 @@ const StoreList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(filterStores("", 1, 5));
+    dispatch(filterStores("", 1, 10));
   }, [dispatch]);
 
   const markets = useSelector((markets) => markets.stores.storeList);
   const isLoading = useSelector((markets) => markets.stores.isLoading);
+  const totalStores = useSelector((state) => state.stores.totalStores);
   return (
     <div>
       <center>
@@ -32,6 +33,7 @@ const StoreList = () => {
       <div className="ui container main-div ">
 
         <h1 className="ui container center aligned page-title">المحلات المسجلة</h1>
+        <p className="ui container center aligned" style={{color:"#F53838",fontSize:"22px", fontWeight:'bold'}}>العدد الكلي : {totalStores}</p>
         <NavBar>
           <SearchBox dispatch={dispatch} />
         </NavBar>
@@ -45,6 +47,7 @@ const StoreList = () => {
                 <table className="ui table ">
                   <thead>
                     <tr>
+                      <th className="center aligned">رقم</th>
                       <th className="center aligned">اسم المحل</th>
                       <th className="center aligned"> العنوان البريدي</th>
                       <th className="center aligned"> رقم المبنى</th>
@@ -63,12 +66,13 @@ const StoreList = () => {
                     </tr>
                   </thead>
                   <tbody>
-
+                  
                     {
                       markets.map((store, index) =>
-                        <Store store={store} key={index} />
+                        <Store store={store} key={index} index={index+1} />
                       )
                     }
+                 
                   </tbody>
                 </table>}
         </div>
@@ -80,6 +84,7 @@ const StoreList = () => {
       </div>
       
      <Footer/>
+     <div style={{padding:"15px 0px"}}></div>
     </div>
 
 

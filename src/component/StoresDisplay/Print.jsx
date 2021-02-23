@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactToPrint from 'react-to-print';
-
+import Footer from '../Footer';
 import QrCode from './QrCode';
 import NavBar from './NavBar';
 
 class Print extends React.PureComponent {
   render() {
     return (
+     
       <div>
         <NavBar>
           <ReactToPrint
@@ -20,9 +21,12 @@ class Print extends React.PureComponent {
             content={() => this.componentRef}
           />
         </NavBar> 
+       
         <QrCode code={this.props.match.params.code} ref={el => (this.componentRef = el)} />
         
       </div>
+     
+       
     );
   }
 }

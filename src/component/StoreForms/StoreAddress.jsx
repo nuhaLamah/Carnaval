@@ -58,7 +58,7 @@ const StoreAddress = () => {
 
 
     return (
-        <div>
+        <div style={{padding:"15px 0px"}}>
             <div className="main-container">
                 <div className="ui container centered grid" >
                     <div className="ui form segment log-form" >
