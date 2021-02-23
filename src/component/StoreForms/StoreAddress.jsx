@@ -60,7 +60,6 @@ const StoreAddress = () => {
     return (
         <div>
             <div className="main-container">
-
                 <div className="ui container centered grid" >
                     <div className="ui form segment log-form" >
                         <form className="ui form" >
@@ -98,11 +97,13 @@ const StoreAddress = () => {
                         {showButton ? (
                             <StoreData address={address} validInput={validInput} setValidInput={setValidInput} />
                         ) : null}
+                         <div className="ui section divider"></div>
+                        <Footer />
                     </div>
+                    
                 </div>
-                
+               
             </div>
-            <Footer />
         </div>
         
     );

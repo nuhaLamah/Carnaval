@@ -1,12 +1,13 @@
 import React from 'react'
 import logo from '../../image/logo.png';
+import Footer from '../Footer';
 import './style.css';
 
 const SuccessReg = ({match}) => {
 
      
     return (
-       
+      
         <div className="ui container centered grid log-container" > 
         <div className="ui form segment log-form" >
         
@@ -20,8 +21,12 @@ const SuccessReg = ({match}) => {
         <div className="field"> 
         {match.params.StoreCode?<a href="https://misratafestival.ly/"><button className="ui button text"  type="submit">الرجوع إلى الرئيسية</button></a>:<></>}
         </div>
+        <Footer/>
         </div>
+       
         </div>
+        
+       
     )
 }
 

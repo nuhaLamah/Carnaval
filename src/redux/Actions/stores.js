@@ -14,7 +14,7 @@ export const addStore = (store) => async (dispatch) => {
     if(error.response.status===422 )
       {
         dispatch({ type:'SET_IS_ERROR', payload:true });
-        alert("dublicate entry ")
+        alert("رقم الهاتف المحل موجود مسبقا  ")
       }
       else
     {

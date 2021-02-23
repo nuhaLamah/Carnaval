@@ -9,15 +9,12 @@ import SuccessReg from './component/StoreForms/SuccessReg';
 import QrReader from './component/QrReader/QrReader';
 import Customer from './component/Customer/CustomerForm';
 import Home from './component/Home';
-import Footer from './component/Footer';
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/fs-com-e" />;
 
  
-  return (
-    <div className="">
-      
+  return (    
     <Router>
       <Switch>
           <Route path="/" exact component={Home}/> Main page
@@ -32,9 +29,6 @@ const App = (props)=> {
           <Route exact path="/website" render={() => (window.location = "https://misratafestival.ly")} />
       </Switch>
     </Router>
-  
-    
-    </div>
   );
 }
 

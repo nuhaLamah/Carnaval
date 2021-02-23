@@ -76,8 +76,10 @@ const StoreList = () => {
         <p></p>
         <p></p>
         <PageButtons dispatch={dispatch} />
+        <div className="ui section divider"></div>
       </div>
-      <Footer />
+      
+     <Footer/>
     </div>
 
 

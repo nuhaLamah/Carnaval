@@ -106,9 +106,12 @@ const CustomerForm = (props) => {
             </div>
             </div>
             </form>
+            <div className="ui section divider"></div>
+                        <Footer />
             </div>
+            
             </div>
-            <Footer />
+            
         </div>
     )
     return ( 
