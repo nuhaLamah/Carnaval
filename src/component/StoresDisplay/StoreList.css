@@ -25,3 +25,7 @@ padding-bottom: 10px;
     bottom: 0;
     height: 100%;
 }
+
+.no-result-div{
+    padding: 100px;
+}
