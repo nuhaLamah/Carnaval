@@ -27,17 +27,6 @@ const CustomerForm = (props) => {
            customerData.shopname = storeInfo.name;
         }   
 
-    const checkNameLength = (name) => {
-        let nameLength =  name.split(" ").length ;
-
-        if(nameLength !== 4)
-        {
-            setValidInput({ status: true, type: 'generalError', msg: 'الرجاء ادخال الاسم الرباعي ' });
-            return true;
-        }
-        setValidInput({ status: false, type: "", msg: "" })
-        return false; 
-    }
     useEffect(()=>{
         dispatch(getStoreInfo(props.match.params.storeCode));
     },[]);
@@ -45,8 +34,10 @@ const CustomerForm = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {fullname,phonenumber,city} = customerData 
-        checkNameLength(fullname);
-        if(isNaN(fullname) && !isNaN(phonenumber) && phonenumber.length === 10 &&city && !validInput.status)
+        if(fullname.split(" ").length !== 4)
+        setValidInput({ status: true, type: 'generalError', msg: 'الرجاء ادخال الاسم الرباعي ' });
+
+        else if(isNaN(fullname) && !isNaN(phonenumber) && phonenumber.length === 10 &&city && !validInput.status)
         {
           dispatch(addCustomer(customerData));
         }
@@ -132,7 +123,7 @@ const CustomerForm = (props) => {
         isDone ? (()=>{
             setCustomerData({fullname:'', phonenumber:'',buildingnumber:'',postcode:'',shopname:'', city:''});
             
-        }): storeInfo? form() : <Redirect to="/NotFound" />
+        }): storeInfo? form() : <></>
     )
 }
 
