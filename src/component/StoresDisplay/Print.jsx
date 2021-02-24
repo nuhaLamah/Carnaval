@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactToPrint from 'react-to-print';
-import Footer from '../Footer';
 import QrCode from './QrCode';
 import NavBar from './NavBar';
 
