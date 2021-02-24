@@ -6,6 +6,7 @@ import { getStoreInfo } from '../../redux/Actions/stores';
 import ErrorMessage from '../ErrorMessage';
 import ReCaptcha from './ReCaptcha';
 import Footer from '../Footer';
+import { Redirect } from 'react-router-dom';
 
 const CustomerForm = (props) => {
 
@@ -25,13 +26,26 @@ const CustomerForm = (props) => {
            customerData.postcode = storeInfo.postcode;
            customerData.shopname = storeInfo.name;
         }   
+
+    const checkNameLength = (name) => {
+        let nameLength =  name.split(" ").length ;
+
+        if(nameLength !== 4)
+        {
+            setValidInput({ status: true, type: 'generalError', msg: 'الرجاء ادخال الاسم الرباعي ' });
+            return true;
+        }
+        setValidInput({ status: false, type: "", msg: "" })
+        return false; 
+    }
     useEffect(()=>{
         dispatch(getStoreInfo(props.match.params.storeCode));
-    });
+    },[]);
     
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {fullname,phonenumber,city} = customerData 
+        checkNameLength(fullname);
         if(isNaN(fullname) && !isNaN(phonenumber) && phonenumber.length === 10 &&city && !validInput.status)
         {
           dispatch(addCustomer(customerData));
@@ -72,7 +86,7 @@ const CustomerForm = (props) => {
             {isError || (validInput.status && validInput.type=== "generalError") ? (<ErrorMessage head="لقد حدث خطأ" content={validInput.msg?validInput.msg:"لا يمكنك التسجيل الآن"} /> ): null}
             <div className="ui form" >
             <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
-                <label className="text required">الاسم</label>
+                <label className="text required">الاسم الرباعي</label>
                 <input type="text" name="fullname" onChange ={handleChangeOfText} placeholder="الاسم" required  maxLength="40"/>
                 <div className="five wide field">
                 <p>{validInput.status && validInput.type=== "TextError" ?`${validInput.msg}`:''}</p>
@@ -118,7 +132,7 @@ const CustomerForm = (props) => {
         isDone ? (()=>{
             setCustomerData({fullname:'', phonenumber:'',buildingnumber:'',postcode:'',shopname:'', city:''});
             
-        }): storeInfo? form() : <></>
+        }): storeInfo? form() : <Redirect to="/NotFound" />
     )
 }
 

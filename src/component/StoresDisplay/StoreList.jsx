@@ -22,6 +22,7 @@ const StoreList = () => {
   const markets = useSelector((markets) => markets.stores.storeList);
   const isLoading = useSelector((markets) => markets.stores.isLoading);
   const totalStores = useSelector((state) => state.stores.totalStores);
+  const pageNumber = useSelector((state) => state.stores.pageNumber);
   return (
     <div>
       <center>
@@ -69,7 +70,7 @@ const StoreList = () => {
                   
                     {
                       markets.map((store, index) =>
-                        <Store store={store} key={index} index={index+1} />
+                        <Store store={store} key={index} index={(pageNumber-1)*10+(index+1)} />
                       )
                     }
                  
