@@ -28,7 +28,7 @@ const CustomerForm = (props) => {
         }   
     useEffect(()=>{
         dispatch(getStoreInfo(props.match.params.storeCode));
-    });
+    }, []);
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -119,7 +119,7 @@ const CustomerForm = (props) => {
         isDone ? (()=>{
             setCustomerData({fullname:'', phonenumber:'',buildingnumber:'',postcode:'',shopname:'', city:''});
             
-        }): storeInfo? form() : <Redirect to="/NotFound" />
+        }): storeInfo? form() : <></>
     )
 }
 
