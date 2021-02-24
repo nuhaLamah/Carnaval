@@ -6,7 +6,6 @@ import { getStoreInfo } from '../../redux/Actions/stores';
 import ErrorMessage from '../ErrorMessage';
 import ReCaptcha from './ReCaptcha';
 import Footer from '../Footer';
-import { Redirect } from 'react-router-dom';
 
 const CustomerForm = (props) => {
 
@@ -34,17 +33,21 @@ const CustomerForm = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {fullname,phonenumber,city} = customerData 
-        if(fullname.split(" ").length !== 4)
-        setValidInput({ status: true, type: 'generalError', msg: 'الرجاء ادخال الاسم الرباعي ' });
-
-        else if(isNaN(fullname) && !isNaN(phonenumber) && phonenumber.length === 10 &&city && !validInput.status)
+        
+        if(fullname.split(" ").length === 4)
         {
-          dispatch(addCustomer(customerData));
+        if(isNaN(fullname) && !isNaN(phonenumber) && phonenumber.length === 10 &&city && !validInput.status)
+        {
+         dispatch(addCustomer(customerData));
         }
         else
         {
           setValidInput({status : true ,type:'generalError', msg:" يجب أن تكون المدخلات غير فارغة وصحيحة "})
         }
+        }
+        else
+        setValidInput({ status: true, type: 'generalError', msg: 'الرجاء ادخال الاسم الرباعي ' });
+ 
     };
     
     const handleChangeOfNumber = (e)=>{
