@@ -18,7 +18,7 @@ const App = (props)=> {
   return (    
     <Router>
       <Switch>
-          <Route path="/" exact component={Home}/> Main page
+          <Route path="/" exact component={Home}/> {/* Main page*/}
           <Route path="/fs-com-e" exact component={Login}/> {/* Login Form */}
           <Route path="/fs-com-e/StoreList" exact component={!props.isLog? DirectToLogin: StoreList}/> {/* Store List Page */}
           <Route path="/Store" exact component={Store}/> {/* Store Regiteration Form */}

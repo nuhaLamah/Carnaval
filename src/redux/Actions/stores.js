@@ -41,7 +41,6 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch)
       const response = await api.filterStores(keySearch, pageNumber, perPage);
       dispatch({type: 'SET_IS_LOADING', payload: false});
       if(response.status ===200 || response.status ===201) {
-        console.log(response.data)
         const totalPages =  response.data.total_pages;
         dispatch({ type:'FETCH_STORES' , payload: response.data.markets });
         dispatch({ type:'CHANGE_TOTAL_PAGES' , payload: totalPages===0?1:totalPages });
