@@ -27,7 +27,7 @@ const CustomerForm = (props) => {
         }   
     useEffect(()=>{
         dispatch(getStoreInfo(props.match.params.storeCode));
-    }, []);
+    });
     
     const handleSubmit = async (e) => {
         e.preventDefault();
