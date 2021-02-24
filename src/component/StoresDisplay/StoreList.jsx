@@ -43,7 +43,7 @@ const StoreList = () => {
             isLoading ?
               
                 <div className="ui active loader"></div> :
-              markets.length === 0 ? <div className="ui container center aligned">لا يوجد نتائج</div> :
+              markets.length === 0 ?  <div className="ui container center aligned no-result-div">لا توجد نتائج</div> :
                 <table className="ui table ">
                   <thead>
                     <tr>
