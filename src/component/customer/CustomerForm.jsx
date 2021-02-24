@@ -6,6 +6,7 @@ import { getStoreInfo } from '../../redux/Actions/stores';
 import ErrorMessage from '../ErrorMessage';
 import ReCaptcha from './ReCaptcha';
 import Footer from '../Footer';
+import { Redirect } from 'react-router-dom';
 
 const CustomerForm = (props) => {
 
@@ -118,7 +119,7 @@ const CustomerForm = (props) => {
         isDone ? (()=>{
             setCustomerData({fullname:'', phonenumber:'',buildingnumber:'',postcode:'',shopname:'', city:''});
             
-        }): storeInfo? form() : <></>
+        }): storeInfo? form() : <Redirect to="/NotFound" />
     )
 }
 
