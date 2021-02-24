@@ -10,7 +10,7 @@ export const addStore = (store) => async (dispatch) => {
       window.location.replace(`/Success/${store.code}`);
     } 
   } catch (error) {
-    console.log(error.response);
+    
     if(error.response.status===422 )
       {
         dispatch({ type:'SET_IS_ERROR', payload:true });
