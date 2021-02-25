@@ -10,7 +10,7 @@ const SearchBox = (props) => {
 
     useEffect(() => {
        const timer = setTimeout(() => {
-        if(term !==null) dispatch (filterStores(term, 1, 5));
+        if(term !==null) dispatch (filterStores(term, 1, 10));
        }, 1000);
 
         return () => clearTimeout(timer);
