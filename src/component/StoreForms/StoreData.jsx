@@ -80,6 +80,10 @@ const StoreData = ({address ,validInput ,setValidInput }) => {
         <label className="text ">اسم المحل</label>
             <input disabled type="text" name="name" placeholder="اسم المحل" defaultValue={data.name}  required  />
         </div>
+        <div className="field">
+        <label className="text ">تفاصيل</label>
+            <input disabled type="text" name="name" placeholder="تفاصيل" defaultValue={data.details}  required  />
+        </div>
         <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
             <label className="text required" >اسم صاحب المحل</label>
             <input type="text" name="owner_name" placeholder="اسم صاحب المحل"  onChange={handleChangeOfText} maxLength="40"/>

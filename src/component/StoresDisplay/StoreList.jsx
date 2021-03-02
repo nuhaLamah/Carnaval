@@ -19,10 +19,12 @@ const StoreList = () => {
     dispatch(filterStores("", 1, 10));
   }, [dispatch]);
 
-  const markets = useSelector((markets) => markets.stores.storeList);
-  const isLoading = useSelector((markets) => markets.stores.isLoading);
+  const markets = useSelector((state) => state.stores.storeList);
+  const isLoading = useSelector((state) => state.stores.isLoading);
   const totalStores = useSelector((state) => state.stores.totalStores);
   const pageNumber = useSelector((state) => state.stores.pageNumber);
+  const totalAccepted = useSelector((state) => state.stores.acceptedStores);
+  
   return (
     <div>
       <center>
@@ -34,7 +36,9 @@ const StoreList = () => {
       <div className="ui container main-div ">
 
         <h1 className="ui container center aligned page-title">المحلات المسجلة</h1>
-        <p className="ui container center aligned" style={{color:"#4183c4",fontSize:"22px", fontWeight:'bold'}}>العدد الكلي : {totalStores}</p>
+        <p className="ui container center aligned" style={{fontSize: "22px"}}>
+          العدد الكلي : <b>{totalStores}</b> عدد المحلات المقبولة: <b>{totalAccepted}</b>
+        </p>
         <NavBar>
           <SearchBox dispatch={dispatch} />
         </NavBar>
@@ -42,9 +46,9 @@ const StoreList = () => {
 
           {
             isLoading ?
-              
-                <div className="ui active loader"></div> :
-              markets.length === 0 ?  <div className="ui container center aligned no-result-div">لا توجد نتائج</div> :
+
+              <div className="ui active loader"></div> :
+              markets.length === 0 ? <div className="ui container center aligned no-result-div">لا توجد نتائج</div> :
                 <table className="ui table ">
                   <thead>
                     <tr>
@@ -67,13 +71,13 @@ const StoreList = () => {
                     </tr>
                   </thead>
                   <tbody>
-                  
+
                     {
                       markets.map((store, index) =>
-                        <Store store={store} key={index} index={(pageNumber-1)*10+(index+1)} />
+                        <Store store={store} key={index} index={(pageNumber - 1) * 10 + (index + 1)} />
                       )
                     }
-                 
+
                   </tbody>
                 </table>}
         </div>
@@ -83,9 +87,9 @@ const StoreList = () => {
         <PageButtons dispatch={dispatch} />
         <div className="ui section divider"></div>
       </div>
-      
-     <Footer/>
-     <div style={{padding:"15px 0px"}}></div>
+
+      <Footer />
+      <div style={{ padding: "15px 0px" }}></div>
     </div>
 
 
