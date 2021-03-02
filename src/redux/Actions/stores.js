@@ -45,6 +45,7 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch)
         dispatch({ type:'FETCH_STORES' , payload: response.data.markets });
         dispatch({ type:'CHANGE_TOTAL_PAGES' , payload: totalPages===0?1:totalPages });
         dispatch({type: 'CHANGE_TOTAL_STORES', payload: response.data.total_markets});
+        dispatch({type:'CHANGE_TOTAL_ACCEPTED_STORES', payload: response.data.accepted_markets});
         dispatch({ type:'CHANGE_PAGE' , payload: pageNumber});
         dispatch({ type:'CHANGE_FILTER_TERM' , payload: keySearch});
     }
