@@ -102,6 +102,7 @@ const StoreData = ({address ,validInput ,setValidInput }) => {
             <label className="text" >البريد الالكتروني</label>
             <input type="email" name="email" placeholder="البريد الالكتروني" onChange={handleChange}/>
         </div>
+        
         <div className="field ">
             <label  className="text">نوع النشاط</label>
             <input disabled type="text" name="category" placeholder="نوع النشاط" defaultValue ={data.category} />

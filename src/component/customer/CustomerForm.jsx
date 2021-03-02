@@ -33,8 +33,9 @@ const CustomerForm = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {fullname,phonenumber,city} = customerData 
+        let nameLen = fullname.split(" ").length;
         
-        if(fullname.split(" ").length === 4)
+        if(nameLen >= 4 && nameLen <= 7)
         {
         if(isNaN(fullname) && !isNaN(phonenumber) && phonenumber.length === 10 &&city && !validInput.status)
         {
@@ -42,7 +43,7 @@ const CustomerForm = (props) => {
         }
         else
         {
-          setValidInput({status : true ,type:'generalError', msg:" يجب أن تكون المدخلات غير فارغة وصحيحة "})
+        setValidInput({status : true ,type:'generalError', msg:" يجب أن تكون المدخلات غير فارغة وصحيحة "})
         }
         }
         else
@@ -54,13 +55,12 @@ const CustomerForm = (props) => {
         if(isNaN(e.target.value))
         setValidInput({status : true , type :"NumberError" , msg:"يجب إدخال رقم فقط"})
         else{
-            const number = `09${e.target.value}`
-            setCustomerData({...customerData,[e.target.name]:number})
+            setCustomerData({...customerData,[e.target.name]:e.target.value})
             setValidInput({status : false,type:"" , msg:""})
         }
     }
     const handleChangeOfText = (e)=>{
-        let format = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+        let format = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~1234567890]/;
         if(!isNaN(e.target.value)  || format.test(e.target.value))
         setValidInput({status : true , type :"TextError" , msg:"يجب ادخال حروف فقط"})
         else{     
@@ -71,12 +71,14 @@ const CustomerForm = (props) => {
  
     const form = () => (
         <div>
+            {`${storeInfo.location}`}
             <div className="ui container centered grid reg-container" >
             <div className="ui form segment log-form" >
             <form className="ui form " >
             <img className="ui centered medium image" alt="logo" src={logo}/>
             <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  المشاركة </h2>
             <h3 style={{fontFamily: 'inherit'}}>اسم المحل: {storeInfo.name} </h3>
+            <h4 style={{fontFamily: 'inherit'}}> {storeInfo.details} </h4>
             {isError || (validInput.status && validInput.type=== "generalError") ? (<ErrorMessage head="لقد حدث خطأ" content={validInput.msg?validInput.msg:"لا يمكنك التسجيل الآن"} /> ): null}
             <div className="ui form" >
             <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
@@ -90,8 +92,7 @@ const CustomerForm = (props) => {
             <div className={validInput.status && validInput.type=== "NumberError" ?'error field':'field'}>
                 <label className="text required" >رقم الهاتف</label>
                 <div className="ui labeled input ">
-                <input type="tel" name="phonenumber" placeholder="xxxxxxxx" onChange ={handleChangeOfNumber}  maxLength="8" required/>
-                <div className="ui label five wide field">09</div>
+                <input type="tel" name="phonenumber" placeholder="xxxxxxxx" onChange ={handleChangeOfNumber}  maxLength="10" required/>
                 <p>{validInput.status && validInput.type=== "NumberError" ?`${validInput.msg}`:''}</p>
                 </div>
             </div>
