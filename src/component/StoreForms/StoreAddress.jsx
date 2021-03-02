@@ -90,11 +90,11 @@ const StoreAddress = () => {
                             ليس لديك عنوان،<a href="https://makani.ly/addplace/" target="_blank" rel="noreferrer"> قم بتسجيل نشاطك التجاري الآن</a>
                         </div> : <></>}
                         {/* --------- divider ------------ */}
-                        {!showButton ? (
+                        {showButton ? (
                             <div className="ui section divider"></div>
                         ) : <></>}
                         {/* --------- Store Rgisteration ------------ */}
-                        {!showButton ? (
+                        {showButton ? (
                             <StoreData address={address} validInput={validInput} setValidInput={setValidInput} />
                         ) : null}
                          <div className="ui section divider"></div>

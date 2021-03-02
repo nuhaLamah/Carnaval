@@ -36,9 +36,21 @@ const StoreList = () => {
       <div className="ui container main-div ">
 
         <h1 className="ui container center aligned page-title">المحلات المسجلة</h1>
-        <p className="ui container center aligned" style={{fontSize: "22px"}}>
-          العدد الكلي : <b>{totalStores}</b> عدد المحلات المقبولة: <b>{totalAccepted}</b>
-        </p>
+       <center>
+        <div class="ui segment" style={{maxWidth:"450px"}}>
+        <div class="ui two column  grid">
+        <div class="column">
+        <p className="ui container center aligned" style={{fontSize: "20px", color:"#4183c4"}}>
+          عدد المحلات الكلي  <br/><b>{totalStores}</b> </p>
+        </div>
+        <div class="column">
+        <p className="ui container center aligned" style={{fontSize: "20px", color:"#d16161"}}>
+        عدد المحلات المقبولة <b>{totalAccepted}</b></p>
+        </div>
+        </div>
+        <div class="ui vertical divider"></div>
+        </div>
+        </center>
         <NavBar>
           <SearchBox dispatch={dispatch} />
         </NavBar>
