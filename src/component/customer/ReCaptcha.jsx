@@ -19,6 +19,7 @@ const ReCaptcha = ({setVerified})=> {
           render="explicit"
           expiredCallback={expiredCallback}
           verifyCallback={verifyCallback}
+          hl="ar"
           
         />
         </>
