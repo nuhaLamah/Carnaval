@@ -71,14 +71,13 @@ const CustomerForm = (props) => {
  
     const form = () => (
         <div>
-            {`${storeInfo.location}`}
             <div className="ui container centered grid reg-container" >
             <div className="ui form segment log-form" >
             <form className="ui form " >
             <img className="ui centered medium image" alt="logo" src={logo}/>
-            <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  المشاركة </h2>
-            <h3 style={{fontFamily: 'inherit'}}>اسم المحل: {storeInfo.name} </h3>
-            <h4 style={{fontFamily: 'inherit'}}> {storeInfo.details} </h4>
+            {/* <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  المشاركة </h2> */}
+            <h2 style={{fontFamily: 'inherit', color:"#4183c4"}}><b>{storeInfo.name}</b> {storeInfo.details} </h2>
+            {/* <p style={{fontFamily: 'inherit', color:"#444", fontSize:"20px"}}>  </p> */}
             {isError || (validInput.status && validInput.type=== "generalError") ? (<ErrorMessage head="لقد حدث خطأ" content={validInput.msg?validInput.msg:"لا يمكنك التسجيل الآن"} /> ): null}
             <div className="ui form" >
             <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
