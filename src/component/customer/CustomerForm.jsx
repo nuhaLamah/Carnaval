@@ -1,5 +1,5 @@
 import React , {useEffect, useState } from 'react'
-import logo from '../../image/logo.png';
+import logo from '../../image/CustomerLogo.png';
 import { useDispatch, useSelector} from 'react-redux';
 import { addCustomer } from '../../redux/Actions/customer';
 import { getStoreInfo } from '../../redux/Actions/stores';
@@ -74,10 +74,10 @@ const CustomerForm = (props) => {
             <div className="ui container centered grid reg-container" >
             <div className="ui form segment log-form" >
             <form className="ui form " >
-            <img className="ui centered medium image" alt="logo" src={logo}/>
-            {/* <h2 style={{textAlign:'center', fontFamily: 'inherit'}}>نموذج  المشاركة </h2> */}
-            <h2 style={{fontFamily: 'inherit', color:"#4183c4"}}><b>{storeInfo.name}</b> {storeInfo.details} </h2>
-            {/* <p style={{fontFamily: 'inherit', color:"#444", fontSize:"20px"}}>  </p> */}
+            <img className="ui centered large image" alt="logo" src={logo}/>
+            <h2 style={{fontFamily: 'inherit', color:"#222" , marginTop:"50px"}}><b>نموذج المشاركة </b> </h2>
+            <h3 style={{fontFamily: 'inherit', color:"#222" }}><b>{storeInfo.name}</b> {storeInfo.details} </h3>
+            
             {isError || (validInput.status && validInput.type=== "generalError") ? (<ErrorMessage head="لقد حدث خطأ" content={validInput.msg?validInput.msg:"لا يمكنك التسجيل الآن"} /> ): null}
             <div className="ui form" >
             <div className={validInput.status && validInput.type=== "TextError" ?'error field':'field'}>
