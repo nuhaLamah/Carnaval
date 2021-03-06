@@ -23,7 +23,7 @@ const CustomerForm = (props) => {
         {
            customerData.buildingnumber = storeInfo.building_number;
            customerData.postcode = storeInfo.postcode;
-           customerData.shopname = storeInfo.name;
+           customerData.shopname = storeInfo.name +" "+ storeInfo.details ;
         }   
 
     useEffect(()=>{
@@ -33,13 +33,12 @@ const CustomerForm = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {fullname,phonenumber,city} = customerData 
-        let nameLen = fullname.split(" ").length;
-        
+        let nameLen = fullname.trim().split(" ").length;
         if(nameLen >= 4 && nameLen <= 7)
         {
         if(isNaN(fullname) && !isNaN(phonenumber) && phonenumber.length === 10 &&city && !validInput.status)
         {
-         dispatch(addCustomer(customerData));
+          dispatch(addCustomer(customerData));
         }
         else
         {
@@ -117,7 +116,9 @@ const CustomerForm = (props) => {
             <div className="ui section divider"></div>
             <Footer />
             </div>
+            
             </div>
+            
         </div>
     )
     return ( 
