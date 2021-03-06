@@ -9,7 +9,7 @@ const StoreData = ({address ,validInput ,setValidInput }) => {
     const dispatch = useDispatch();
     
     const data = useSelector((data)=>data.stores.address);
-    const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :'',owner_phone:'',email:'',category:'',postcode:'',building_number:'',code:0})
+    const [storeData, setStoreData] = useState({name:'',owner_name:'',market_phone :'',owner_phone:'',email:'',category:'',postcode:'',building_number:'',code:0 , details:''})
     const [checkbox,setCheckbox] = useState(true);
     const [open, setOpen] = useState(false);
     const [storeCode , setStoreCode] = useState(uniqueRandom(100000, 1000000, 50));
@@ -19,6 +19,7 @@ const StoreData = ({address ,validInput ,setValidInput }) => {
             storeData.name = data.name;
             storeData.market_phone = data.phoneNumber;
             storeData.category = data.category;
+            storeData.details = data.details;
             storeData.postcode = address.code;
             storeData.building_number = address.number;
             storeData.code =storeCode;
@@ -32,8 +33,8 @@ const StoreData = ({address ,validInput ,setValidInput }) => {
         e.preventDefault();
         const {owner_name ,owner_phone} = storeData
         if(isNaN(owner_name) && !isNaN(owner_phone) && owner_phone.length === 10 && validInput.status===false) {
-         dispatch(addStore(storeData));  
-         setStoreCode(0);
+           dispatch(addStore(storeData));  
+           setStoreCode(0);
         }
         else
         {
