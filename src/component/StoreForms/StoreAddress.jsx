@@ -12,10 +12,10 @@ const StoreAddress = () => {
     const isError = useSelector(state => state.stores.isError);
     const isInValid = useSelector(state => state.stores.isInValid);
     const storeDefaultData = useSelector((addressData) => addressData.stores.address);
-    const [showButton , setShowButton] = useState(false);
-    const [address , setAddress] = useState({code:'', number:''});
-    const [validInput,setValidInput] = useState ({status:false ,type:'generalError' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
-    const categoryList = [1,4,12,15,18,22,24];
+    const [showButton, setShowButton] = useState(false);
+    const [address, setAddress] = useState({ code: '', number: '' });
+    const [validInput, setValidInput] = useState({ status: false, type: 'generalError', msg: 'الرجاء التاكد من صحة البيانات المدخلة' });
+    const categoryList = [1, 4, 12, 15, 18, 22, 24];
 
     const checkCategory = (category) => {
 
@@ -27,15 +27,14 @@ const StoreAddress = () => {
         return false;
     }
 
-    useEffect(() => { 
-        if(storeDefaultData.status === 'valid' && !checkCategory(storeDefaultData.CategoryId) )
-            {
-                setShowButton(true);
-            }
-          
-    },[storeDefaultData , dispatch ]);
-   
-    const handleAdressSubmit = (e) =>{
+    useEffect(() => {
+        if (storeDefaultData.status === 'valid' && !checkCategory(storeDefaultData.CategoryId)) {
+            setShowButton(true);
+        }
+
+    }, [storeDefaultData, dispatch]);
+
+    const handleAdressSubmit = (e) => {
         e.preventDefault();
         const { code, number } = address
         if (code && number && validInput.status === false)
@@ -58,7 +57,7 @@ const StoreAddress = () => {
 
 
     return (
-        <div style={{padding:"15px 0px"}}>
+        <div style={{ padding: "15px 0px" }}>
             <div className="main-container">
                 <div className="ui container centered grid" >
                     <div className="ui form segment log-form" >
@@ -97,15 +96,15 @@ const StoreAddress = () => {
                         {showButton ? (
                             <StoreData address={address} validInput={validInput} setValidInput={setValidInput} />
                         ) : null}
-                         <div className="ui section divider"></div>
+                        <div className="ui section divider"></div>
                         <Footer />
                     </div>
-                    
+
                 </div>
-               
+
             </div>
         </div>
-        
+
     );
 }
 
