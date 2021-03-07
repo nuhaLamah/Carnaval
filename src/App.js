@@ -13,13 +13,13 @@ import NotFound from './component/NotFound';
 
 const App = (props)=> {
   const DirectToLogin = () => <Redirect to="/fs-com-e" />;
-
+  const DirectToStoreList = () => <Redirect to="/fs-com-e/StoreList" />;
  
   return (    
     <Router>
       <Switch>
           <Route path="/" exact component={Home}/> {/* Main page*/}
-          <Route path="/fs-com-e" exact component={Login}/> {/* Login Form */}
+          <Route path="/fs-com-e" exact component={props.isLog? DirectToStoreList: Login}/> {/* Login Form */}
           <Route path="/fs-com-e/StoreList" exact component={!props.isLog? DirectToLogin: StoreList}/> {/* Store List Page */}
           <Route path="/Store" exact component={Store}/> {/* Store Regiteration Form */}
           <Route path="/Success/:StoreCode" exact component={SuccessReg}/> {/* Success Store Regiteration Page */}
