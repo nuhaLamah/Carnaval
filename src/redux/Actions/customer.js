@@ -14,7 +14,7 @@ export const addCustomer = (customer) => async (dispatch) => {
       dispatch({ type:'SET_IS_ERROR', payload:true });
      
     } catch (error) {
-      if(error?.response?.status === 400){
+      if(error?.response.status === 400){
         dispatch({ type:'SET_IS_ERROR', payload:true });
     }
     }

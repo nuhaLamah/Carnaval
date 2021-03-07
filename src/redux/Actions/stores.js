@@ -66,6 +66,7 @@ export const checkAddress = (address) => async (dispatch) => {
   try {
     let isExisit = false;
     const {data} = await api.getLocationInfo(address);
+
     if(data.status === 'valid') {
       try{
         isExisit = await api.checkIfLocationUsed(...address.split('+'));
