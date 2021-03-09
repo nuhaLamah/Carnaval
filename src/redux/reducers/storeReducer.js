@@ -1,4 +1,3 @@
-
 const regStore = (state = { address: {}, storeId: 0, storeInfo: null, isInValid: false, isDone: false, isError: false}, action) => {
     switch (action.type) {
         case 'REG_STORE':
@@ -12,7 +11,7 @@ const regStore = (state = { address: {}, storeId: 0, storeInfo: null, isInValid:
         case 'INVALID_ADDRESS':
             return { ...state, isInValid: action.payload };
         default:
-            return state
+            return state;
     }
 }
 
