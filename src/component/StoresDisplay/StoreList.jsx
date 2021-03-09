@@ -19,11 +19,11 @@ const StoreList = () => {
     dispatch(filterStores("", 1, 10));
   }, [dispatch]);
 
-  const markets = useSelector((state) => state.stores.storeList);
-  const isLoading = useSelector((state) => state.stores.isLoading);
-  const totalStores = useSelector((state) => state.stores.totalStores);
-  const pageNumber = useSelector((state) => state.stores.pageNumber);
-  const totalAccepted = useSelector((state) => state.stores.acceptedStores);
+  const markets = useSelector((state) => state.storeList.storeList);
+  const isLoading = useSelector((state) => state.storeList.isLoading);
+  const totalStores = useSelector((state) => state.storeList.totalStores);
+  const pageNumber = useSelector((state) => state.storeList.pageNumber);
+  const totalAccepted = useSelector((state) => state.storeList.acceptedStores);
 
   return (
     <div>
