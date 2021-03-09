@@ -88,10 +88,10 @@ export const checkAddress = (address) => async (dispatch) => {
 };
 
 export const changeState= (storeCode, state) => async (dispatch, useState) => {
-  const stores = useState().stores;
+  const stores = useState().storeList.storeList;
   const change = async()=>{
     await api.ChangeStoreState(storeCode, state);
-    const storeList = [...stores.storeList].map(store => store.code ===storeCode? {...store, state:state}: store);
+    const storeList = [...stores].map(store => store.code ===storeCode? {...store, state:state}: store);
     dispatch({ type:'FETCH_STORES' , payload: storeList });
   }
   try {
