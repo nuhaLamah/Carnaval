@@ -1,3 +1,6 @@
+///////////////////////////////////////////////////////////////////////////////////////
+//A Search box used for filtering the displayed stores in the dashboard.
+///////////////////////////////////////////////////////////////////////////////////////
 import { useState, useEffect } from 'react';
 
 import { filterStores } from '../../redux/Actions/stores';
@@ -9,6 +12,7 @@ const SearchBox = (props) => {
   const [term, setTerm] = useState(null);
 
   useEffect(() => {
+    //Waiting 10s before running filter function
     const timer = setTimeout(() => {
       if (term !== null) dispatch(filterStores(term, 1, 10));
     }, 1000);

@@ -1,3 +1,6 @@
+///////////////////////////////////////////////////////////////////////////////////////
+//Dashboard's main page.
+///////////////////////////////////////////////////////////////////////////////////////
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterStores } from '../../redux/Actions/stores';
@@ -14,16 +17,16 @@ const StoreList = () => {
 
 
   const dispatch = useDispatch();
-
+  //Getting first 10 stores 
   useEffect(() => {
     dispatch(filterStores("", 1, 10));
   }, [dispatch]);
 
-  const markets = useSelector((state) => state.storeList.storeList);
-  const isLoading = useSelector((state) => state.storeList.isLoading);
-  const totalStores = useSelector((state) => state.storeList.totalStores);
-  const pageNumber = useSelector((state) => state.storeList.pageNumber);
-  const totalAccepted = useSelector((state) => state.storeList.acceptedStores);
+  const markets = useSelector((state) => state.storeList.storeList);  //markets list
+  const isLoading = useSelector((state) => state.storeList.isLoading);  // false if getting market list proccess is done
+  const totalStores = useSelector((state) => state.storeList.totalStores);  // total items to display in the list
+  const pageNumber = useSelector((state) => state.storeList.pageNumber);  //current page number
+  const totalAccepted = useSelector((state) => state.storeList.acceptedStores);  //number of accepted stores
 
   return (
     <div>

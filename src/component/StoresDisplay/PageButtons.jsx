@@ -1,3 +1,7 @@
+///////////////////////////////////////////////////////////////////////////////////////
+//Buttons used for updtating the store list with new content according to the page 
+//number and number of items in each page.
+///////////////////////////////////////////////////////////////////////////////////////
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -8,11 +12,12 @@ const PageButtons = (props) => {
     const pageNumber = useSelector((state) => state.storeList.pageNumber);
     const totalPages = useSelector((state) => state.storeList.totalPages);
     const filterTerm = useSelector((state) => state.storeList.filterTerm);
+    //move to the next page
     const increase = () => {
             dispatch(filterStores(filterTerm, pageNumber+1, 10));
     }
+    //move to the previous page
     const decrease = () => {
-  
         dispatch(filterStores(filterTerm, pageNumber-1, 10));
     }
     const buttonStyle = {

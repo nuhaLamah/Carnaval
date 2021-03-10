@@ -1,3 +1,6 @@
+///////////////////////////////////////////////////////////////////////////////////////
+//A component to generate  QR code using the URL of the store registration form.
+///////////////////////////////////////////////////////////////////////////////////////
 import React, {Component} from 'react';
 
 
@@ -6,7 +9,6 @@ import { QRCode } from "react-qr-svg";
  
 
 class QrCode extends Component {
-
   render(){
     const size =  600;
   
