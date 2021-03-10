@@ -1,7 +1,7 @@
 // Customer component 
 import React , {useEffect, useState } from 'react'
 import logo from '../../image/CustomerLogo.png';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCustomer } from '../../redux/Actions/customer';
 import { getStoreInfo } from '../../redux/Actions/stores';
 import ErrorMessage from '../ErrorMessage';
@@ -34,18 +34,15 @@ const CustomerForm = (props) => {
     // handle submit button 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const {fullname,phonenumber,city} = customerData 
+        const { fullname, phonenumber, city } = customerData
         let nameLen = fullname.trim().split(" ").length;
-        if(nameLen >= 4 && nameLen <= 7)
-        {
-        if(isNaN(fullname) && !isNaN(phonenumber) && phonenumber.length === 10 &&city && !validInput.status)
-        {
-          dispatch(addCustomer(customerData));
-        }
-        else
-        {
-        setValidInput({status : true ,type:'generalError', msg:" يجب أن تكون المدخلات غير فارغة وصحيحة "})
-        }
+        if (nameLen >= 4 && nameLen <= 7) {
+            if (isNaN(fullname) && !isNaN(phonenumber) && phonenumber.length === 10 && city && !validInput.status) {
+                dispatch(addCustomer(customerData));
+            }
+            else {
+                setValidInput({ status: true, type: 'generalError', msg: " يجب أن تكون المدخلات غير فارغة وصحيحة " })
+            }
         }
         else
         setValidInput({ status: true, type: 'generalError', msg: 'الرجاء ادخال الاسم الرباعي ' });
@@ -62,11 +59,11 @@ const CustomerForm = (props) => {
     //handle input fields which contain only text
     const handleChangeOfText = (e)=>{
         let format = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~1234567890]/;
-        if(!isNaN(e.target.value)  || format.test(e.target.value))
-        setValidInput({status : true , type :"TextError" , msg:"يجب ادخال حروف فقط"})
-        else{     
-            setCustomerData({...customerData,[e.target.name]:e.target.value})
-            setValidInput({status : false,type:"" , msg:""})
+        if (!isNaN(e.target.value) || format.test(e.target.value))
+            setValidInput({ status: true, type: "TextError", msg: "يجب ادخال حروف فقط" })
+        else {
+            setCustomerData({ ...customerData, [e.target.name]: e.target.value })
+            setValidInput({ status: false, type: "", msg: "" })
         }
     }
     // main form
@@ -97,6 +94,7 @@ const CustomerForm = (props) => {
                 <input type="tel" name="phonenumber" placeholder="xxxxxxxx" onChange ={handleChangeOfNumber}  maxLength="10" required/>
                 <p>{validInput.status && validInput.type=== "NumberError" ?`${validInput.msg}`:''}</p>
                 </div>
+
             </div>
             {/* cities List  */}
             <div className="field ">

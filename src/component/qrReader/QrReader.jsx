@@ -43,8 +43,8 @@ const QrScanner = () => {
           borderRadius: '25px'}}/>
         </div>   
       }
-      </div>
-    )
+    </div>
+  )
 }
 
 export default QrScanner;

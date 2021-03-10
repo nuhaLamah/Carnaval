@@ -1,6 +1,6 @@
 //Recaptch component , take setVerified function as proprety from customer component to manage the submit button status
 import React from 'react'
-import Recaptcha  from 'react-recaptcha';
+import Recaptcha from 'react-recaptcha';
 
 const ReCaptcha = ({setVerified})=> {
   // fuction to check if the recaptch has been successfully passed
@@ -20,7 +20,6 @@ const ReCaptcha = ({setVerified})=> {
           expiredCallback={expiredCallback}
           verifyCallback={verifyCallback}
           hl="ar"
-          
         />
         </>
     );

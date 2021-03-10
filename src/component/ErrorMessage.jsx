@@ -1,13 +1,13 @@
 import React from 'react';
 // Error message component  takes props as component property
-const ErrorMessage = (props)=>{
-    return(
+const ErrorMessage = (props) => {
+    return (
         <div className="ui negative message">
-        <div className="header">
-        {props.head}
-        </div>
-        <p>{props.content}
-        </p></div>
+            <div className="header">
+                {props.head}
+            </div>
+            <p>{props.content}
+            </p></div>
     );
 }
 

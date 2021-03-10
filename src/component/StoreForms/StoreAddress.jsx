@@ -14,10 +14,10 @@ const StoreAddress = () => {
     const isError = useSelector(state => state.stores.isError);
     const isInValid = useSelector(state => state.stores.isInValid);
     const storeDefaultData = useSelector((addressData) => addressData.stores.address);
-    const [showButton , setShowButton] = useState(false);
-    const [address , setAddress] = useState({code:'', number:''});
-    const [validInput,setValidInput] = useState ({status:false ,type:'generalError' , msg:'الرجاء التاكد من صحة البيانات المدخلة'});
-    const categoryList = [1,4,12,15,18,22,24];
+    const [showButton, setShowButton] = useState(false);
+    const [address, setAddress] = useState({ code: '', number: '' });
+    const [validInput, setValidInput] = useState({ status: false, type: 'generalError', msg: 'الرجاء التاكد من صحة البيانات المدخلة' });
+    const categoryList = [1, 4, 12, 15, 18, 22, 24];
 
     // checking building category to be added 
     const checkCategory = (category) => {
@@ -109,12 +109,12 @@ const StoreAddress = () => {
                           {/* --------- Footer section ------------ */}
                         <Footer />
                     </div>
-                    
+
                 </div>
-               
+
             </div>
         </div>
-        
+
     );
 }
 

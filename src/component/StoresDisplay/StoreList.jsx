@@ -19,12 +19,12 @@ const StoreList = () => {
     dispatch(filterStores("", 1, 10));
   }, [dispatch]);
 
-  const markets = useSelector((state) => state.stores.storeList);
-  const isLoading = useSelector((state) => state.stores.isLoading);
-  const totalStores = useSelector((state) => state.stores.totalStores);
-  const pageNumber = useSelector((state) => state.stores.pageNumber);
-  const totalAccepted = useSelector((state) => state.stores.acceptedStores);
-  
+  const markets = useSelector((state) => state.storeList.storeList);
+  const isLoading = useSelector((state) => state.storeList.isLoading);
+  const totalStores = useSelector((state) => state.storeList.totalStores);
+  const pageNumber = useSelector((state) => state.storeList.pageNumber);
+  const totalAccepted = useSelector((state) => state.storeList.acceptedStores);
+
   return (
     <div>
       <center>
@@ -36,20 +36,20 @@ const StoreList = () => {
       <div className="ui container main-div ">
 
         <h1 className="ui container center aligned page-title">المحلات المسجلة</h1>
-       <center>
-        <div class="ui segment" style={{maxWidth:"450px"}}>
-        <div class="ui two column  grid">
-        <div class="column">
-        <p className="ui container center aligned" style={{fontSize: "20px", color:"#4183c4"}}>
-          عدد المحلات الكلي  <br/><b>{totalStores}</b> </p>
-        </div>
-        <div class="column">
-        <p className="ui container center aligned" style={{fontSize: "20px", color:"#d16161"}}>
-        عدد المحلات المقبولة <b>{totalAccepted}</b></p>
-        </div>
-        </div>
-        <div class="ui vertical divider"></div>
-        </div>
+        <center>
+          <div class="ui segment" style={{ maxWidth: "450px" }}>
+            <div class="ui two column  grid">
+              <div class="column">
+                <p className="ui container center aligned" style={{ fontSize: "20px", color: "#4183c4" }}>
+                  عدد المحلات الكلي  <br /><b>{totalStores}</b> </p>
+              </div>
+              <div class="column">
+                <p className="ui container center aligned" style={{ fontSize: "20px", color: "#d16161" }}>
+                  عدد المحلات المقبولة <b>{totalAccepted}</b></p>
+              </div>
+            </div>
+            <div class="ui vertical divider"></div>
+          </div>
         </center>
         <NavBar>
           <SearchBox dispatch={dispatch} />

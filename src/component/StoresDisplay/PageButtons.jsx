@@ -5,9 +5,9 @@ import {filterStores} from '../../redux/Actions/stores';
 
 const PageButtons = (props) => {
     const dispatch = props.dispatch;
-    const pageNumber = useSelector((state) => state.stores.pageNumber);
-    const totalPages = useSelector((state) => state.stores.totalPages);
-    const filterTerm = useSelector((state) => state.stores.filterTerm);
+    const pageNumber = useSelector((state) => state.storeList.pageNumber);
+    const totalPages = useSelector((state) => state.storeList.totalPages);
+    const filterTerm = useSelector((state) => state.storeList.filterTerm);
     const increase = () => {
             dispatch(filterStores(filterTerm, pageNumber+1, 10));
     }

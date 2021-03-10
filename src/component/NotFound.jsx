@@ -4,7 +4,7 @@ import logo from '../image/logo.png';
 
 const NotFound = () => {
 
-    return(
+    return (
         <>
         <div style={{height:'100px'}}></div> 
         {/* main container */}
@@ -21,10 +21,10 @@ const NotFound = () => {
                 </div>
                 </div>
             </div>
-            
-        <div style={{height:'80px'}}></div> 
+
+            <div style={{ height: '80px' }}></div>
         </>
-        )
+    )
 }
 
 export default NotFound;

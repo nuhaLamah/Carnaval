@@ -20,7 +20,7 @@ const Login = (props) => {
     } 
     //  store user input in login data
     const onChangeInput = (e) => {
-    setLoginData({...loginData, [e.target.name]: e.target.value});
+        setLoginData({ ...loginData, [e.target.name]: e.target.value });
     }
     //  Handling Login process 
     const onSubmitForm= (e) =>{
@@ -50,21 +50,21 @@ const Login = (props) => {
                 {/* Login button  */}
                     <div className="field">
                         <center>
-                        <button className="fluid ui big button log-btn" type="submit">دخول</button>
+                            <button className="fluid ui big button log-btn" type="submit">دخول</button>
                         </center>
                     </div>
                 {/* Footer Section  */}
                     <div className="ui section divider"></div>
-                    <Footer />    
-            </form>
+                    <Footer />
+                </form>
             </div>
-           
-       
-    )
+
+
+        )
 }
 
-const mapStateToProps = ({loginInfo}) => {
-return {logState: loginInfo.logState, logError: loginInfo.logError}
+const mapStateToProps = ({ loginInfo }) => {
+    return { logState: loginInfo.logState, logError: loginInfo.logError }
 }
 
-export default connect(mapStateToProps, {login})(Login);
+export default connect(mapStateToProps, { login })(Login);
