@@ -1,3 +1,6 @@
+/*
+The main file used for Stores API Connection 
+*/
 import axios from 'axios';
 
 const URL = 'https://api.misratafestival.ly';
@@ -7,9 +10,9 @@ const    getHeaders = (isAuth) => { return {
     'Content-Type': "application/x-www-form-urlencoded" 
     };
 };
-
+//------------------------------------------------------------//
 //--------------------------Dashboard--------------------------//
-
+//------------------------------------------------------------//
 export const log = (logData) =>{
     const config = { headers: getHeaders(false) };
     const logFormData = new FormData();
@@ -19,6 +22,10 @@ export const log = (logData) =>{
     return axios.post(`${URL}/login`, logFormData, config);
 }
 
+//------------------------------------------------------------//
+// Refresh user token after login ----------------------------//
+//------------------------------------------------------------//
+
 export const refreshAccessToken = () => {
     const config = {
         headers: {
@@ -27,6 +34,10 @@ export const refreshAccessToken = () => {
       };
     return axios.get(`${URL}/refresh`, config);
 }
+
+//------------------------------------------------------------//
+// filter stores ---------------------------------------------//
+//------------------------------------------------------------//
 
 export const filterStores  = (term, page, perPage) =>{ 
     const config = {
@@ -40,6 +51,10 @@ export const filterStores  = (term, page, perPage) =>{
     return axios.get(`${URL}/markets/search`, config);
 }
 
+//------------------------------------------------------------//
+// changing store state accepted or suspended-----------------//
+//------------------------------------------------------------//
+
 export const ChangeStoreState = (code, state) => {
     const config = {
         params: {
@@ -52,6 +67,9 @@ export const ChangeStoreState = (code, state) => {
 }
 
 //-------------------------Stores Form---------------------// 
+/*        Adding a new store to the system database        */
+//------------------------------------------------------------//
+
 export const addStore = (newStore) => {
     const config = { headers: getHeaders(false) };
     const form_data = new FormData();
@@ -60,6 +78,10 @@ export const addStore = (newStore) => {
     } 
     return axios.post(`${URL}/markets`, form_data, config)
 }
+
+//------------------------------------------------------------//
+/* Fetchinig stores from databse  */ 
+//------------------------------------------------------------//
 
 export const getStore = (code) =>{
     const config = {
@@ -71,6 +93,9 @@ export const getStore = (code) =>{
     return axios.get(`${URL}/get_market`, config);
 } 
 
+//------------------------------------------------------------//
+// checkin if the location has been used or not //
+//------------------------------------------------------------//
 export const checkIfLocationUsed = (postcode, building_number) =>{
     const config = {
             headers: getHeaders(false),
@@ -82,6 +107,9 @@ export const checkIfLocationUsed = (postcode, building_number) =>{
     return axios.get(`${URL}/check_market_location`, config);
 }
 
+//------------------------------------------------------------//
+//  fetching store information from API Makani  //
+//------------------------------------------------------------//
 export const getLocationInfo = (location)=>{
     return axios.get(`${URL}/location_info/${location}`);
 }

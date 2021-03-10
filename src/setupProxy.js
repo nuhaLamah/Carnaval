@@ -1,3 +1,5 @@
+/*define the API URLs by using ProxyMiddleware library 
+to prevent CORS errors */
 
 const { createProxyMiddleware } = require('http-proxy-middleware');
 

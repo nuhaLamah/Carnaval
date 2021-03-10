@@ -1,5 +1,7 @@
+/* Managing customer registration */
 import * as api from '../../apiCustomer';
 
+// Adding new Customer 
 export const addCustomer = (customer) => async (dispatch) => {
     try {
        const data = await api.addCustomer(customer)
@@ -19,7 +21,7 @@ export const addCustomer = (customer) => async (dispatch) => {
     }
     }
   };
-
+// Clear info is used in customer form after the registration process
   export const clearInfo = () => async (dispatch) => {
       try {
         dispatch({type:'SET_STORE_INFO', payload: null});

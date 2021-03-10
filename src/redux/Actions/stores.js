@@ -1,5 +1,10 @@
+/* Customer Reducer which contain the basic states used for dealing with customer
+isError : used when something wrong happend
+isDone : when the customer succseffully add to the Withdraw Customer System
+*/
 import * as api from '../../api';
 
+//register a new store in the database
 export const addStore = (store) => async (dispatch) => {
   try {
     const  data  = await api.addStore(store);
@@ -10,20 +15,19 @@ export const addStore = (store) => async (dispatch) => {
       window.location.replace(`/Success/${store.code}`);
     } 
   } catch (error) {
-    
     if(error.response.status===422 )
-      {
+    {
         dispatch({ type:'SET_IS_ERROR', payload:true });
         alert("رقم الهاتف المحل موجود مسبقا  ")
-      }
-      else
+    }
+    else
     {
       alert("لقد حدث خطأ ! الرجاء التأكد من صحة البيانات المدخلة"+error)
       dispatch({ type: 'SET_IS_Error', payload:true });
     }
   }
 };
-
+//refresh new token for user 
 const refresh = async(reRun) => {
   try{
     const newAccessToken = await (await api.refreshAccessToken()).data.access_token;
@@ -34,8 +38,8 @@ const refresh = async(reRun) => {
     alert(`حدث خطأ ${e}`)
   }
 }
+// display and filter stores
 export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch) => {
-
   const getStores = async() =>  {
       dispatch({type: 'SET_IS_LOADING', payload: true});
       const response = await api.filterStores(keySearch, pageNumber, perPage);
@@ -61,7 +65,7 @@ export const filterStores = (keySearch,pageNumber , perPage) => async (dispatch)
     else alert(`حدث خطأ ${error}`)
   }
 };
-
+//check address validation in Api makani ,  if exists and not registred before in market table
 export const checkAddress = (address) => async (dispatch) => {
   try {
     let isExisit = false;
@@ -86,7 +90,7 @@ export const checkAddress = (address) => async (dispatch) => {
     dispatch({ type: 'INVALID_ADDRESS', payload: true });
   }
 };
-
+//Action to be used for managing store state, accepted or suspended
 export const changeState= (storeCode, state) => async (dispatch, useState) => {
   const stores = useState().stores;
   const change = async()=>{
@@ -105,7 +109,7 @@ export const changeState= (storeCode, state) => async (dispatch, useState) => {
     else alert(`حدث خطأ ${error}`)
   }
 }; 
-
+// fetching store information after register it in database
 export const getStoreInfo = (storeCode) => async (dispatch) => {
   try{
     const {data} = await api.getStore(storeCode);
@@ -115,23 +119,13 @@ export const getStoreInfo = (storeCode) => async (dispatch) => {
     window.location.replace('/NotFound');
   }
 }
-
+// cleasr store info after the registration process success
 export const clearInfo = () => async (dispatch) => {
   try {
     dispatch({type:'ADDRESS', payload: {} , isInValid:false});
   } catch (error) {
     
     dispatch({ type:'SET_IS_ERROR', payload:true });
-  }
-};
-
-export const clearAddress = () => async (dispatch) => {
-  try {
-    dispatch({type:'INVALID_ADDRESS', isInValid:false});
-    dispatch({type:'IS_ERROR', isError:false});
-  } catch (error) {
-    
-    dispatch({ type:'IS_ERROR', payload:true });
   }
 };
 

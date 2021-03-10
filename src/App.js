@@ -1,3 +1,6 @@
+/* The parent component of the system -
+in which contain the system's routes and login info  */
+
 import React from 'react';
 import { connect } from 'react-redux';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
@@ -12,10 +15,11 @@ import Home from './component/Home';
 import NotFound from './component/NotFound';
 
 const App = (props)=> {
+  /*checkig if user has been logged in or not,
+  if he hasn't redirect him to the login page */
   const DirectToLogin = () => <Redirect to="/fs-com-e" />;
-
- 
   return (    
+  //--------------- Main routs of the system ------------------- //
     <Router>
       <Switch>
           <Route path="/" exact component={Home}/> {/* Main page*/}

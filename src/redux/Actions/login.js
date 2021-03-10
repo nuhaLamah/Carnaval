@@ -1,5 +1,7 @@
-import {log} from '../../api';
+// managing Log in process //
 
+import {log} from '../../api';
+//Log in Action
 export const login = (loginInput) => async (dispatch) => {
   try {
     const {data} = await log(loginInput);
@@ -16,7 +18,7 @@ export const login = (loginInput) => async (dispatch) => {
     dispatch({ type: 'CHANGE_LOG_STATE', payload: false});
   }
 };
-
+//Log out actoin
 export const logout = () => async(dispatch) =>{
   localStorage.removeItem('access_token');
   localStorage.removeItem('refresh_token');

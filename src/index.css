@@ -1,5 +1,10 @@
+/* the main css file which responsible for making the basic design of system 
+including layouts , input fields an containers .*/
+
+/* importing Font Almarai which the font type that has been used in system */
 @import url('https://fonts.googleapis.com/css2?family=Almarai&display=swap');
 
+/* determining the basic layout of page */
 body, ul {
   margin: 0;
   padding: 0;
@@ -15,7 +20,7 @@ body, ul {
   height: 100%;
 
 }
-
+/* designing form  input field -- text, email, password */
 input[type="text"], input[type="email"],input[type="password"]
 {
     font-size:15px !important;
@@ -23,14 +28,7 @@ input[type="text"], input[type="email"],input[type="password"]
     font-weight: 500;
 }
 
-
-.content-div{
-  position: relative;
-  display: block;
-  height: 100%;
-  width: 100%;
-}
-
+/* container design for store address form */
 .main-container{
   position: relative;
   min-height: 100vh;
@@ -39,6 +37,7 @@ input[type="text"], input[type="email"],input[type="password"]
   justify-content: center;
   align-items: center;
 }
+/* container design used in Login form  and Qrcode component which making items in center */
 .center-all {
   margin: 0 !important;
   position: absolute !important;

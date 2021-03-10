@@ -1,8 +1,10 @@
+/* input text fields  */
 .text{
     font-size: 16px !important;
     text-align: right;
     line-height: 25px !important;   
 }
+/* all buttons style */
 .button {
     background-color: #F53838 !important;
     color: #fff !important;
@@ -17,10 +19,7 @@
     background-color: #d16161 !important;
     color: #fff !important;
 }
-.checkbox {
-   align-items: right !important;
-}
-
+/* Success registration container */
 .success {
     background-color: rgba(169, 255, 173, 0.2) !important;
     padding: 50px 50px !important;
@@ -31,13 +30,13 @@
 .code{
     font-weight: 900 !important;
 }
+/* Modal Style  */
 .terms {
     text-decoration: underline !important;
     cursor: pointer;
     text-align:right !important;
 }
 .term-list{
-    /* overflow-y: scroll; */
     text-align:right;
     font-size: 17px;
     height: 200px;
@@ -71,25 +70,26 @@ li {
 .checkbox {
     text-align : right;
     direction: rtl;
+    align-items: right !important;
 }
 .btn-terms :hover{
 cursor: pointer !important;
 padding: 10px 30px !important;
 }
-
+/* Form container  */
 .reg-container {
      margin: 50px !important;
 }
-
+/*  Required fields ---- * -----  */
 .required:after {
     content:" *";
     color: red;
 }
+/* Adress registration Link in Makani */
 .address-reg{
     margin-top: 20px !important;
     font-weight:bolder;
-    font-size: 15px;
-    
+    font-size: 15px;  
 }
 
 .address-reg a:hover{

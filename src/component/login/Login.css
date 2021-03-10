@@ -13,17 +13,14 @@
     position: absolute;
     width: 800px !important;
     padding: 5%  10%!important;
-    
 }
 
 input{
-    text-align: right !important;
-    
+    text-align: right !important; 
 }
 
 .log-btn{
-width: 150px !important;
-
+    width: 150px !important;
 }
 
 center{
